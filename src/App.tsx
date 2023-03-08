@@ -1,7 +1,8 @@
 import { useState } from "react";
+import LoginForm from "./components/LoginForm/LoginForm";
 
 function App() {
-	return <div>App</div>;
+	return <LoginForm />;
 }
 
 export default App;
