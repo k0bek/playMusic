@@ -1,0 +1,20 @@
+.search-box {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4em;
+}
+
+.name {
+	font-size: 3rem;
+	font-weight: bold;
+}
+
+.question {
+	color: var(--dark-text);
+}
+
+@media (min-width: 576px) {
+	.search-box {
+		width: 25em;
+	}
+}

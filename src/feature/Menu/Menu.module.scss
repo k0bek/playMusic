@@ -1,0 +1,36 @@
+.menu {
+	display: flex;
+	justify-content: center;
+	gap: 2em;
+	margin-top: 2.5em;
+	list-style-type: none;
+	font-weight: bold;
+}
+
+.item {
+	position: relative;
+	cursor: pointer;
+
+	&::before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		bottom: -0.7em;
+		transform: translateX(-50%);
+		width: 30%;
+		height: 3px;
+
+		background: rgb(143, 42, 232);
+		background: linear-gradient(
+			90deg,
+			rgba(143, 42, 232, 1) 20%,
+			rgba(189, 68, 235, 1) 75%
+		);
+		border-radius: 7px;
+		transition: width 0.3s;
+	}
+
+	&:hover::before {
+		width: 70%;
+	}
+}

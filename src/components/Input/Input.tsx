@@ -3,8 +3,8 @@ import styles from "./Input.module.scss";
 
 type InputProps = {
 	type: string;
-	id: string;
-	onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+	id?: string;
+	onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 	placeholder: string;
 };
 
