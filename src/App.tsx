@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LoginForm from "./components/LoginForm/LoginForm";
+import { LoginForm } from "./feature/LoginForm/LoginForm";
 
 function App() {
 	return <LoginForm />;

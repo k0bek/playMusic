@@ -8,7 +8,7 @@ type InputProps = {
 	placeholder: string;
 };
 
-const Input = ({ type, id, onChange, placeholder }: InputProps) => {
+export const Input = ({ type, id, onChange, placeholder }: InputProps) => {
 	return (
 		<input
 			type={type}
@@ -19,5 +19,3 @@ const Input = ({ type, id, onChange, placeholder }: InputProps) => {
 		/>
 	);
 };
-
-export default Input;

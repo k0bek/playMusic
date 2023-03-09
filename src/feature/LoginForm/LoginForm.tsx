@@ -1,9 +1,9 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import Button from "../Button/Button";
-import Input from "../Input/Input";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
 import styles from "./LoginForm.module.scss";
 
-const LoginForm = () => {
+export const LoginForm = () => {
 	const [email, setEmail] = useState<string>();
 	const [password, setPassword] = useState<string>();
 	const [name, setName] = useState<string>();
@@ -29,7 +29,6 @@ const LoginForm = () => {
 						type="email"
 						id="email"
 						onChange={(event: ChangeEvent<HTMLInputElement>) => {
-							console.log("kurwa");
 							setEmail(event.target.value);
 						}}
 						placeholder={"Your email"}
@@ -43,7 +42,6 @@ const LoginForm = () => {
 						type="password"
 						id="password"
 						onChange={(event: ChangeEvent<HTMLInputElement>) => {
-							console.log("kurwa");
 							setPassword(event.target.value);
 						}}
 						placeholder={"Your password"}
@@ -71,5 +69,3 @@ const LoginForm = () => {
 		</>
 	);
 };
-
-export default LoginForm;
