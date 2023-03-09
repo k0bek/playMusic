@@ -1,6 +1,10 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-export const Button = () => {
-	return <button className={styles.button}>Create an account</button>;
+type ButtonProps = {
+	text: string;
+};
+
+export const Button = ({ text }: ButtonProps) => {
+	return <button className={styles.button}>{text}</button>;
 };

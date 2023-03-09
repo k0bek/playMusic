@@ -1,9 +1,12 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
-import styles from "./LoginForm.module.scss";
+import { Link } from "react-router-dom";
+import { Input } from "../../../components/Input";
+import { Button } from "../../../components/Button";
+import styles from "./Signup.module.scss";
+import { Label } from "../../../components/Label";
+import { Welcome } from "../components/Welcome";
 
-export const LoginForm = () => {
+export const Signup = () => {
 	const [email, setEmail] = useState<string>();
 	const [password, setPassword] = useState<string>();
 	const [name, setName] = useState<string>();
@@ -14,17 +17,10 @@ export const LoginForm = () => {
 	return (
 		<>
 			<form onSubmit={handleSubmit} className={styles.form}>
-				<div>
-					<h2 className={styles.heading}>
-						Welcome to play<b className={styles.bolded}>M</b>usic
-					</h2>
-					<p className={styles["dark-text"]}>Create your account</p>
-				</div>
+				<Welcome text="Create your account" />
 
 				<div>
-					<label htmlFor="email" className={styles["dark-text"]}>
-						Email:
-					</label>
+					<Label type="email">Email</Label>
 					<Input
 						type="email"
 						id="email"
@@ -35,9 +31,7 @@ export const LoginForm = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="password" className={styles["dark-text"]}>
-						Password:
-					</label>
+					<Label type="password">Password</Label>
 					<Input
 						type="password"
 						id="password"
@@ -48,22 +42,24 @@ export const LoginForm = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="name" className={styles["dark-text"]}>
-						Name:
-					</label>
+					<Label type="name">Name</Label>
 					<Input
 						type="name"
 						id="text"
 						onChange={(event: ChangeEvent<HTMLInputElement>) => {
-							console.log("kurwa");
 							setName(event.target.value);
 						}}
 						placeholder={"Your name"}
 					/>
 				</div>
-				<Button />
+				<Button text="Create an account" />
 				<p className={styles.login}>
-					Have an account? <span className={styles["login-text"]}>Log in.</span>
+					Have an account?{" "}
+					<span>
+						<Link to="/" className={styles["login-text"]}>
+							Log in.
+						</Link>
+					</span>
 				</p>
 			</form>
 		</>

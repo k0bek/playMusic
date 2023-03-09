@@ -1,0 +1,24 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5em;
+	background-color: var(--background-color);
+}
+
+.login-text {
+	color: var(--button-background);
+	margin-left: 0.2em;
+	cursor: pointer;
+	transition: 0.3s color;
+	text-decoration: none;
+}
+
+.login-text:hover {
+	color: var(--button-hover);
+}
+
+@media (min-width: 576px) {
+	.form {
+		width: 30em;
+	}
+}
