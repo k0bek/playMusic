@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACR,SAAS,EAAE,IAAI;EACf,aAAa,EAAE,KAAK;CACpB;;AAED,AAAA,OAAO,CAAC;EACP,WAAW,EAAE,gEAAgE;EAC7E,SAAS,EAAE,MAAM;EACjB,KAAK,EAAE,wBAAwB;CAC/B",
+    "sources": [
+        "../src/feature/Form/components/Welcome/Welcome.module.scss"
+    ],
+    "names": [],
+    "file": "Welcome.module.css"
+}

@@ -1,0 +1,48 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5em;
+  background-color: #181a3f;
+}
+
+.company-name {
+  font-size: 3rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.bolded {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 4.5rem;
+  color: var(--button-background);
+}
+
+.navbar-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.login-logout {
+  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.login-logout:hover {
+  color: #b1b1b1;
+}
+/*# sourceMappingURL=Navbar.module.css.map */
