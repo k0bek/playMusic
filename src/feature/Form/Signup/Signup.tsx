@@ -5,15 +5,21 @@ import { Button } from "../../../components/Button";
 import styles from "./Signup.module.scss";
 import { Label } from "../../../components/Label";
 import { Welcome } from "../components/Welcome";
+import { useSignup } from "../../../hooks/useSignup";
 
 export const Signup = () => {
 	const [email, setEmail] = useState<string>();
 	const [password, setPassword] = useState<string>();
 	const [name, setName] = useState<string>();
+	const { signup } = useSignup();
 
 	const handleSubmit = (event: FormEvent): void => {
 		event.preventDefault();
+		if (email && password && name) {
+			signup(email, password, name);
+		}
 	};
+
 	return (
 		<>
 			<form onSubmit={handleSubmit} className={styles.form}>
