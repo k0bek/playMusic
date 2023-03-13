@@ -5,8 +5,6 @@ import background from "./../../../assets/maxresdefault.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
-import arrow from "./../../../assets/play-button-arrowhead.png";
-
 export const RecommendedItem = () => {
 	return (
 		<div className={styles.item}>

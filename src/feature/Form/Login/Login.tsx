@@ -39,7 +39,7 @@ export const Login = () => {
 					/>
 				</div>
 
-				<Button text="Log in" />
+				<Button type="button">Log in</Button>
 				<p className={styles.login}>
 					Don't have an account?
 					<span className={styles["login-text"]}>

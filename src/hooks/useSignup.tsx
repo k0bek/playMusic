@@ -33,8 +33,9 @@ export const useSignup = () => {
 			const user = response.user;
 
 			await updateProfile(user, {
-				displayName: "kuba",
+				displayName: name,
 			});
+			setPendingAndError(false, false);
 		} catch (error) {
 			if (error instanceof Error) {
 				setPendingAndError(false, error.message);
@@ -42,5 +43,5 @@ export const useSignup = () => {
 		}
 	};
 
-	return { signup };
+	return { signup, isPending, error };
 };
