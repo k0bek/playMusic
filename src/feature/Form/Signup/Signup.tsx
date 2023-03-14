@@ -7,9 +7,15 @@ import { Welcome } from "../components/Welcome";
 import { useForm } from "react-hook-form";
 import { regex } from "../../../constants/regex";
 import { useSignup } from "../../../hooks/useSignup";
+import { useState } from "react";
+import firebase from "firebase/app";
+import "firebase/auth";
+import { auth } from "./../../../firebase/config";
+import { fetchSignInMethodsForEmail } from "firebase/auth";
 
 export const Signup = () => {
-	const { isPending, error, signup } = useSignup();
+	const { isPending, signup } = useSignup();
+
 	const navigate = useNavigate();
 
 	const {
@@ -17,6 +23,7 @@ export const Signup = () => {
 		handleSubmit,
 		formState: { errors },
 		getValues,
+		setError,
 	} = useForm({
 		defaultValues: {
 			email: "",
@@ -27,15 +34,18 @@ export const Signup = () => {
 		criteriaMode: "all",
 	});
 
-	const onSubmit = () => {
+	const onSubmit = async () => {
 		const { email, password, name } = getValues();
-		signup(email, password, name);
-		if (error) {
+
+		const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+
+		if (signInMethods.length > 0) {
+			setError("email", { message: "This email is already in use." });
+		} else {
+			await signup(email, password, name);
 			navigate("/");
 		}
 	};
-
-	console.log(error);
 
 	return (
 		<>
@@ -56,10 +66,7 @@ export const Signup = () => {
 						})}
 					/>
 					{errors?.email?.message && (
-						<InputError>{errors?.email?.message}</InputError>
-					)}
-					{error === "Firebase: Error (auth/email-already-in-use)." && (
-						<InputError>This email address is already in use.</InputError>
+						<InputError>{errors.email.message}</InputError>
 					)}
 				</div>
 

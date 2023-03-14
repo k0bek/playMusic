@@ -6,7 +6,7 @@ type AsyncStatusType = boolean | null | string;
 
 export const useSignup = () => {
 	const [isPending, setIsPending] = useState<AsyncStatusType>(false);
-	const [error, setError] = useState<AsyncStatusType>(null);
+	const [error, setError] = useState<AsyncStatusType>();
 
 	const setPendingAndError = (
 		pending: AsyncStatusType,
@@ -17,7 +17,7 @@ export const useSignup = () => {
 	};
 	const signup = async (email: string, password: string, name: string) => {
 		try {
-			setPendingAndError(true, false);
+			setPendingAndError(true, null);
 
 			const response = await createUserWithEmailAndPassword(
 				auth,
@@ -26,7 +26,8 @@ export const useSignup = () => {
 			);
 
 			if (!response) {
-				setPendingAndError(false, null);
+				setIsPending(false);
+
 				throw new Error("Signing up error");
 			}
 
@@ -35,7 +36,7 @@ export const useSignup = () => {
 			await updateProfile(user, {
 				displayName: name,
 			});
-			setPendingAndError(false, false);
+			setIsPending(false);
 		} catch (error) {
 			if (error instanceof Error) {
 				setPendingAndError(false, error.message);
@@ -43,5 +44,5 @@ export const useSignup = () => {
 		}
 	};
 
-	return { signup, isPending, error };
+	return { signup, isPending, error, setError };
 };
