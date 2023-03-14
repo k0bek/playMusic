@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/components/RecommendedItems/RecommendedItems.tsx"],
+  "include": ["src", "src/components/RecommendedItems/RecommendedItems.tsx", "tsconfig.node.json"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
