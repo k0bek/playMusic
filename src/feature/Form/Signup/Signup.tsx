@@ -7,11 +7,10 @@ import { Welcome } from "../components/Welcome";
 import { useForm } from "react-hook-form";
 import { regex } from "../../../constants/regex";
 import { useSignup } from "../../../hooks/useSignup";
-import { useState } from "react";
-import firebase from "firebase/app";
 import "firebase/auth";
 import { auth } from "./../../../firebase/config";
 import { fetchSignInMethodsForEmail } from "firebase/auth";
+import { useAuthContext } from "./../../../hooks/useAuthContext";
 
 export const Signup = () => {
 	const { isPending, signup } = useSignup();
@@ -43,8 +42,11 @@ export const Signup = () => {
 			setError("email", { message: "This email is already in use." });
 		} else {
 			await signup(email, password, name);
+			
 			navigate("/");
 		}
+
+		
 	};
 
 	return (

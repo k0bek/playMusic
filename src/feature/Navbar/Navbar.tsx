@@ -9,8 +9,8 @@ export const Navbar = () => {
 				<p className={styles["company-name"]}>
 					play<b className={styles.bolded}>M</b>usic
 				</p>
-				<Link to="login" className={styles["login-logout"]}>
-					Login
+				<Link to="/login" className={styles["login-logout"]}>
+					Logout
 				</Link>
 			</div>
 		</nav>

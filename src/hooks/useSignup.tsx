@@ -1,12 +1,14 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "./../firebase/config";
+import { useAuthContext } from "./useAuthContext";
 
 type AsyncStatusType = boolean | null | string;
 
 export const useSignup = () => {
 	const [isPending, setIsPending] = useState<AsyncStatusType>(false);
 	const [error, setError] = useState<AsyncStatusType>();
+	const { dispatch } = useAuthContext();
 
 	const setPendingAndError = (
 		pending: AsyncStatusType,
@@ -36,6 +38,9 @@ export const useSignup = () => {
 			await updateProfile(user, {
 				displayName: name,
 			});
+
+			console.log(user);
+			dispatch({ type: "LOGIN", payload: user });
 			setIsPending(false);
 		} catch (error) {
 			if (error instanceof Error) {

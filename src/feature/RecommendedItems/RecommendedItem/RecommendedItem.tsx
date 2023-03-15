@@ -1,14 +1,12 @@
-import React from "react";
-
 import styles from "./RecommendedItem.module.scss";
-import background from "./../../../assets/maxresdefault.jpg";
+import jackiechan from "./../../../assets/jackiechan.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 export const RecommendedItem = () => {
 	return (
 		<div className={styles.item}>
-			<img src={background}></img>
+			<img src={jackiechan}></img>
 			<div className={styles["background-items"]}>
 				<div className={styles.recommended}>
 					<p>Recommended!</p>

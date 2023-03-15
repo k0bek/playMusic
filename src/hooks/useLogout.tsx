@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { boolean } from "zod";
 import { auth } from "../firebase/config";
+
+type ErrorType = null | boolean | string;
 
 export const useLogout = async () => {
 	const [isPending, setIsPending] = useState(false);
-	const [error, setError] = useState<null | boolean | string>(null);
+	const [error, setError] = useState<ErrorType>(null);
 
 	const setIsPendingAndError = (pending: boolean, error: boolean | null) => {
 		setIsPending(pending);
@@ -18,7 +19,9 @@ export const useLogout = async () => {
 
 		setIsPendingAndError(false, true);
 	} catch (error) {
-		setError(error.message);
+		if (error instanceof Error) {
+			setError(error.message);
+		}
 		setIsPending(false);
 	}
 };
