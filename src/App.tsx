@@ -8,6 +8,7 @@ import { createRoot } from "react-dom/client";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
 import { HomePage } from "./pages/HomePage";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 const router = createBrowserRouter([
 	{ index: true, element: <HomePage /> },
@@ -22,6 +23,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+	const { user } = useAuthContext();
+	console.log(user);
 	return <RouterProvider router={router} />;
 }
 

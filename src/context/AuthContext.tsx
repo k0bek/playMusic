@@ -9,7 +9,7 @@ type AuthContextType = {
 
 interface AuthContextAction {
 	type: "LOGIN" | "LOGOUT";
-	payload: UserDataType | unknown | null;
+	payload?: UserDataType | unknown;
 }
 
 interface AuthContextState {

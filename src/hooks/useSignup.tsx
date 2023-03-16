@@ -7,7 +7,7 @@ type AsyncStatusType = boolean | null | string;
 
 export const useSignup = () => {
 	const [isPending, setIsPending] = useState<AsyncStatusType>(false);
-	const [error, setError] = useState<AsyncStatusType>();
+	const [error, setError] = useState<AsyncStatusType>(null);
 	const { dispatch } = useAuthContext();
 
 	const setPendingAndError = (
