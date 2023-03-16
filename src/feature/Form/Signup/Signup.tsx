@@ -10,7 +10,6 @@ import { useSignup } from "../../../hooks/useSignup";
 import "firebase/auth";
 import { auth } from "./../../../firebase/config";
 import { fetchSignInMethodsForEmail } from "firebase/auth";
-import { useAuthContext } from "./../../../hooks/useAuthContext";
 
 export const Signup = () => {
 	const { isPending, signup } = useSignup();
@@ -42,11 +41,9 @@ export const Signup = () => {
 			setError("email", { message: "This email is already in use." });
 		} else {
 			await signup(email, password, name);
-			
+
 			navigate("/");
 		}
-
-		
 	};
 
 	return (

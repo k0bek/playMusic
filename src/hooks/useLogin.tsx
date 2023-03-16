@@ -18,10 +18,10 @@ export const useLogin = () => {
 
 	const login = async (email: string, password: string) => {
 		try {
-			setIsPendingAndError(false, null);
+			setIsPendingAndError(true, null);
 			const response = await signInWithEmailAndPassword(auth, email, password);
 
-			if (!response) {
+			if (!response?.user) {
 				throw new Error("Cannot login properly");
 			}
 
