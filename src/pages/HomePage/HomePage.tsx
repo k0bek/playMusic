@@ -11,8 +11,6 @@ import { CircularProgress } from "@mui/material";
 export const HomePage = () => {
 	const { user, initUserLoggedLoading } = useAuthContext();
 
-	console.log(initUserLoggedLoading);
-
 	return (
 		<Wrapper>
 			{!initUserLoggedLoading && (
@@ -21,11 +19,13 @@ export const HomePage = () => {
 					<Search />
 					<Menu />
 					<RecommendedItems />
-					<QuickSelection />
+					{/* <QuickSelection /> */}
 				</div>
 			)}
 
-			{initUserLoggedLoading && <CircularProgress color="secondary" />}
+			{initUserLoggedLoading && (
+				<CircularProgress color="secondary" size={60} />
+			)}
 		</Wrapper>
 	);
 };
