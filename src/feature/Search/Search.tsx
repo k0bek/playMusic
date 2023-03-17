@@ -5,7 +5,6 @@ import styles from "./Search.module.scss";
 export const Search = () => {
 	const { user } = useAuthContext();
 
-	console.log(user);
 	return (
 		<>
 			<div className={styles["search-box"]}>

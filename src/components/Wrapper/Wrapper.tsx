@@ -1,8 +1,9 @@
 import React from "react";
 import classes from "./Wrapper.module.scss";
+import { ReactNode } from "react";
 
 type WrapperProps = {
-	children: JSX.Element;
+	children: ReactNode;
 };
 
 export const Wrapper = ({ children }: WrapperProps) => {
