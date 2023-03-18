@@ -1,0 +1,46 @@
+.navbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 1em;
+	background-color: #181a3f;
+}
+
+.navbar-box {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 1em;
+	max-width: 1020px;
+	margin: 0 auto;
+}
+
+.login-logout {
+	cursor: pointer;
+	padding: 0.8em 1.7em;
+	border-radius: 2em;
+	font-size: 1.8rem;
+	background-color: var(--button-background);
+	color: var(--white);
+	text-decoration: none;
+	font-weight: bold;
+	transition: 0.3s;
+
+	&:hover {
+		background-color: var(--black);
+		color: var(--white);
+	}
+}
+
+.signup {
+	font-size: 1.8rem;
+	color: var(--dark-text);
+	font-weight: bold;
+	text-decoration: none;
+	transition: color 0.3s;
+
+	&:hover {
+		color: var(--white);
+	}
+}

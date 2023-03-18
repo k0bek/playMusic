@@ -4,7 +4,7 @@ import { Menu } from "../../feature";
 import { RecommendedItems } from "../../feature/RecommendedItems";
 import styles from "./HomePage.module.scss";
 import { Wrapper } from "../../components/Wrapper";
-import { Navbar } from "../../feature/Navbar";
+import { LoginLogutPanel } from "../../feature/LoginLogoutPanel";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { CircularProgress } from "@mui/material";
 
@@ -15,7 +15,7 @@ export const HomePage = () => {
 		<Wrapper>
 			{!initUserLoggedLoading && (
 				<div className={styles.homepage}>
-					<Navbar />
+					<LoginLogutPanel />
 					<Search />
 					<Menu />
 					<RecommendedItems />
