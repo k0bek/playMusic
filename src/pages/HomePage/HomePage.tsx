@@ -7,25 +7,31 @@ import { Wrapper } from "../../components/Wrapper";
 import { LoginLogutPanel } from "../../feature/LoginLogoutPanel";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { CircularProgress } from "@mui/material";
+import { Navbar } from "../../feature/Navbar/Navbar";
+import { Layout } from "../../components/Layout/Layout";
 
 export const HomePage = () => {
 	const { user, initUserLoggedLoading } = useAuthContext();
 
 	return (
-		<Wrapper>
+		<>
 			{!initUserLoggedLoading && (
 				<div className={styles.homepage}>
 					<LoginLogutPanel />
-					<Search />
-					<Menu />
-					<RecommendedItems />
-					{/* <QuickSelection /> */}
+					<Navbar />
+					<main className={styles["main"]}>
+						<Search />
+						<Menu />
+						<RecommendedItems />
+					</main>
 				</div>
 			)}
 
 			{initUserLoggedLoading && (
-				<CircularProgress color="secondary" size={60} />
+				<Layout>
+					<CircularProgress color="secondary" size={60} />
+				</Layout>
 			)}
-		</Wrapper>
+		</>
 	);
 };

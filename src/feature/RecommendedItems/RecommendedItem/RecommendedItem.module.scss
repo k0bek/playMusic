@@ -1,6 +1,8 @@
 .item {
 	position: relative;
-	width: 15em;
+	min-width: 13em;
+	max-width: 13em;
+	height: 16em;
 	transition: transform 0.3s;
 	box-shadow: 1px 1px 2em rgba(42, 53, 71, 1);
 	background: none;
@@ -58,10 +60,4 @@
 	color: white;
 	cursor: pointer;
 	box-shadow: 2px 2px 20px rgba(189, 68, 235, 1);
-}
-
-@media (min-width: 576px) {
-	.item {
-		width: 20em;
-	}
 }

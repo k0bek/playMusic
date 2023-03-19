@@ -1,23 +1,22 @@
-.navbar {
-	position: absolute;
+.panel {
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	padding: 1em;
 	background-color: #181a3f;
+	z-index: 2;
 }
 
-.navbar-box {
+.panel-box {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
 	gap: 1em;
-	max-width: 1020px;
 	margin: 0 auto;
 }
 
 .login-logout {
-	cursor: pointer;
 	padding: 0.8em 1.7em;
 	border-radius: 2em;
 	font-size: 1.8rem;
@@ -26,6 +25,7 @@
 	text-decoration: none;
 	font-weight: bold;
 	transition: 0.3s;
+	cursor: pointer;
 
 	&:hover {
 		background-color: var(--black);

@@ -1,14 +1,11 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import styles from "./LoginLogoutPanel.module.scss";
 import { useLogout } from "../../hooks/useLogout";
-import { useNavigate } from "react-router-dom";
 
 export const LoginLogutPanel = () => {
 	const { user } = useAuthContext();
-	const { logout, error, isPending } = useLogout();
-	const navigate = useNavigate();
+	const { logout } = useLogout();
 
 	const handleLoginAndLogout = () => {
 		if (user) {
@@ -16,14 +13,13 @@ export const LoginLogutPanel = () => {
 		}
 	};
 	return (
-		<nav className={styles.navbar}>
-			<div className={styles["navbar-box"]}>
+		<div className={styles.panel}>
+			<div className={styles["panel-box"]}>
 				{!user && (
 					<Link to={!user ? "signup" : "/"} className={styles["signup"]}>
 						Signup
 					</Link>
 				)}
-
 				<Link
 					to={!user ? "login" : "/"}
 					className={styles["login-logout"]}
@@ -32,6 +28,6 @@ export const LoginLogutPanel = () => {
 					{user ? "Logout" : "Login"}
 				</Link>
 			</div>
-		</nav>
+		</div>
 	);
 };

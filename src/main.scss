@@ -7,17 +7,18 @@
 }
 
 :root {
+	--black: rgba(0, 0, 0, 1);
+	--white: #ffff;
+	--background-color: #1d1f3e;
+	--background-color-seconday: #0d0e20;
 	--input-background-primary: #2c2d5a;
 	--input-background-secondary: #141429;
-	--background-color: #1d1f3e;
-	--white: #ffff;
-	--dark-text: #a8acc4;
 	--input-focus: #1e1f31;
+	--dark-text: #a8acc4;
 	--button-background: rgb(143, 42, 232);
 	--button-shadow: 1px 1px 20px rgba(121, 121, 121, 0.3);
 	--button-hover: rgb(118, 0, 221);
 	--button-disabled: rgb(124, 123, 123);
-	--black: rgba(0, 0, 0, 1);
 }
 
 html {
@@ -25,9 +26,6 @@ html {
 }
 
 body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	font-family: "Lato", sans-serif;
 	font-size: 1.6rem;
 	min-height: 100vh;

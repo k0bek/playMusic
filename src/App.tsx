@@ -2,28 +2,24 @@ import {
 	createBrowserRouter,
 	RouterProvider,
 	Route,
-	Link,
+	createRoutesFromElements,
 } from "react-router-dom";
-import { createRoot } from "react-dom/client";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
 import { HomePage } from "./pages/HomePage";
-import { useAuthContext } from "./hooks/useAuthContext";
+import { RootLayout } from "./pages/RootLayout/RootLayout";
 
-const router = createBrowserRouter([
-	{ index: true, element: <HomePage /> },
-	{
-		path: "/login",
-		element: <LoginPage />,
-	},
-	{
-		path: "/signup",
-		element: <SignupPage />,
-	},
-]);
+const router = createBrowserRouter(
+	createRoutesFromElements(
+		<Route path="/" element={<RootLayout />}>
+			<Route index path="/" element={<HomePage />} />
+			<Route path="/login" element={<LoginPage />} />
+			<Route path="/signup" element={<SignupPage />} />
+		</Route>
+	)
+);
 
 function App() {
-	const { user } = useAuthContext();
 	return <RouterProvider router={router} />;
 }
 
