@@ -27,8 +27,6 @@ export const SongsItems = () => {
 				<Item />
 				<Item />
 				<Item />
-				<Item />
-				<Item />
 			</div>
 		</Wrapper>
 	);

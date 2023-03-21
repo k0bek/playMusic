@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./ButtonLoginLogut.module.scss";
 
 type ButtonLoginLogutType = {

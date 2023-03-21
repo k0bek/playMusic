@@ -1,14 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Input, InputError } from "../../../components/Input";
-import { Button } from "../../../components/Button";
+import { Input, InputError } from "components/Input";
+import { Button } from "components/Button";
 import styles from "./Signup.module.scss";
-import { Label } from "../../../components/Label";
+import { Label } from "components/Label";
 import { Welcome } from "../components/Welcome";
 import { useForm } from "react-hook-form";
-import { regex } from "../../../constants/regex";
-import { useSignup } from "../../../hooks/useSignup";
+import { regex } from "constants/regex";
+import { useSignup } from "hooks/useSignup";
 import "firebase/auth";
-import { auth } from "./../../../firebase/config";
+import { auth } from "firebase/config";
 import { fetchSignInMethodsForEmail } from "firebase/auth";
 
 export const Signup = () => {

@@ -1,14 +1,14 @@
-import React from "react";
-import { Search } from "../../feature";
-import { Menu } from "../../feature";
+import { Search } from "feature/Search";
+import { Menu } from "feature/Menu";
 import styles from "./HomePage.module.scss";
-import { LoginLogutPanel } from "../../feature/LoginLogoutPanel";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { LoginLogutPanel } from "feature/LoginLogoutPanel";
+import { useAuthContext } from "hooks/useAuthContext";
 import { CircularProgress } from "@mui/material";
-import { Navbar } from "../../feature/Navbar/Navbar";
-import { Layout } from "../../components/Layout/Layout";
-import { SongsItems } from "./../../feature/SongsItems";
-import { PreviewBar } from "../../feature/PreviewBar/PreviewBar";
+import { Navbar } from "feature/Navbar";
+import { Layout } from "components/Layout";
+import { SongsItems } from "feature/SongsItems";
+import { PreviewBar } from "feature/PreviewBar";
+import { SongPlayer } from "feature/SongPlayer/SongPlayer";
 
 export const HomePage = () => {
 	const { initUserLoggedLoading } = useAuthContext();
@@ -27,9 +27,9 @@ export const HomePage = () => {
 					</main>
 
 					{!user && <PreviewBar />}
+					<SongPlayer />
 				</div>
 			)}
-
 			{initUserLoggedLoading && (
 				<Layout>
 					<CircularProgress color="secondary" size={60} />

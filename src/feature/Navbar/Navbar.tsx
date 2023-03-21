@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import { NavItem } from "./components/NavItem";
+import { useState } from "react";
+import { NavItem } from "./components/NavItem/NavItem";
 import styles from "./Navbar.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faHouse,
 	faMusic,
-	faUser,
 	faLongArrowRight,
 	faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "../../components";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {

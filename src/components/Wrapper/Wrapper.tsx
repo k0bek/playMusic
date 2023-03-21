@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Wrapper.module.scss";
-import { ReactNode } from "react";
 
 type WrapperProps = {
 	children: JSX.Element;

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useAuthContext } from "hooks/useAuthContext";
 import styles from "./LoginLogoutPanel.module.scss";
-import { useLogout } from "../../hooks/useLogout";
-import { ButtonLoginLogut } from "../../components/ButtonLoginLogout/ButtonLoginLogut";
+import { useLogout } from "hooks/useLogout";
+import { ButtonLoginLogut } from "components/ButtonLoginLogout/ButtonLoginLogut";
 
 export const LoginLogutPanel = () => {
 	const { user } = useAuthContext();

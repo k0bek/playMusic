@@ -1,8 +1,8 @@
 import styles from "./Item.module.scss";
-import martin from "./../../../assets/therapy.jpg";
+import martin from "assets/therapy.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { RoundedButton } from "../../../components/RoundedButton/RoundedButton";
+import { RoundedButton } from "components/RoundedButton/RoundedButton";
 
 export const Item = () => {
 	return (

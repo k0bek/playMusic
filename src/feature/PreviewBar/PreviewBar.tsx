@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ButtonLoginLogut } from "../../components/ButtonLoginLogout/ButtonLoginLogut";
-import { RoundedButton } from "../../components/RoundedButton/RoundedButton";
+import { ButtonLoginLogut } from "components/ButtonLoginLogout";
 
 import styles from "./PreviewBar.module.scss";
 

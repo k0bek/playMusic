@@ -1,5 +1,5 @@
-import { Input } from "../../components";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { Input } from "components/Input";
+import { useAuthContext } from "hooks/useAuthContext";
 import styles from "./Search.module.scss";
 
 export const Search = () => {
