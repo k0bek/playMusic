@@ -19,6 +19,14 @@
 	--button-shadow: 1px 1px 20px rgba(121, 121, 121, 0.3);
 	--button-hover: rgb(118, 0, 221);
 	--button-disabled: rgb(124, 123, 123);
+	--item-background: rgba(77, 70, 134, 0.4);
+	--item-background-hover: rgba(116, 106, 196, 0.4);
+
+	--background-gradient: linear-gradient(
+		90deg,
+		rgba(143, 42, 232, 1) 20%,
+		rgba(189, 68, 235, 1) 75%
+	);
 }
 
 html {

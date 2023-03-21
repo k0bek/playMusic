@@ -50,6 +50,8 @@
 
 .heading {
 	font-size: 2rem;
+	color: var(--white);
+	text-decoration: none;
 	@media (min-width: 800px) {
 		font-size: 4rem;
 	}

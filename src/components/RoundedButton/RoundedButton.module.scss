@@ -1,0 +1,16 @@
+.rounded-button {
+	width: 3.5em;
+	height: 3.5em;
+	background-color: var(--button-background);
+	background: var(--background-gradient);
+	color: var(--white);
+	border-radius: 50%;
+	border: none;
+	opacity: 0;
+	cursor: pointer;
+	z-index: 2;
+
+	&:hover {
+		transform: scale(1.05);
+	}
+}

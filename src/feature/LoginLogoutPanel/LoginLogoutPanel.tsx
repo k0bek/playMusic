@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import styles from "./LoginLogoutPanel.module.scss";
 import { useLogout } from "../../hooks/useLogout";
+import { ButtonLoginLogut } from "../../components/ButtonLoginLogout/ButtonLoginLogut";
 
 export const LoginLogutPanel = () => {
 	const { user } = useAuthContext();
@@ -20,12 +21,8 @@ export const LoginLogutPanel = () => {
 						Signup
 					</Link>
 				)}
-				<Link
-					to={!user ? "login" : "/"}
-					className={styles["login-logout"]}
-					onClick={handleLoginAndLogout}
-				>
-					{user ? "Logout" : "Login"}
+				<Link to={!user ? "login" : "/"} onClick={handleLoginAndLogout}>
+					<ButtonLoginLogut>{user ? "Logout" : "Login"}</ButtonLoginLogut>
 				</Link>
 			</div>
 		</div>

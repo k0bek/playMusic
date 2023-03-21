@@ -16,23 +16,6 @@
 	margin: 0 auto;
 }
 
-.login-logout {
-	padding: 0.8em 1.7em;
-	border-radius: 2em;
-	font-size: 1.8rem;
-	background-color: var(--button-background);
-	color: var(--white);
-	text-decoration: none;
-	font-weight: bold;
-	transition: 0.3s;
-	cursor: pointer;
-
-	&:hover {
-		background-color: var(--black);
-		color: var(--white);
-	}
-}
-
 .signup {
 	font-size: 1.8rem;
 	color: var(--dark-text);

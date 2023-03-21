@@ -7,8 +7,10 @@ import {
 	faMusic,
 	faUser,
 	faLongArrowRight,
+	faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../../components";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	const [isNavbarShowed, setIsNavbarShowed] = useState(false);
@@ -24,9 +26,11 @@ export const Navbar = () => {
 				isNavbarShowed ? styles["navbar-showed"] : ""
 			}`}
 		>
-			<p className={styles["heading"]}>
-				play<span className={styles["bolded"]}>M</span>usic
-			</p>
+			<Link to="/" className={styles["heading"]}>
+				<p>
+					play<span className={styles["bolded"]}>M</span>usic
+				</p>
+			</Link>
 
 			<button className={styles["arrow"]} onClick={showNavbar}>
 				<FontAwesomeIcon icon={faLongArrowRight} />
@@ -41,15 +45,15 @@ export const Navbar = () => {
 				</NavItem>
 				<NavItem>
 					<span>
-						<FontAwesomeIcon icon={faUser} />
+						<FontAwesomeIcon icon={faHeart} />
 					</span>
-					<p>Top Artists</p>
+					<p>Your favourite</p>
 				</NavItem>
 				<NavItem>
 					<span>
 						<FontAwesomeIcon icon={faMusic} />
 					</span>
-					<p>Top Charts</p>
+					<p>Recently Listened</p>
 				</NavItem>
 			</ul>
 		</nav>
