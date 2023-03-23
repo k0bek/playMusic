@@ -5,6 +5,7 @@ type ButtonProps = {
 	children: ReactNode;
 	type: "button" | "submit";
 	disabled?: boolean;
+	chooseSong: () => void;
 };
 
 export const Button = ({ children, type, disabled }: ButtonProps) => {

@@ -1,32 +1,24 @@
 import { Item } from ".";
-import styles from "./SongsItems.module.scss";
-
 import { Wrapper } from "../../components/Wrapper";
+import { tracks } from "data/tracks";
+
+import styles from "./SongsItems.module.scss";
 
 export const SongsItems = () => {
 	return (
 		<Wrapper>
 			<div className={styles.items}>
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
-				<Item />
+				{tracks.map((track) => {
+					return (
+						<Item
+							author={track.author}
+							title={track.title}
+							picture={track.picture}
+							recommended={track.recommended}
+							id={track.id}
+						/>
+					);
+				})}
 			</div>
 		</Wrapper>
 	);

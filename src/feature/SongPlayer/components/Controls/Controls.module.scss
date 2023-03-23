@@ -1,0 +1,15 @@
+.controls {
+	display: flex;
+	align-items: center;
+	gap: 2em;
+
+	.play-stop-button {
+		opacity: 1;
+		font-size: 1.3rem;
+	}
+
+	.forward-btn,
+	.backward.btn {
+		cursor: pointer;
+	}
+}

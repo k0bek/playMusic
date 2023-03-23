@@ -1,49 +1,40 @@
-.song-player {
+.audio-player {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
-	flex-direction: row;
-	position: fixed;
-	padding: 1em;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	background-color: #181a3f;
-	z-index: 10;
-	backdrop-filter: 10px;
-
-	&-info {
-		display: flex;
-		align-items: center;
-		gap: 1em;
-	}
-
-	&-action {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1em;
-	}
-}
-
-.song-img {
-	width: 4em;
-}
-
-.author {
-	font-weight: bold;
-}
-
-.play-button {
-	top: 0;
-	left: 0;
-	opacity: 1;
-	font-size: 1.2rem;
-}
-
-.buttons {
-	display: flex;
 	align-items: center;
-	gap: 1.5em;
-	align-self: center;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 0.8em;
+	z-index: 2137;
+	background-color: #181a3f;
+
+	.song-player {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5em;
+	}
+
+	.song-info {
+		display: flex;
+		align-items: center;
+		font-size: 1.6rem;
+
+		.author {
+			font-weight: bold;
+			margin-bottom: 0.3em;
+		}
+
+		.title {
+			color: var(--dark-text);
+		}
+		.picture {
+			margin-right: 0.8em;
+			width: 4em;
+			height: 4em;
+		}
+	}
 }

@@ -9,8 +9,9 @@
 	opacity: 0;
 	cursor: pointer;
 	z-index: 2;
+	transition: box-shadow 0.5s;
 
 	&:hover {
-		transform: scale(1.05);
+		box-shadow: 1px 1px 20px var(--button-background);
 	}
 }

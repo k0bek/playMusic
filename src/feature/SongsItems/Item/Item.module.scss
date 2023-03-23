@@ -6,6 +6,8 @@
 	position: relative;
 	min-width: 15em;
 	max-width: 15em;
+	min-height: 18em;
+	max-height: 18em;
 	transition: transform 0.3s;
 	box-shadow: 1px 1px 2em rgba(42, 53, 71, 0.5);
 	background-color: var(--item-background);
@@ -17,8 +19,10 @@
 
 	img {
 		align-self: center;
-		width: 13em;
-		height: 13em;
+		min-width: 13em;
+		max-width: 13em;
+		min-height: 13em;
+		max-height: 13em;
 		border-radius: 10px;
 	}
 
@@ -63,6 +67,7 @@
 	}
 
 	&-author {
+		font-size: 1.5rem;
 		font-weight: bold;
 	}
 
@@ -72,12 +77,12 @@
 
 	.recommendation {
 		position: absolute;
-		bottom: 7.5em;
-		left: 2em;
+		bottom: 5.5em;
+		left: 1.5em;
 		background-color: var(--button-background);
 		background: var(--background-gradient);
 		padding: 0.5em;
 		border-radius: 10px;
-		font-size: 1.2rem;
+		font-size: 1.5rem;
 	}
 }
