@@ -17,10 +17,16 @@ export const SongContext = createContext({} as SongContext);
 
 export const SongContextProvider = ({ children }: ChildrenType) => {
 	const [songId, setSongId] = useState<null | number>(0);
+	const [isPlaying, setIsPlaying] = useState(false);
+	const [isSongFocused, setIsSongFocused] = useState(false);
 
 	const value: SongContext = {
 		setSongId,
 		songId,
+		isPlaying,
+		setIsPlaying,
+		isSongFocused,
+		setIsSongFocused,
 	};
 
 	return <SongContext.Provider value={value}>{children}</SongContext.Provider>;

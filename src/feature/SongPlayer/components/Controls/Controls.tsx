@@ -17,7 +17,9 @@ export const Controls = ({
 	duration,
 	setTimeProgress,
 }) => {
-	const [isPlaying, setIsPlaying] = useState(false);
+	const { isPlaying, setIsPlaying, isSongFocused, setIsSongFocused } =
+		useSongContext();
+
 	const { songId } = useSongContext();
 	const playAnimationRef = useRef();
 
@@ -49,18 +51,31 @@ export const Controls = ({
 	}, [isPlaying, audioRef, songId]);
 	return (
 		<div className={styles.controls}>
-			<FontAwesomeIcon icon={faBackwardStep} />
+			<button
+				className={
+					isSongFocused ? styles["backward-btn"] : styles["backward-btn-normal"]
+				}
+			>
+				<FontAwesomeIcon icon={faBackwardStep} />
+			</button>
 			<RoundedButton
 				className={styles["play-stop-button"]}
 				onClick={togglePlayPause}
 			>
 				{!isPlaying ? (
-					<FontAwesomeIcon icon={faPlay} className={styles["forward-btn"]} />
+					<FontAwesomeIcon icon={faPlay} />
 				) : (
-					<FontAwesomeIcon icon={faPause} className={styles["backward-btn"]} />
+					<FontAwesomeIcon icon={faPause} />
 				)}
 			</RoundedButton>
-			<FontAwesomeIcon icon={faForwardStep} />
+
+			<button
+				className={
+					isSongFocused ? styles["forward-btn"] : styles["forward-btn-normal"]
+				}
+			>
+				<FontAwesomeIcon icon={faForwardStep} />
+			</button>
 		</div>
 	);
 };

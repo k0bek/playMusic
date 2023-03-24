@@ -22,12 +22,10 @@ export function DisplayTrack({
 	};
 
 	return (
-		<div>
-			<audio
-				src={currentTrack.source}
-				ref={audioRef}
-				onLoadedMetadata={onLoadedMetadata}
-			></audio>
-		</div>
+		<audio
+			src={currentTrack.source}
+			ref={audioRef}
+			onLoadedMetadata={onLoadedMetadata}
+		></audio>
 	);
 }

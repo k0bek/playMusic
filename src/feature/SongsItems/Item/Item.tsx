@@ -5,7 +5,7 @@ import { RoundedButton } from "components/RoundedButton/RoundedButton";
 import { useSongContext } from "hooks/useSongContext";
 
 export const Item = ({ author, title, picture, recommended, id }) => {
-	const { setSongId } = useSongContext();
+	const { setSongId, isPlaying, setIsPlaying } = useSongContext();
 
 	const getSongId = () => {
 		console.log("calypso");
@@ -22,7 +22,13 @@ export const Item = ({ author, title, picture, recommended, id }) => {
 				<p className={styles["item-author"]}>{author}</p>
 				<p className={styles["item-title"]}>{title}</p>
 			</div>
-			<RoundedButton className={styles.play} onClick={getSongId}>
+			<RoundedButton
+				className={styles.play}
+				onClick={() => {
+					getSongId();
+					setIsPlaying(true);
+				}}
+			>
 				<FontAwesomeIcon icon={faPlay} />
 			</RoundedButton>
 			{recommended && (

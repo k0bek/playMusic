@@ -1,4 +1,6 @@
+import { style } from "@mui/system";
 import React from "react";
+import { useSongContext } from "hooks/useSongContext";
 
 import styles from "./ProgressBar.module.scss";
 
@@ -23,9 +25,15 @@ export const ProgressBar = ({
 		return "00:00";
 	};
 
+	const { isSongFocused, setIsSongFocused } = useSongContext();
+
 	return (
-		<div className={styles.progress}>
-			<span className={styles.current}>{formatTime(timeProgress)}</span>
+		<div className={isSongFocused ? styles.progress : styles["range-normal"]}>
+			<span
+				className={isSongFocused ? styles.current : styles["current-normal"]}
+			>
+				{formatTime(timeProgress)}
+			</span>
 			<input
 				type="range"
 				className={styles.range}
@@ -33,7 +41,9 @@ export const ProgressBar = ({
 				defaultValue="0"
 				onChange={handleProgressChange}
 			/>
-			<span className={styles.end}>{formatTime(duration)}</span>
+			<span className={isSongFocused ? styles.end : styles["end-normal"]}>
+				{formatTime(duration)}
+			</span>
 		</div>
 	);
 };

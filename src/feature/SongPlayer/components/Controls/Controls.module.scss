@@ -1,15 +1,31 @@
 .controls {
 	display: flex;
 	align-items: center;
-	gap: 2em;
+	gap: 1.4em;
 
 	.play-stop-button {
 		opacity: 1;
 		font-size: 1.3rem;
 	}
+}
 
-	.forward-btn,
-	.backward.btn {
-		cursor: pointer;
+.backward-btn,
+.forward-btn {
+	font-size: 1.8rem;
+	border: none;
+	background: none;
+	color: var(--white);
+	cursor: pointer;
+}
+
+.backward-btn-normal,
+.forward-btn-normal {
+	font-size: 1.8rem;
+	border: none;
+	background: none;
+	color: var(--white);
+	cursor: pointer;
+	@media (max-width: 600px) {
+		display: none;
 	}
 }
