@@ -17,10 +17,17 @@ export const Controls = ({
 	duration,
 	setTimeProgress,
 }) => {
-	const { isPlaying, setIsPlaying, isSongFocused, setIsSongFocused } =
-		useSongContext();
+	const {
+		isPlaying,
+		setIsPlaying,
+		isSongFocused,
+		setIsSongFocused,
+		songId,
+		setSongId,
+		volume,
+		setVolume,
+	} = useSongContext();
 
-	const { songId } = useSongContext();
 	const playAnimationRef = useRef();
 
 	const togglePlayPause = () => {
@@ -41,6 +48,26 @@ export const Controls = ({
 		playAnimationRef.current = requestAnimationFrame(repeat);
 	}, [audioRef, duration, progressBarRef, setTimeProgress]);
 
+	const goToThePreviousSong = () => {
+		setSongId((prev) => {
+			if (prev !== 0) {
+				return prev - 1;
+			} else {
+				return 8;
+			}
+		});
+	};
+
+	const goToTheNextSong = () => {
+		setSongId((prev) => {
+			if (prev !== 8) {
+				return prev + 1;
+			} else {
+				return 0;
+			}
+		});
+	};
+
 	useEffect(() => {
 		if (isPlaying) {
 			audioRef.current.play();
@@ -49,12 +76,20 @@ export const Controls = ({
 		}
 		playAnimationRef.current = requestAnimationFrame(repeat);
 	}, [isPlaying, audioRef, songId]);
+
+	useEffect(() => {
+		if (audioRef) {
+			audioRef.current.volume = volume / 100;
+		}
+	}, [volume, audioRef]);
+
 	return (
 		<div className={styles.controls}>
 			<button
 				className={
 					isSongFocused ? styles["backward-btn"] : styles["backward-btn-normal"]
 				}
+				onClick={goToThePreviousSong}
 			>
 				<FontAwesomeIcon icon={faBackwardStep} />
 			</button>
@@ -73,6 +108,7 @@ export const Controls = ({
 				className={
 					isSongFocused ? styles["forward-btn"] : styles["forward-btn-normal"]
 				}
+				onClick={goToTheNextSong}
 			>
 				<FontAwesomeIcon icon={faForwardStep} />
 			</button>

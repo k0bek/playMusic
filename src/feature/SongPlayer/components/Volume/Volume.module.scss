@@ -1,0 +1,10 @@
+.volume-focused,
+.volume {
+	display: flex;
+	align-items: center;
+	flex-direction: row-reverse;
+	gap: 0.5em;
+	@media (max-width: 600px) {
+		display: none;
+	}
+}

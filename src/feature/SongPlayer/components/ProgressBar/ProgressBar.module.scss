@@ -5,24 +5,24 @@ Custom Input range
 /* Input range - chrome and safari */
 
 input[type="range"] {
-	--range-progress: 50%;
-
+	--range-progress: 0;
 	-webkit-appearance: none;
 	position: relative;
-	background: #ccc;
-	width: 10em;
+	background: #bebebe;
+	width: 100%;
 	height: 8px;
-	border-radius: 10px;
+	border-radius: 8px;
 	cursor: pointer;
 }
 
 /* Input range - firefox */
 input[type="range"]::-moz-range-track {
 	position: relative;
-	background: #ccc;
+	background: #bebebe;
+
 	width: 100%;
 	height: 8px;
-	border-radius: 10px;
+	border-radius: 8px;
 	cursor: pointer;
 }
 
@@ -30,9 +30,10 @@ input[type="range"]::-moz-range-track {
 input[type="range"]::before {
 	content: "";
 	height: 8px;
-	background: var(--background-gradient);
+	background: var(--button-background);
 	width: var(--range-progress);
-	border-radius: 10px;
+	border-bottom-left-radius: 2px;
+	border-top-left-radius: 2px;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -40,21 +41,20 @@ input[type="range"]::before {
 
 /* played progress length - firefox */
 input[type="range"]::-moz-range-progress {
-	background: #f50;
-	border-bottom-left-radius: 2px;
-	border-top-left-radius: 2px;
-	height: 2px;
+	background: var(--button-background);
+	border-bottom-left-radius: 8px;
+	border-top-left-radius: 8px;
+	height: 8px;
 }
 
 /* slider thumb - chrome and safari */
 input[type="range"]::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	margin-left: -0.2em;
-	height: 13px;
-	width: 13px;
+	height: 14px;
+	width: 14px;
 	border-radius: 50%;
 	border: none;
-	background-color: var(--button-hover);
+	background-color: var(--white);
 	cursor: pointer;
 	position: relative;
 }
@@ -69,7 +69,7 @@ input[type="range"]::-moz-range-thumb {
 	height: 8px;
 	width: 8px;
 	border-radius: 50%;
-	background: #f50;
+	background: var(--background-color);
 	cursor: pointer;
 	border: transparent;
 	position: relative;
@@ -78,13 +78,6 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]:active::-moz-range-thumb {
 	transform: scale(1.2);
 }
-
-.progress {
-	display: flex;
-	align-items: center;
-	gap: 1em;
-}
-
 .range-normal {
 	display: flex;
 	align-items: center;

@@ -10,6 +10,7 @@ import { useSongContext } from "hooks/useSongContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Volume } from "./components/Volume/Volume";
 
 export const SongPlayer = () => {
 	const [timeProgress, setTimeProgress] = useState(0);
@@ -82,6 +83,8 @@ export const SongPlayer = () => {
 					setTimeProgress={setTimeProgress}
 				/>
 			</div>
+			<Volume />
+
 			{isSongFocused && (
 				<button
 					className={styles["close-button-focused"]}

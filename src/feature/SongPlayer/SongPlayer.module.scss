@@ -1,7 +1,7 @@
 .audio-player {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-around;
 	flex-direction: row;
 	gap: 0;
 	position: fixed;
@@ -90,6 +90,10 @@
 			font-weight: bold;
 			font-size: 2rem;
 			margin-bottom: 0.2em;
+
+			@media (min-width: 576px) {
+				font-size: 3rem;
+			}
 		}
 		.picture-focused {
 			width: 13em;
