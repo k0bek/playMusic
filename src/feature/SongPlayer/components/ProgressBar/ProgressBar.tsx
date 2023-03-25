@@ -3,6 +3,7 @@ import React from "react";
 import { useSongContext } from "hooks/useSongContext";
 
 import styles from "./ProgressBar.module.scss";
+import { InputRange } from "components/InputRange/InputRange";
 
 export const ProgressBar = ({
 	progressBarRef,
@@ -28,12 +29,17 @@ export const ProgressBar = ({
 	const { isSongFocused, setIsSongFocused } = useSongContext();
 
 	return (
-		<div className={isSongFocused ? styles.progress : styles["range-normal"]}>
+		<div
+			className={
+				isSongFocused ? styles["range-focused"] : styles["range-normal"]
+			}
+		>
 			<span
 				className={isSongFocused ? styles.current : styles["current-normal"]}
 			>
 				{formatTime(timeProgress)}
 			</span>
+
 			<input
 				type="range"
 				className={styles.range}

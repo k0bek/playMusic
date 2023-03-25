@@ -9,7 +9,7 @@ input[type="range"] {
 	-webkit-appearance: none;
 	position: relative;
 	background: #bebebe;
-	width: 100%;
+	width: 10em;
 	height: 8px;
 	border-radius: 8px;
 	cursor: pointer;
@@ -19,7 +19,6 @@ input[type="range"] {
 input[type="range"]::-moz-range-track {
 	position: relative;
 	background: #bebebe;
-
 	width: 100%;
 	height: 8px;
 	border-radius: 8px;
@@ -92,4 +91,10 @@ input[type="range"]:active::-moz-range-thumb {
 	@media (max-width: 600px) {
 		display: none;
 	}
+}
+
+.range-focused {
+	display: flex;
+	align-items: center;
+	gap: 0.7em;
 }

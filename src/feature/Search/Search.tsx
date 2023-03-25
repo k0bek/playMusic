@@ -1,9 +1,14 @@
 import { Input } from "components/Input";
 import { useAuthContext } from "hooks/useAuthContext";
+import { useSongContext } from "hooks/useSongContext";
+import { useState } from "react";
 import styles from "./Search.module.scss";
 
 export const Search = () => {
 	const { user } = useAuthContext();
+	const { searchValue, setSearchValue } = useSongContext();
+
+	console.log(searchValue);
 
 	return (
 		<>
@@ -16,7 +21,14 @@ export const Search = () => {
 						? "What do you want to listen today?"
 						: "Please log in to access all features."}
 				</p>
-				<Input type="text" placeholder="Search music" />
+				<Input
+					type="text"
+					placeholder="Search music"
+					value={searchValue}
+					onChange={(event) => {
+						setSearchValue(event.target.value);
+					}}
+				/>
 			</div>
 		</>
 	);

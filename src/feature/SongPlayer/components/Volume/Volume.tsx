@@ -1,5 +1,6 @@
 import { useSongContext } from "hooks/useSongContext";
 import styles from "./Volume.module.scss";
+import { useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,9 +10,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export const Volume = () => {
-	const { volume, setVolume, isSongFocused } = useSongContext();
+	const { volume, setVolume, isSongFocused, audioRef } = useSongContext();
 
-	console.log(volume);
+	useEffect(() => {
+		if (audioRef) {
+			audioRef.current.volume = volume / 100;
+		}
+	}, [volume, audioRef]);
 
 	return (
 		<div className={isSongFocused ? styles["volume-focused"] : styles.volume}>
@@ -28,8 +33,23 @@ export const Volume = () => {
 						? styles["volume-input-focused"]
 						: styles["volume-input"]
 				}
+				style={{
+					background: `linear-gradient(to right, rgb(143, 42, 232) ${volume}%, #ccc ${volume}%)`,
+				}}
 			/>
-			<FontAwesomeIcon icon={volume == 0 ? faVolumeXmark : faVolumeHigh} />
+			<FontAwesomeIcon
+				className={styles.icon}
+				icon={(() => {
+					switch (true) {
+						case volume === 0:
+							return faVolumeXmark;
+						case volume < 30:
+							return faVolumeLow;
+						default:
+							return faVolumeHigh;
+					}
+				})()}
+			/>
 		</div>
 	);
 };

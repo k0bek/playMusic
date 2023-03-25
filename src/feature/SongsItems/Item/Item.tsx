@@ -3,14 +3,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { RoundedButton } from "components/RoundedButton/RoundedButton";
 import { useSongContext } from "hooks/useSongContext";
+import { useEffect } from "react";
 
 export const Item = ({ author, title, picture, recommended, id }) => {
-	const { setSongId, isPlaying, setIsPlaying } = useSongContext();
+	const { setSongId, isPlaying, setIsPlaying, isSongFocused } =
+		useSongContext();
 
 	const getSongId = () => {
-		console.log("calypso");
 		setSongId(id);
 	};
+
+	useEffect(() => {
+		if (isSongFocused) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "visible";
+		}
+	}, [isSongFocused]);
 
 	return (
 		<div className={styles.item}>
