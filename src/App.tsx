@@ -8,11 +8,15 @@ import { LoginPage } from "pages/LoginPage";
 import { SignupPage } from "pages/SignupPage";
 import { HomePage } from "pages/HomePage";
 import { RootLayout } from "pages/RootLayout/RootLayout";
+import { MainContentPage } from "pages/MainContentPage/MainContentPage";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<RootLayout />}>
-			<Route index path="/" element={<HomePage />} />
+			<Route path="/" element={<MainContentPage />}>
+				<Route path="/" element={<HomePage />} />
+				<Route path="favourite" />
+			</Route>
 			<Route path="/login" element={<LoginPage />} />
 			<Route path="/signup" element={<SignupPage />} />
 		</Route>

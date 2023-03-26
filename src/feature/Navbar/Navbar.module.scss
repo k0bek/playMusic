@@ -15,7 +15,7 @@
 	transition: transform 0.3s;
 
 	.arrow {
-		transform: translate(500%, -160%);
+		transform: translate(650%, -160%);
 		cursor: pointer;
 		transition: 0.3s;
 		background: none;
@@ -24,17 +24,18 @@
 		height: 2em;
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		border-radius: 10px;
+		z-index: 10;
 	}
 
 	&-showed {
 		transform: translateX(0);
 
 		.arrow {
-			transform: rotate(-180deg) translate(-500%, 160%);
+			transform: rotate(-180deg) translate(-650%, 160%);
 		}
 	}
 
-	@media (min-width: 450px) {
+	@media (min-width: 600px) {
 		transform: translateX(0);
 		gap: 4em;
 
@@ -74,7 +75,24 @@
 	font-size: 2rem;
 	list-style-type: none;
 
-	@media (min-width: 450px) {
+	@media (min-width: 600px) {
 		gap: 2em;
+	}
+
+	.nav-item {
+		display: flex;
+		font-size: 1.5rem;
+		gap: 0.5em;
+		color: var(--white);
+		text-decoration: none;
+
+		&-active {
+			display: flex;
+			gap: 0.5em;
+			font-size: 1.5rem;
+			color: var(--white);
+			text-decoration: none;
+			color: var(--button-background);
+		}
 	}
 }

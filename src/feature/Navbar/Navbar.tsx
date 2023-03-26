@@ -8,7 +8,7 @@ import {
 	faLongArrowRight,
 	faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const Navbar = () => {
 	const [isNavbarShowed, setIsNavbarShowed] = useState(false);
@@ -35,24 +35,51 @@ export const Navbar = () => {
 			</button>
 
 			<ul className={`${styles["nav-items"]} `}>
-				<NavItem>
+				<NavLink
+					to="/"
+					className={({ isActive, isPending }) =>
+						isPending
+							? "pending"
+							: isActive
+							? styles["nav-item-active"]
+							: styles["nav-item"]
+					}
+				>
 					<span>
 						<FontAwesomeIcon icon={faHouse} />
 					</span>
 					<p>Discover</p>
-				</NavItem>
-				<NavItem>
+				</NavLink>
+				<NavLink
+					to="favourite"
+					className={({ isActive, isPending }) =>
+						isPending
+							? "pending"
+							: isActive
+							? styles["nav-item-active"]
+							: styles["nav-item"]
+					}
+				>
 					<span>
 						<FontAwesomeIcon icon={faHeart} />
 					</span>
 					<p>Your favourite</p>
-				</NavItem>
-				<NavItem>
+				</NavLink>
+				<NavLink
+					to="recently-listened"
+					className={({ isActive, isPending }) =>
+						isPending
+							? "pending"
+							: isActive
+							? styles["nav-item-active"]
+							: styles["nav-item"]
+					}
+				>
 					<span>
 						<FontAwesomeIcon icon={faMusic} />
 					</span>
 					<p>Recently Listened</p>
-				</NavItem>
+				</NavLink>
 			</ul>
 		</nav>
 	);
