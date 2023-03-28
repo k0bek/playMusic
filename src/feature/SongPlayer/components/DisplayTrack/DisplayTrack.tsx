@@ -1,12 +1,12 @@
+import { SongInterface } from "data/tracks";
+import { MutableRefObject } from "react";
+
 interface DisplayTrackProps {
-	currentTrack: {
-		id: number;
-		title: string;
-		author: string;
-		recommended: boolean;
-		picture: string;
-		source: string;
-	};
+	currentTrack: SongInterface;
+	audioRef: MutableRefObject<HTMLAudioElement | null>;
+	setDuration: React.Dispatch<React.SetStateAction<number>>;
+	progressBarRef: MutableRefObject<HTMLInputElement | null>;
+	setTimeProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export function DisplayTrack({
@@ -15,11 +15,20 @@ export function DisplayTrack({
 	setDuration,
 	progressBarRef,
 }: DisplayTrackProps) {
+	console.log(progressBarRef);
 	const onLoadedMetadata = () => {
-		const seconds = audioRef.current.duration;
-		setDuration(seconds);
-		progressBarRef.current.max = seconds;
+		if (audioRef.current) {
+			const seconds = audioRef.current.duration;
+
+			setDuration(seconds);
+
+			if (progressBarRef.current) {
+				progressBarRef.current.max = seconds.toString();
+			}
+		}
 	};
+
+	console.log(progressBarRef);
 
 	return (
 		<audio

@@ -6,7 +6,6 @@ import anywaySong from "assets/mp3/anyway.mp3";
 import anywayPicture from "assets/images/anyway.jpg";
 import calypsoSong from "assets/mp3/calypso.mp3";
 import calypsoPicture from "assets/images/calypso.jpg";
-import sosPicture from "assets/images/sos.jpg";
 import ferrariSong from "assets/mp3/ferrari.mp3";
 import ferrariPicture from "assets/images/ferrari.jpg";
 import loadingSong from "assets/mp3/loading.mp3";
@@ -18,18 +17,19 @@ import usedToLovePicture from "assets/images/used_to_love.jpg";
 import onceOrTwiceSong from "assets/mp3/once_or_twice.mp3";
 import onceOrTwicePicture from "assets/images/once_or_twice.jpg";
 
-type SongSource = string | null;
+type SongSource = string | undefined;
 
 export interface SongInterface {
 	id: number;
 	title: string;
 	author: string;
-	recommended: false;
+	recommended: boolean;
 	picture: string;
 	source: SongSource;
+	uid?: string;
 }
 
-export const tracks = [
+export const tracks: SongInterface[] = [
 	{
 		id: 0,
 		title: "Momma's Love",

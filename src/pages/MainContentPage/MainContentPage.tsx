@@ -1,12 +1,9 @@
-import { Search } from "feature/Search";
-import { Menu } from "feature/Menu";
 import styles from "./MainContentPage.module.scss";
 import { LoginLogutPanel } from "feature/LoginLogoutPanel";
 import { useAuthContext } from "hooks/useAuthContext";
 import { CircularProgress } from "@mui/material";
 import { Navbar } from "feature/Navbar";
 import { Layout } from "components/Layout";
-import { SongsItems } from "feature/SongsItems";
 import { PreviewBar } from "feature/PreviewBar";
 import { SongPlayer } from "feature/SongPlayer/SongPlayer";
 import { Outlet } from "react-router";

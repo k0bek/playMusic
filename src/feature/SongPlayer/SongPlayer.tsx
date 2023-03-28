@@ -14,20 +14,18 @@ import { Volume } from "./components/Volume/Volume";
 
 export const SongPlayer = () => {
 	const [timeProgress, setTimeProgress] = useState(0);
-	const [duration, setDuration] = useState(0);
+	const [duration, setDuration] = useState<number>(0);
 
-	const audioRef = useRef();
-	const progressBarRef = useRef();
+	const audioRef = useRef<HTMLAudioElement | null>(null);
+	const progressBarRef = useRef<HTMLInputElement | null>(null);
 
 	const { songId, isSongFocused, setIsSongFocused } = useSongContext();
 
 	const handleFocusShowed = () => {
-		setIsSongFocused((prev) => {
-			return !prev;
-		});
+		setIsSongFocused(!isSongFocused);
 	};
 
-	console.log(songId);
+	console.log(progressBarRef);
 
 	{
 		return (
@@ -97,7 +95,7 @@ export const SongPlayer = () => {
 							setTimeProgress={setTimeProgress}
 						/>
 					</div>
-					<Volume />
+					<Volume audioRef={audioRef} />
 
 					{isSongFocused && (
 						<button

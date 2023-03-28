@@ -1,12 +1,17 @@
-import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useEffect, useReducer, useState } from "react";
 import { ReactNode } from "react";
-import { UserDataType } from "types/UserDataType";
-import { auth } from "firebase/config";
 
 type SongContext = {
-	setSongId: any;
 	songId: number | null;
+	setSongId: React.Dispatch<React.SetStateAction<number | null>>;
+	isPlaying: boolean;
+	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+	isSongFocused: boolean;
+	setIsSongFocused: React.Dispatch<React.SetStateAction<boolean>>;
+	volume: number;
+	setVolume: React.Dispatch<React.SetStateAction<number>>;
+	searchValue: string;
+	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
 type ChildrenType = {

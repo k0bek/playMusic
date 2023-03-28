@@ -4,13 +4,46 @@ import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { RoundedButton } from "components/RoundedButton/RoundedButton";
 import { useSongContext } from "hooks/useSongContext";
 import { useEffect } from "react";
+import { db } from "firebase/config";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { useAuthContext } from "hooks/useAuthContext";
+import { SongInterface, tracks } from "data/tracks";
 
-export const Item = ({ author, title, picture, recommended, id }) => {
-	const { setSongId, isPlaying, setIsPlaying, isSongFocused } =
-		useSongContext();
+export const Item = ({
+	author,
+	title,
+	picture,
+	recommended,
+	id,
+	source,
+}: SongInterface) => {
+	const { user } = useAuthContext();
+	const { setSongId, setIsPlaying, isSongFocused } = useSongContext();
 
 	const getSongId = () => {
 		setSongId(id);
+	};
+
+	const addToFavourites = async () => {
+		const reference = collection(db, "favourites");
+
+		const querySnapshot = await getDocs(
+			query(collection(db, "favourites"), where("id", "==", id))
+		);
+
+		if (querySnapshot.docs.length > 0) {
+			return;
+		}
+
+		await addDoc(reference, {
+			id,
+			title,
+			author,
+			recommended,
+			picture,
+			source,
+			uid: user?.uid,
+		});
 	};
 
 	useEffect(() => {
@@ -24,7 +57,7 @@ export const Item = ({ author, title, picture, recommended, id }) => {
 	return (
 		<div className={styles.item}>
 			<img src={picture} />
-			<button className={styles["heart"]}>
+			<button className={styles["heart"]} onClick={addToFavourites}>
 				<FontAwesomeIcon icon={faHeart} />
 			</button>
 			<div className={styles["item-info"]}>

@@ -1,5 +1,11 @@
 import { RoundedButton } from "components";
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, {
+	useEffect,
+	useState,
+	useRef,
+	useCallback,
+	MutableRefObject,
+} from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,46 +17,45 @@ import {
 
 import styles from "./Controls.module.scss";
 import { useSongContext } from "hooks/useSongContext";
+
+type ControlsProps = {
+	audioRef: MutableRefObject<HTMLAudioElement | null>;
+	progressBarRef: MutableRefObject<HTMLInputElement | null>;
+	setTimeProgress: React.Dispatch<React.SetStateAction<number>>;
+	duration: number;
+};
+
 export const Controls = ({
 	audioRef,
 	progressBarRef,
 	duration,
 	setTimeProgress,
-}) => {
-	const {
-		isPlaying,
-		setIsPlaying,
-		isSongFocused,
-		setIsSongFocused,
-		songId,
-		setSongId,
-		volume,
-		setVolume,
-	} = useSongContext();
+}: ControlsProps) => {
+	const { isPlaying, setIsPlaying, isSongFocused, songId, setSongId, volume } =
+		useSongContext();
 
-	const playAnimationRef = useRef();
+	const playAnimationRef = useRef<number>();
 
 	const togglePlayPause = () => {
-		setIsPlaying((prev) => {
-			return !prev;
-		});
+		setIsPlaying(!isPlaying);
 	};
-
 	const repeat = useCallback(() => {
-		const currentTime = audioRef.current.currentTime;
-		setTimeProgress(currentTime);
-		progressBarRef.current.value = currentTime;
-		progressBarRef.current.style.setProperty(
-			"--range-progress",
-			`${(progressBarRef.current.value / duration) * 100}%`
-		);
+		if (progressBarRef.current && audioRef.current) {
+			const currentTime = audioRef.current.currentTime;
+			setTimeProgress(currentTime);
 
+			progressBarRef.current.value = currentTime.toString();
+			progressBarRef.current.style.setProperty(
+				"--range-progress",
+				`${(Number(progressBarRef.current.value) / duration) * 100}%`
+			);
+		}
 		playAnimationRef.current = requestAnimationFrame(repeat);
 	}, [audioRef, duration, progressBarRef, setTimeProgress]);
 
 	const goToThePreviousSong = () => {
 		setSongId((prev) => {
-			if (prev !== 0) {
+			if (prev) {
 				return prev - 1;
 			} else {
 				return 8;
@@ -60,7 +65,7 @@ export const Controls = ({
 
 	const goToTheNextSong = () => {
 		setSongId((prev) => {
-			if (prev !== 8) {
+			if (prev !== 8 && prev) {
 				return prev + 1;
 			} else {
 				return 0;
@@ -69,16 +74,18 @@ export const Controls = ({
 	};
 
 	useEffect(() => {
-		if (isPlaying) {
-			audioRef.current.play();
-		} else {
-			audioRef.current.pause();
+		if (audioRef.current) {
+			if (isPlaying) {
+				audioRef.current.play();
+			} else {
+				audioRef.current.pause();
+			}
 		}
 		playAnimationRef.current = requestAnimationFrame(repeat);
 	}, [isPlaying, audioRef, songId]);
 
 	useEffect(() => {
-		if (audioRef) {
+		if (audioRef.current) {
 			audioRef.current.volume = volume / 100;
 		}
 	}, [volume, audioRef]);

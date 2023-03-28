@@ -8,8 +8,6 @@ export const Search = () => {
 	const { user } = useAuthContext();
 	const { searchValue, setSearchValue } = useSongContext();
 
-	console.log(searchValue);
-
 	return (
 		<>
 			<div className={styles["search-box"]}>

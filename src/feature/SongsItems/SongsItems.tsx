@@ -1,14 +1,18 @@
 import { Item } from ".";
 import { Wrapper } from "../../components/Wrapper";
-import { tracks } from "data/tracks";
 import { useSongContext } from "hooks/useSongContext";
+import { SongInterface } from "data/tracks";
 
 import styles from "./SongsItems.module.scss";
 
-export const SongsItems = () => {
+type SongItemsProps = {
+	tracks: SongInterface[];
+};
+
+export const SongsItems = ({ tracks }: SongItemsProps) => {
 	const { searchValue, setSearchValue } = useSongContext();
 
-	const filteredTracks = tracks.filter((track) => {
+	const filteredTracks = tracks.filter((track: SongInterface) => {
 		return (
 			track.title.toLowerCase().includes(searchValue.toLowerCase()) ||
 			track.author.toLowerCase().includes(searchValue.toLowerCase())
@@ -22,7 +26,7 @@ export const SongsItems = () => {
 	return (
 		<Wrapper>
 			<div className={styles.items}>
-				{filteredTracks.map((track) => {
+				{filteredTracks.map((track: SongInterface) => {
 					return (
 						<Item
 							author={track.author}
@@ -30,6 +34,7 @@ export const SongsItems = () => {
 							picture={track.picture}
 							recommended={track.recommended}
 							id={track.id}
+							source={track.source}
 						/>
 					);
 				})}

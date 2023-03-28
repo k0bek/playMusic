@@ -1,6 +1,7 @@
 import { useSongContext } from "hooks/useSongContext";
 import styles from "./Volume.module.scss";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
+import { MutableRefObject } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,14 +10,20 @@ import {
 	faVolumeHigh,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const Volume = () => {
-	const { volume, setVolume, isSongFocused, audioRef } = useSongContext();
+type VolumeProps = {
+	audioRef: MutableRefObject<HTMLAudioElement | null>;
+};
+
+export const Volume = ({ audioRef }: VolumeProps) => {
+	const { volume, setVolume, isSongFocused } = useSongContext();
 
 	useEffect(() => {
-		if (audioRef) {
+		if (audioRef.current !== null) {
 			audioRef.current.volume = volume / 100;
 		}
 	}, [volume, audioRef]);
+
+	console.log(audioRef);
 
 	return (
 		<div className={isSongFocused ? styles["volume-focused"] : styles.volume}>
@@ -25,8 +32,8 @@ export const Volume = () => {
 				min={0}
 				max={100}
 				value={volume}
-				onChange={(event) => {
-					setVolume(event.target.value);
+				onChange={(event: ChangeEvent<HTMLInputElement>) => {
+					setVolume(Number(event.target.value));
 				}}
 				className={
 					isSongFocused
@@ -43,7 +50,7 @@ export const Volume = () => {
 					switch (true) {
 						case volume === 0:
 							return faVolumeXmark;
-						case volume < 30:
+						case volume < 40:
 							return faVolumeLow;
 						default:
 							return faVolumeHigh;

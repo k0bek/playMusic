@@ -1,21 +1,28 @@
-import { style } from "@mui/system";
-import React from "react";
+import { MutableRefObject } from "react";
 import { useSongContext } from "hooks/useSongContext";
 
 import styles from "./ProgressBar.module.scss";
-import { InputRange } from "components/InputRange/InputRange";
+
+type ProgressBarProps = {
+	audioRef: MutableRefObject<HTMLAudioElement | null>;
+	progressBarRef: MutableRefObject<HTMLInputElement | null>;
+	timeProgress: number;
+	duration: number;
+};
 
 export const ProgressBar = ({
 	progressBarRef,
 	audioRef,
 	timeProgress,
 	duration,
-}) => {
+}: ProgressBarProps) => {
 	const handleProgressChange = () => {
-		audioRef.current.currentTime = progressBarRef.current.value;
+		if (audioRef.current && progressBarRef.current) {
+			audioRef.current.currentTime = Number(progressBarRef.current.value);
+		}
 	};
 
-	const formatTime = (time) => {
+	const formatTime = (time: number) => {
 		if (time && !isNaN(time)) {
 			const minutes = Math.floor(time / 60);
 			const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
@@ -26,7 +33,7 @@ export const ProgressBar = ({
 		return "00:00";
 	};
 
-	const { isSongFocused, setIsSongFocused } = useSongContext();
+	const { isSongFocused } = useSongContext();
 
 	return (
 		<div
@@ -44,7 +51,7 @@ export const ProgressBar = ({
 				type="range"
 				className={styles.range}
 				ref={progressBarRef}
-				defaultValue="0"
+				defaultValue={0}
 				onChange={handleProgressChange}
 			/>
 			<span className={isSongFocused ? styles.end : styles["end-normal"]}>
