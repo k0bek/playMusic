@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { RoundedButton } from "components/RoundedButton/RoundedButton";
 import { useSongContext } from "hooks/useSongContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { db } from "firebase/config";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useAuthContext } from "hooks/useAuthContext";
 import { SongInterface, tracks } from "data/tracks";
+import { LoginModal } from "feature/LoginModal/LoginModal";
 
 export const Item = ({
 	author,
@@ -18,32 +19,43 @@ export const Item = ({
 	source,
 }: SongInterface) => {
 	const { user } = useAuthContext();
-	const { setSongId, setIsPlaying, isSongFocused } = useSongContext();
+	const { setSongId, setIsPlaying, isSongFocused, showModal } =
+		useSongContext();
 
 	const getSongId = () => {
-		setSongId(id);
+		if (!user) {
+			showModal();
+			return;
+		} else {
+			setSongId(id);
+		}
 	};
 
 	const addToFavourites = async () => {
-		const reference = collection(db, "favourites");
-
-		const querySnapshot = await getDocs(
-			query(collection(db, "favourites"), where("id", "==", id))
-		);
-
-		if (querySnapshot.docs.length > 0) {
+		if (!user) {
+			showModal();
 			return;
-		}
+		} else {
+			const reference = collection(db, "favourites");
 
-		await addDoc(reference, {
-			id,
-			title,
-			author,
-			recommended,
-			picture,
-			source,
-			uid: user?.uid,
-		});
+			const querySnapshot = await getDocs(
+				query(collection(db, "favourites"), where("id", "==", id))
+			);
+
+			if (querySnapshot.docs.length > 0) {
+				return;
+			}
+
+			await addDoc(reference, {
+				id,
+				title,
+				author,
+				recommended,
+				picture,
+				source,
+				uid: user?.uid,
+			});
+		}
 	};
 
 	useEffect(() => {

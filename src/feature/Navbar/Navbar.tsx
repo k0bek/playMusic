@@ -74,12 +74,7 @@ export const Navbar = () => {
 							? styles["nav-item-active"]
 							: styles["nav-item"]
 					}
-				>
-					<span>
-						<FontAwesomeIcon icon={faMusic} />
-					</span>
-					<p>Recently Listened</p>
-				</NavLink>
+				></NavLink>
 			</ul>
 		</nav>
 	);

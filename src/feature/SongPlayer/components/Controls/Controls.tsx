@@ -58,14 +58,14 @@ export const Controls = ({
 			if (prev) {
 				return prev - 1;
 			} else {
-				return 8;
+				return 0;
 			}
 		});
 	};
 
 	const goToTheNextSong = () => {
 		setSongId((prev) => {
-			if (prev !== 8 && prev) {
+			if (prev.length - 1 !== 8 && prev) {
 				return prev + 1;
 			} else {
 				return 0;

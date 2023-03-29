@@ -1,14 +1,28 @@
-import React from "react";
+import { useSongContext } from "hooks/useSongContext";
 import styles from "./Menu.module.scss";
 
 export const Menu = () => {
+	const { setRecommended } = useSongContext();
+
+	const showRecommended = () => {
+		setRecommended(true);
+	};
+
+	const showAll = () => {
+		setRecommended(false);
+	};
+
 	return (
 		<ul className={styles.menu}>
 			<li className={styles.item}>
-				<h2>Recommendation</h2>
+				<button onClick={showRecommended}>
+					<h2>Recommended</h2>
+				</button>
 			</li>
 			<li className={styles.item}>
-				<h2>All</h2>
+				<button onClick={showAll}>
+					<h2>All</h2>
+				</button>
 			</li>
 		</ul>
 	);

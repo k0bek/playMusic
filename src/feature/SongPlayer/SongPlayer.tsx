@@ -25,8 +25,6 @@ export const SongPlayer = () => {
 		setIsSongFocused(!isSongFocused);
 	};
 
-	console.log(progressBarRef);
-
 	{
 		return (
 			songId !== null && (

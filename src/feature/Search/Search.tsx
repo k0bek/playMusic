@@ -6,7 +6,7 @@ import styles from "./Search.module.scss";
 
 export const Search = () => {
 	const { user } = useAuthContext();
-	const { searchValue, setSearchValue } = useSongContext();
+	const { searchedValue, setSearchedValue } = useSongContext();
 
 	return (
 		<>
@@ -22,9 +22,9 @@ export const Search = () => {
 				<Input
 					type="text"
 					placeholder="Search music"
-					value={searchValue}
+					value={searchedValue}
 					onChange={(event) => {
-						setSearchValue(event.target.value);
+						setSearchedValue(event.target.value);
 					}}
 				/>
 			</div>

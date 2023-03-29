@@ -10,23 +10,10 @@ type SongItemsProps = {
 };
 
 export const SongsItems = ({ tracks }: SongItemsProps) => {
-	const { searchValue, setSearchValue } = useSongContext();
-
-	const filteredTracks = tracks.filter((track: SongInterface) => {
-		return (
-			track.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-			track.author.toLowerCase().includes(searchValue.toLowerCase())
-		);
-	});
-
-	if (filteredTracks.length === 0) {
-		return <p className={styles["error-info"]}>No results found</p>;
-	}
-
 	return (
 		<Wrapper>
 			<div className={styles.items}>
-				{filteredTracks.map((track: SongInterface) => {
+				{tracks.map((track: SongInterface) => {
 					return (
 						<Item
 							author={track.author}
@@ -38,6 +25,7 @@ export const SongsItems = ({ tracks }: SongItemsProps) => {
 						/>
 					);
 				})}
+				{tracks.length === 0 && <p>No results found.</p>}
 			</div>
 		</Wrapper>
 	);

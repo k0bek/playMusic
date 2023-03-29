@@ -10,8 +10,13 @@ type SongContext = {
 	setIsSongFocused: React.Dispatch<React.SetStateAction<boolean>>;
 	volume: number;
 	setVolume: React.Dispatch<React.SetStateAction<number>>;
-	searchValue: string;
-	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+	searchedValue: string;
+	setSearchedValue: React.Dispatch<React.SetStateAction<string>>;
+	recommended: boolean;
+	setRecommended: React.Dispatch<React.SetStateAction<boolean>>;
+	isModalShowed: boolean;
+	showModal: () => void;
+	hideModal: () => void;
 };
 
 type ChildrenType = {
@@ -25,7 +30,19 @@ export const SongContextProvider = ({ children }: ChildrenType) => {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [isSongFocused, setIsSongFocused] = useState(false);
 	const [volume, setVolume] = useState(70);
-	const [searchValue, setSearchValue] = useState("");
+	const [searchedValue, setSearchedValue] = useState("");
+	const [recommended, setRecommended] = useState(false);
+	const [isModalShowed, setIsModalShowed] = useState(false);
+
+	const showModal = () => {
+		document.body.style.overflow = "hidden";
+		setIsModalShowed(true);
+	};
+
+	const hideModal = () => {
+		document.body.style.overflow = "visible";
+		setIsModalShowed(false);
+	};
 
 	const value: SongContext = {
 		setSongId,
@@ -36,8 +53,13 @@ export const SongContextProvider = ({ children }: ChildrenType) => {
 		setIsSongFocused,
 		volume,
 		setVolume,
-		searchValue,
-		setSearchValue,
+		searchedValue,
+		setSearchedValue,
+		recommended,
+		setRecommended,
+		isModalShowed,
+		showModal,
+		hideModal,
 	};
 
 	return <SongContext.Provider value={value}>{children}</SongContext.Provider>;

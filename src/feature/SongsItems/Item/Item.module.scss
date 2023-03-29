@@ -60,6 +60,10 @@
 		}
 	}
 
+	.heart-favourite {
+		color: var(--button-background);
+	}
+
 	&-info {
 		display: flex;
 		flex-direction: column;
