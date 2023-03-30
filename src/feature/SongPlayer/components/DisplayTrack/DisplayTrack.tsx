@@ -15,7 +15,6 @@ export function DisplayTrack({
 	setDuration,
 	progressBarRef,
 }: DisplayTrackProps) {
-	console.log(progressBarRef);
 	const onLoadedMetadata = () => {
 		if (audioRef.current) {
 			const seconds = audioRef.current.duration;
@@ -27,8 +26,6 @@ export function DisplayTrack({
 			}
 		}
 	};
-
-	console.log(progressBarRef);
 
 	return (
 		<audio

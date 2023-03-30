@@ -8,7 +8,6 @@ import { db } from "firebase/config";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useAuthContext } from "hooks/useAuthContext";
 import { SongInterface, tracks } from "data/tracks";
-import { LoginModal } from "feature/LoginModal/LoginModal";
 
 export const Item = ({
 	author,
@@ -17,29 +16,46 @@ export const Item = ({
 	recommended,
 	id,
 	source,
+	currentTracksList,
 }: SongInterface) => {
 	const { user } = useAuthContext();
-	const { setSongId, setIsPlaying, isSongFocused, showModal } =
-		useSongContext();
+	const {
+		setSongId,
+		setIsPlaying,
+		isSongFocused,
+		showModal,
+		setCurrentTrack,
+		setListOfTracks,
+	} = useSongContext();
 
 	const getSongId = () => {
 		if (!user) {
+			setCurrentTrack(id);
 			showModal();
 			return;
 		} else {
 			setSongId(id);
 		}
+
+		if (currentTracksList) {
+			setListOfTracks(currentTracksList);
+		}
 	};
 
 	const addToFavourites = async () => {
 		if (!user) {
+			setCurrentTrack(id);
 			showModal();
 			return;
 		} else {
 			const reference = collection(db, "favourites");
 
 			const querySnapshot = await getDocs(
-				query(collection(db, "favourites"), where("id", "==", id))
+				query(
+					collection(db, "favourites"),
+					where("id", "==", id),
+					where("uid", "==", user.uid)
+				)
 			);
 
 			if (querySnapshot.docs.length > 0) {

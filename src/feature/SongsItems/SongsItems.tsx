@@ -4,6 +4,7 @@ import { useSongContext } from "hooks/useSongContext";
 import { SongInterface } from "data/tracks";
 
 import styles from "./SongsItems.module.scss";
+import { useEffect } from "react";
 
 type SongItemsProps = {
 	tracks: SongInterface[];
@@ -13,15 +14,16 @@ export const SongsItems = ({ tracks }: SongItemsProps) => {
 	return (
 		<Wrapper>
 			<div className={styles.items}>
-				{tracks.map((track: SongInterface) => {
+				{tracks.map((track: SongInterface, index) => {
 					return (
 						<Item
 							author={track.author}
 							title={track.title}
 							picture={track.picture}
 							recommended={track.recommended}
-							id={track.id}
+							id={index}
 							source={track.source}
+							currentTracksList={tracks}
 						/>
 					);
 				})}

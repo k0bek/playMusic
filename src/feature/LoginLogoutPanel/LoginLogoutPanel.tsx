@@ -8,7 +8,7 @@ import { useSongContext } from "hooks/useSongContext";
 export const LoginLogutPanel = () => {
 	const { user } = useAuthContext();
 	const { logout } = useLogout();
-	const { setIsPlaying } = useSongContext();
+	const { setIsPlaying, setSongId } = useSongContext();
 
 	const handleLoginAndLogout = () => {
 		if (user) {
@@ -16,12 +16,13 @@ export const LoginLogutPanel = () => {
 		}
 
 		setIsPlaying(false);
+		setSongId(null);
 	};
 	return (
 		<div className={styles.panel}>
 			<div className={styles["panel-box"]}>
 				{!user && (
-					<Link to={!user ? "signup" : "/"} className={styles["signup"]}>
+					<Link to={!user ? "signup" : "/"} className={styles.signup}>
 						Signup
 					</Link>
 				)}

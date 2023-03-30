@@ -2,12 +2,17 @@ import { ButtonLoginLogut } from "components";
 
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
-import img from "assets/images/anyway.jpg";
+import { tracks } from "data/tracks";
 
 import styles from "./LoginModal.module.scss";
 import { useSongContext } from "hooks/useSongContext";
+import { ReactNode } from "react";
 
-function ModalBackdrop({ children }) {
+type ModalBackdropProps = {
+	children: ReactNode;
+};
+
+function ModalBackdrop({ children }: ModalBackdropProps) {
 	const { hideModal } = useSongContext();
 
 	return (
@@ -18,11 +23,13 @@ function ModalBackdrop({ children }) {
 }
 
 export function ModalOverlay() {
-	const { hideModal } = useSongContext();
+	const { hideModal, currentTrack } = useSongContext();
 
 	return (
 		<div className={styles["modal-overlay"]}>
-			<img src={img} className={styles.image} />
+			{currentTrack !== null && (
+				<img src={tracks[currentTrack].picture} className={styles.image} />
+			)}
 			<div className={styles["modal-overlay-box"]}>
 				<p className={styles.start}>
 					Start listening with free playMusic account
@@ -46,17 +53,21 @@ export function ModalOverlay() {
 	);
 }
 
-export const LoginModal = ({ children }) => {
-	return (
+type LoginModalProps = {
+	children: ReactNode;
+};
+
+export const LoginModal = ({ children }: LoginModalProps) => {
+	const backdropElement = document.getElementById("backdrop");
+	const modalElement = document.getElementById("modal");
+
+	return modalElement && backdropElement ? (
 		<>
 			{ReactDOM.createPortal(
-				<ModalBackdrop />,
-				document.getElementById("backdrop")
+				<ModalBackdrop>{children}</ModalBackdrop>,
+				backdropElement
 			)}
-			{ReactDOM.createPortal(
-				<ModalOverlay>{children}</ModalOverlay>,
-				document.getElementById("modal")
-			)}
+			{ReactDOM.createPortal(<ModalOverlay />, modalElement)}
 		</>
-	);
+	) : null;
 };

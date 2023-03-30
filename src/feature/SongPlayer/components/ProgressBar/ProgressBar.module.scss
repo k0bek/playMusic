@@ -1,21 +1,14 @@
-/* =========================
-Custom Input range 
-=============================*/
-
-/* Input range - chrome and safari */
-
 input[type="range"] {
 	--range-progress: 0;
 	-webkit-appearance: none;
 	position: relative;
 	background: #bebebe;
-	width: 10em;
+	width: 100%;
 	height: 8px;
 	border-radius: 8px;
 	cursor: pointer;
 }
 
-/* Input range - firefox */
 input[type="range"]::-moz-range-track {
 	position: relative;
 	background: #bebebe;
@@ -25,11 +18,9 @@ input[type="range"]::-moz-range-track {
 	cursor: pointer;
 }
 
-/* played progress length - Chrome & safari*/
 input[type="range"]::before {
 	content: "";
 	height: 8px;
-	background: var(--button-background);
 	width: var(--range-progress);
 	border-bottom-left-radius: 2px;
 	border-top-left-radius: 2px;
@@ -37,16 +28,12 @@ input[type="range"]::before {
 	top: 0;
 	left: 0;
 }
-
-/* played progress length - firefox */
 input[type="range"]::-moz-range-progress {
-	background: var(--button-background);
 	border-bottom-left-radius: 8px;
 	border-top-left-radius: 8px;
 	height: 8px;
 }
 
-/* slider thumb - chrome and safari */
 input[type="range"]::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	height: 14px;
@@ -58,12 +45,10 @@ input[type="range"]::-webkit-slider-thumb {
 	position: relative;
 }
 
-/* dragging thumb - chrome and safari */
 input[type="range"]:active::-webkit-slider-thumb {
 	transform: scale(1.2);
 }
 
-/* slider thumb - firefox */
 input[type="range"]::-moz-range-thumb {
 	height: 8px;
 	width: 8px;
@@ -73,7 +58,6 @@ input[type="range"]::-moz-range-thumb {
 	border: transparent;
 	position: relative;
 }
-/* dragging thumb - firefox */
 input[type="range"]:active::-moz-range-thumb {
 	transform: scale(1.2);
 }

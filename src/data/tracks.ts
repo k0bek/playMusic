@@ -27,6 +27,7 @@ export interface SongInterface {
 	picture: string;
 	source: SongSource;
 	uid?: string;
+	currentTracksList?: SongInterface[];
 }
 
 export const tracks: SongInterface[] = [

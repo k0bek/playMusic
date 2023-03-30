@@ -1,11 +1,5 @@
 import { RoundedButton } from "components";
-import React, {
-	useEffect,
-	useState,
-	useRef,
-	useCallback,
-	MutableRefObject,
-} from "react";
+import React, { useEffect, useRef, useCallback, MutableRefObject } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -31,8 +25,15 @@ export const Controls = ({
 	duration,
 	setTimeProgress,
 }: ControlsProps) => {
-	const { isPlaying, setIsPlaying, isSongFocused, songId, setSongId, volume } =
-		useSongContext();
+	const {
+		isPlaying,
+		setIsPlaying,
+		isSongFocused,
+		songId,
+		setSongId,
+		volume,
+		listOfTracks,
+	} = useSongContext();
 
 	const playAnimationRef = useRef<number>();
 
@@ -58,14 +59,15 @@ export const Controls = ({
 			if (prev) {
 				return prev - 1;
 			} else {
-				return 0;
+				return listOfTracks.length - 1;
 			}
 		});
 	};
 
 	const goToTheNextSong = () => {
+		console.log(listOfTracks.length);
 		setSongId((prev) => {
-			if (prev.length - 1 !== 8 && prev) {
+			if (prev !== listOfTracks.length - 1 && prev !== null) {
 				return prev + 1;
 			} else {
 				return 0;

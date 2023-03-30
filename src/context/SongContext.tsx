@@ -1,3 +1,4 @@
+import { SongInterface, tracks } from "data/tracks";
 import { createContext, useEffect, useReducer, useState } from "react";
 import { ReactNode } from "react";
 
@@ -17,6 +18,10 @@ type SongContext = {
 	isModalShowed: boolean;
 	showModal: () => void;
 	hideModal: () => void;
+	currentTrack: number | null;
+	setCurrentTrack: React.Dispatch<React.SetStateAction<null | number>>;
+	listOfTracks: SongInterface[];
+	setListOfTracks: React.Dispatch<React.SetStateAction<SongInterface[]>>;
 };
 
 type ChildrenType = {
@@ -33,6 +38,8 @@ export const SongContextProvider = ({ children }: ChildrenType) => {
 	const [searchedValue, setSearchedValue] = useState("");
 	const [recommended, setRecommended] = useState(false);
 	const [isModalShowed, setIsModalShowed] = useState(false);
+	const [currentTrack, setCurrentTrack] = useState<null | number>(null);
+	const [listOfTracks, setListOfTracks] = useState(tracks);
 
 	const showModal = () => {
 		document.body.style.overflow = "hidden";
@@ -60,6 +67,10 @@ export const SongContextProvider = ({ children }: ChildrenType) => {
 		isModalShowed,
 		showModal,
 		hideModal,
+		currentTrack,
+		setCurrentTrack,
+		listOfTracks,
+		setListOfTracks,
 	};
 
 	return <SongContext.Provider value={value}>{children}</SongContext.Provider>;

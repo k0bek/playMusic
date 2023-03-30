@@ -2,7 +2,7 @@ import styles from "./ButtonLoginLogut.module.scss";
 
 type ButtonLoginLogutType = {
 	children: string;
-	className: string;
+	className?: string;
 };
 
 export const ButtonLoginLogut = ({

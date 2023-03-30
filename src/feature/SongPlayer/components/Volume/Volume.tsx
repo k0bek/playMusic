@@ -23,8 +23,6 @@ export const Volume = ({ audioRef }: VolumeProps) => {
 		}
 	}, [volume, audioRef]);
 
-	console.log(audioRef);
-
 	return (
 		<div className={isSongFocused ? styles["volume-focused"] : styles.volume}>
 			<input
