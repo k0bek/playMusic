@@ -21,7 +21,10 @@ export const ProgressBar = ({
 			audioRef.current.currentTime = Number(progressBarRef.current.value);
 			progressBarRef.current.style.setProperty(
 				"--range-progress",
-				`${(progressBarRef.current.value / audioRef.current.duration) * 100}%`
+				`${
+					(Number(progressBarRef.current.value) / audioRef.current.duration) *
+					100
+				}%`
 			);
 		}
 	};

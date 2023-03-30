@@ -8,18 +8,10 @@ import styles from "./LoginModal.module.scss";
 import { useSongContext } from "hooks/useSongContext";
 import { ReactNode } from "react";
 
-type ModalBackdropProps = {
-	children: ReactNode;
-};
-
-function ModalBackdrop({ children }: ModalBackdropProps) {
+function ModalBackdrop() {
 	const { hideModal } = useSongContext();
 
-	return (
-		<div className={styles.backdrop} onClick={hideModal}>
-			{children}
-		</div>
-	);
+	return <div className={styles.backdrop} onClick={hideModal} />;
 }
 
 export function ModalOverlay() {
@@ -53,20 +45,13 @@ export function ModalOverlay() {
 	);
 }
 
-type LoginModalProps = {
-	children: ReactNode;
-};
-
-export const LoginModal = ({ children }: LoginModalProps) => {
+export const LoginModal = () => {
 	const backdropElement = document.getElementById("backdrop");
 	const modalElement = document.getElementById("modal");
 
 	return modalElement && backdropElement ? (
 		<>
-			{ReactDOM.createPortal(
-				<ModalBackdrop>{children}</ModalBackdrop>,
-				backdropElement
-			)}
+			{ReactDOM.createPortal(<ModalBackdrop />, backdropElement)}
 			{ReactDOM.createPortal(<ModalOverlay />, modalElement)}
 		</>
 	) : null;
