@@ -53,10 +53,13 @@ export const Item = ({
 			const querySnapshot = await getDocs(
 				query(
 					collection(db, "favourites"),
-					where("id", "==", id),
+					where("title", "==", title),
 					where("uid", "==", user.uid)
 				)
 			);
+
+			console.log("xd");
+			console.log(querySnapshot.docs);
 
 			if (querySnapshot.docs.length > 0) {
 				return;

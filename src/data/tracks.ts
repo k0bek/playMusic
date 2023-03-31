@@ -6,8 +6,8 @@ import anywaySong from "assets/mp3/anyway.mp3";
 import anywayPicture from "assets/images/anyway.jpg";
 import calypsoSong from "assets/mp3/calypso.mp3";
 import calypsoPicture from "assets/images/calypso.jpg";
-import ferrariSong from "assets/mp3/ferrari.mp3";
-import ferrariPicture from "assets/images/ferrari.jpg";
+import koloSong from "assets/mp3/kolo.mp3";
+import koloPicture from "assets/images/kolo.jpg";
 import loadingSong from "assets/mp3/loading.mp3";
 import loadingPicture from "assets/images/loading.jpg";
 import mlynSong from "assets/mp3/mlyn.mp3";
@@ -66,11 +66,11 @@ export const tracks: SongInterface[] = [
 	},
 	{
 		id: 4,
-		title: "Ferrari",
-		author: "James Hype, Miggy Dela Rosa",
+		title: "Koło Fortuny",
+		author: "Wiktor Dyduła",
 		recommended: false,
-		picture: ferrariPicture,
-		source: ferrariSong,
+		picture: koloPicture,
+		source: koloSong,
 	},
 	{
 		id: 5,

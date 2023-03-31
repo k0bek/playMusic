@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import { MutableRefObject, useEffect } from "react";
 import { useSongContext } from "hooks/useSongContext";
 
 import styles from "./ProgressBar.module.scss";
@@ -16,6 +16,8 @@ export const ProgressBar = ({
 	timeProgress,
 	duration,
 }: ProgressBarProps) => {
+	const { setSongId } = useSongContext();
+
 	const handleProgressChange = () => {
 		if (audioRef.current && progressBarRef.current) {
 			audioRef.current.currentTime = Number(progressBarRef.current.value);

@@ -19,11 +19,32 @@ export const SongPlayer = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 	const progressBarRef = useRef<HTMLInputElement | null>(null);
 
-	const { songId, isSongFocused, setIsSongFocused, listOfTracks } =
+	const { songId, isSongFocused, setIsSongFocused, listOfTracks, setSongId } =
 		useSongContext();
 
 	const handleFocusShowed = () => {
 		setIsSongFocused(!isSongFocused);
+	};
+
+	const goToThePreviousSong = () => {
+		setSongId((prev) => {
+			if (prev) {
+				return prev - 1;
+			} else {
+				return listOfTracks.length - 1;
+			}
+		});
+	};
+
+	const goToTheNextSong = () => {
+		console.log(listOfTracks.length);
+		setSongId((prev) => {
+			if (prev !== listOfTracks.length - 1 && prev !== null) {
+				return prev + 1;
+			} else {
+				return 0;
+			}
+		});
 	};
 
 	return (
@@ -77,6 +98,8 @@ export const SongPlayer = () => {
 							setTimeProgress={setTimeProgress}
 							progressBarRef={progressBarRef}
 							duration={duration}
+							goToThePreviousSong={goToThePreviousSong}
+							goToTheNextSong={goToTheNextSong}
 						/>
 
 						<ProgressBar
@@ -92,6 +115,7 @@ export const SongPlayer = () => {
 							progressBarRef={progressBarRef}
 							setDuration={setDuration}
 							setTimeProgress={setTimeProgress}
+							goToTheNextSong={goToTheNextSong}
 						/>
 					</div>
 					<Volume audioRef={audioRef} />

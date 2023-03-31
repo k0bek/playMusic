@@ -17,6 +17,8 @@ type ControlsProps = {
 	progressBarRef: MutableRefObject<HTMLInputElement | null>;
 	setTimeProgress: React.Dispatch<React.SetStateAction<number>>;
 	duration: number;
+	goToThePreviousSong: () => void;
+	goToTheNextSong: () => void;
 };
 
 export const Controls = ({
@@ -24,6 +26,8 @@ export const Controls = ({
 	progressBarRef,
 	duration,
 	setTimeProgress,
+	goToTheNextSong,
+	goToThePreviousSong,
 }: ControlsProps) => {
 	const {
 		isPlaying,
@@ -53,27 +57,6 @@ export const Controls = ({
 		}
 		playAnimationRef.current = requestAnimationFrame(repeat);
 	}, [audioRef, duration, progressBarRef, setTimeProgress]);
-
-	const goToThePreviousSong = () => {
-		setSongId((prev) => {
-			if (prev) {
-				return prev - 1;
-			} else {
-				return listOfTracks.length - 1;
-			}
-		});
-	};
-
-	const goToTheNextSong = () => {
-		console.log(listOfTracks.length);
-		setSongId((prev) => {
-			if (prev !== listOfTracks.length - 1 && prev !== null) {
-				return prev + 1;
-			} else {
-				return 0;
-			}
-		});
-	};
 
 	useEffect(() => {
 		if (audioRef.current) {
