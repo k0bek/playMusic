@@ -27,71 +27,85 @@ export const SongPlayer = () => {
 	};
 
 	return (
-		<div
-			className={
-				isSongFocused ? styles["audio-player-focused"] : styles["audio-player"]
-			}
-		>
-			<div
-				className={
-					isSongFocused ? styles["song-info-focused"] : styles["song-info"]
-				}
-			>
-				<img
-					className={isSongFocused ? styles["picture-focused"] : styles.picture}
-					src={songId ? listOfTracks[songId].picture : ""}
-					onClick={handleFocusShowed}
-				/>
-				<div className={styles["info-text"]}>
-					<p className={isSongFocused ? styles["title-focused"] : styles.title}>
-						{songId ? listOfTracks[songId].title : ""}
-					</p>
-					<p
+		<section>
+			{songId !== null && (
+				<div
+					className={
+						isSongFocused
+							? styles["audio-player-focused"]
+							: styles["audio-player"]
+					}
+				>
+					<div
 						className={
-							isSongFocused ? styles["author-focused"] : styles["author"]
+							isSongFocused ? styles["song-info-focused"] : styles["song-info"]
 						}
 					>
-						{songId ? listOfTracks[songId].author : ""}
-					</p>
+						<img
+							className={
+								isSongFocused ? styles["picture-focused"] : styles.picture
+							}
+							src={listOfTracks[songId].picture}
+							onClick={handleFocusShowed}
+						/>
+						<div className={styles["info-text"]}>
+							<p
+								className={
+									isSongFocused ? styles["title-focused"] : styles.title
+								}
+							>
+								{listOfTracks[songId].title}
+							</p>
+							<p
+								className={
+									isSongFocused ? styles["author-focused"] : styles["author"]
+								}
+							>
+								{listOfTracks[songId].author}
+							</p>
+						</div>
+					</div>
+					<div
+						className={
+							isSongFocused
+								? styles["song-player-focused"]
+								: styles["song-player"]
+						}
+					>
+						<Controls
+							audioRef={audioRef}
+							setTimeProgress={setTimeProgress}
+							progressBarRef={progressBarRef}
+							duration={duration}
+						/>
+
+						<ProgressBar
+							progressBarRef={progressBarRef}
+							audioRef={audioRef}
+							duration={duration}
+							timeProgress={timeProgress}
+						/>
+
+						<DisplayTrack
+							currentTrack={listOfTracks[songId]}
+							audioRef={audioRef}
+							progressBarRef={progressBarRef}
+							setDuration={setDuration}
+							setTimeProgress={setTimeProgress}
+						/>
+					</div>
+					<Volume audioRef={audioRef} />
+
+					{isSongFocused && (
+						<button
+							className={styles["close-button-focused"]}
+							onClick={handleFocusShowed}
+						>
+							<FontAwesomeIcon icon={faXmark} />
+						</button>
+					)}
 				</div>
-			</div>
-			<div
-				className={
-					isSongFocused ? styles["song-player-focused"] : styles["song-player"]
-				}
-			>
-				<Controls
-					audioRef={audioRef}
-					setTimeProgress={setTimeProgress}
-					progressBarRef={progressBarRef}
-					duration={duration}
-				/>
-
-				<ProgressBar
-					progressBarRef={progressBarRef}
-					audioRef={audioRef}
-					duration={duration}
-					timeProgress={timeProgress}
-				/>
-
-				<DisplayTrack
-					currentTrack={listOfTracks[songId as number]}
-					audioRef={audioRef}
-					progressBarRef={progressBarRef}
-					setDuration={setDuration}
-					setTimeProgress={setTimeProgress}
-				/>
-			</div>
-			<Volume audioRef={audioRef} />
-
-			{isSongFocused && (
-				<button
-					className={styles["close-button-focused"]}
-					onClick={handleFocusShowed}
-				>
-					<FontAwesomeIcon icon={faXmark} />
-				</button>
 			)}
-		</div>
+		</section>
 	);
 };

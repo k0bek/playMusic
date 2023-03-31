@@ -60,31 +60,29 @@ export const Item = ({
 
 			if (querySnapshot.docs.length > 0) {
 				return;
+			} else {
+				await addDoc(reference, {
+					id,
+					title,
+					author,
+					recommended,
+					picture,
+					source,
+					uid: user?.uid,
+				});
 			}
-
-			await addDoc(reference, {
-				id,
-				title,
-				author,
-				recommended,
-				picture,
-				source,
-				uid: user?.uid,
-			});
 		}
 	};
 
 	useEffect(() => {
-		if (isSongFocused) {
-			document.body.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "visible";
-		}
+		isSongFocused
+			? (document.body.style.overflow = "hidden")
+			: (document.body.style.overflow = "visible");
 	}, [isSongFocused]);
 
 	return (
 		<div className={styles.item}>
-			<img src={picture} />
+			<img src={picture} alt={title} />
 			<button className={styles["heart"]} onClick={addToFavourites}>
 				<FontAwesomeIcon icon={faHeart} />
 			</button>
