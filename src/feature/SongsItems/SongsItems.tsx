@@ -11,6 +11,7 @@ type SongItemsProps = {
 };
 
 export const SongsItems = ({ tracks }: SongItemsProps) => {
+	console.log(tracks);
 	return (
 		<Wrapper>
 			<div className={styles.items}>
@@ -24,6 +25,7 @@ export const SongsItems = ({ tracks }: SongItemsProps) => {
 							id={index}
 							source={track.source}
 							currentTracksList={tracks}
+							isFavourite={track.isFavourite}
 						/>
 					);
 				})}

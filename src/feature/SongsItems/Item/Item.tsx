@@ -8,6 +8,7 @@ import { db } from "firebase/config";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useAuthContext } from "hooks/useAuthContext";
 import { SongInterface, tracks } from "data/tracks";
+import { doc, deleteDoc } from "firebase/firestore";
 
 export const Item = ({
 	author,
@@ -27,6 +28,7 @@ export const Item = ({
 		setCurrentTrack,
 		setListOfTracks,
 	} = useSongContext();
+	const [isDuplicate, setIsDuplicate] = useState(false);
 
 	const getSongId = () => {
 		if (!user) {
@@ -58,9 +60,6 @@ export const Item = ({
 				)
 			);
 
-			console.log("xd");
-			console.log(querySnapshot.docs);
-
 			if (querySnapshot.docs.length > 0) {
 				return;
 			} else {
@@ -75,7 +74,51 @@ export const Item = ({
 				});
 			}
 		}
+
+		checkIsSongFavouriteDuplicate(title);
 	};
+
+	const checkIsSongFavouriteDuplicate = async (title: string) => {
+		const querySnapshot = await getDocs(
+			query(
+				collection(db, "favourites"),
+				where("title", "==", title),
+				where("uid", "==", user?.uid)
+			)
+		);
+
+		if (!isDuplicate) {
+			setIsDuplicate(querySnapshot.docs.length > 0);
+		}
+
+		return querySnapshot.docs.length > 0;
+	};
+
+	const deleteFavouriteSong = async () => {
+		const querySnapshot = await getDocs(
+			query(
+				collection(db, "favourites"),
+				where("title", "==", title),
+				where("uid", "==", user?.uid)
+			)
+		);
+		if (isDuplicate) {
+			querySnapshot.forEach((doc) => {
+				deleteDoc(doc.ref);
+			});
+			setIsDuplicate(false);
+		}
+	};
+
+	console.log(isDuplicate);
+
+	useEffect(() => {
+		async function checkDuplicates() {
+			const isDuplicate = await checkIsSongFavouriteDuplicate(title);
+			setIsDuplicate(isDuplicate);
+		}
+		checkDuplicates();
+	}, []);
 
 	useEffect(() => {
 		isSongFocused
@@ -83,10 +126,20 @@ export const Item = ({
 			: (document.body.style.overflow = "visible");
 	}, [isSongFocused]);
 
+	useEffect(() => {
+		setIsDuplicate(false);
+	}, [user, setIsDuplicate]);
+
 	return (
 		<div className={styles.item}>
 			<img src={picture} alt={title} />
-			<button className={styles["heart"]} onClick={addToFavourites}>
+			<button
+				className={isDuplicate ? styles["heart-favourite"] : styles.heart}
+				onClick={() => {
+					addToFavourites();
+					deleteFavouriteSong();
+				}}
+			>
 				<FontAwesomeIcon icon={faHeart} />
 			</button>
 			<div className={styles["item-info"]}>
