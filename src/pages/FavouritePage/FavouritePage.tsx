@@ -53,7 +53,7 @@ export const FavouritePage = () => {
 					)}
 				</div>
 			</header>
-			<SongsItems tracks={tracks} />
+			<SongsItems isHomePage={false} tracks={tracks} />
 			{isPending && <CircularProgress color="secondary" size={60} />}
 		</>
 	);
