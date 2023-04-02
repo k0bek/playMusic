@@ -64,6 +64,7 @@ export const SongPlayer = () => {
 							}
 							src={listOfTracks[songId].picture}
 							onClick={handleFocusShowed}
+							alt={listOfTracks[songId].title}
 						/>
 						<div className={styles["info-text"]}>
 							<p

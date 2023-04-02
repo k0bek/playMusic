@@ -9,9 +9,11 @@ import {
 	faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Navbar.module.scss";
+import { useSongContext } from "hooks/useSongContext";
 
 export const Navbar = () => {
 	const [isNavbarShowed, setIsNavbarShowed] = useState(false);
+	const { isModalShowed } = useSongContext();
 	const toggleNav = () => {
 		setIsNavbarShowed((prev) => {
 			return !prev;
@@ -41,9 +43,11 @@ export const Navbar = () => {
 					</p>
 				</Link>
 
-				<button className={styles["arrow"]} onClick={toggleNav}>
-					<FontAwesomeIcon icon={faLongArrowRight} />
-				</button>
+				{!isModalShowed && (
+					<button className={styles["arrow"]} onClick={toggleNav}>
+						<FontAwesomeIcon icon={faLongArrowRight} />
+					</button>
+				)}
 
 				<ul className={`${styles["nav-items"]} `}>
 					<NavItem icon={faHouse} destination="/" onClick={toggleNav}>

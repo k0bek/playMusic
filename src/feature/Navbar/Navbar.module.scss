@@ -8,7 +8,7 @@
 	left: 0;
 	height: 100vh;
 	background-color: var(--background-color-seconday);
-	z-index: 150;
+	z-index: 101;
 	text-align: left;
 	padding: 1.5em 1em;
 	transform: translateX(-100%);
@@ -70,6 +70,7 @@
 	@media (min-width: 600px) {
 		transform: translateX(0);
 		gap: 4em;
+		z-index: 10;
 
 		.arrow {
 			display: none;

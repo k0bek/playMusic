@@ -7,6 +7,18 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
 	({ register, ...rest }, ref) => {
-		return <input className={styles.input} ref={ref} {...register} {...rest} />;
+		return (
+			<input
+				className={styles.input}
+				ref={ref}
+				{...register}
+				{...rest}
+				onKeyDown={(event) => {
+					if (event.key === " ") {
+						event.preventDefault();
+					}
+				}}
+			/>
+		);
 	}
 );
