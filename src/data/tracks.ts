@@ -29,6 +29,7 @@ export interface SongInterface {
 	uid?: string;
 	currentTracksList?: SongInterface[];
 	isFavourite?: false;
+	isHomePage?: boolean;
 }
 
 export const tracks: SongInterface[] = [

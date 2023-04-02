@@ -4,9 +4,11 @@ import { Menu } from "feature/Menu";
 import { SongsItems } from "feature/SongsItems";
 import { tracks } from "data/tracks";
 import { SongInterface } from "data/tracks";
+import { useState } from "react";
 
 export const HomePage = () => {
 	const { searchedValue, recommended } = useSongContext();
+	const [isHomePage, setIsHomePage] = useState(true);
 
 	let filteredTracks = tracks.filter((track: SongInterface) => {
 		return (
@@ -23,7 +25,7 @@ export const HomePage = () => {
 		<>
 			<Search />
 			<Menu />
-			<SongsItems tracks={filteredTracks} />
+			<SongsItems tracks={filteredTracks} isHomePage={isHomePage} />
 		</>
 	);
 };

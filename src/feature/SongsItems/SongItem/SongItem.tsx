@@ -7,7 +7,7 @@ import { useSongContext } from "hooks/useSongContext";
 import { RoundedButton } from "components/RoundedButton/RoundedButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { SongInterface } from "data/tracks";
+import { SongInterface, tracks } from "data/tracks";
 import styles from "./SongItem.module.scss";
 
 export const SongItem = ({
@@ -18,6 +18,7 @@ export const SongItem = ({
 	id,
 	source,
 	currentTracksList,
+	isHomePage,
 }: SongInterface) => {
 	const { user } = useAuthContext();
 	const {
@@ -102,8 +103,12 @@ export const SongItem = ({
 				where("uid", "==", user?.uid)
 			)
 		);
+
 		if (isDuplicate) {
 			querySnapshot.forEach((doc) => {
+				{
+					isHomePage && setIsDuplicate(false);
+				}
 				deleteDoc(doc.ref);
 			});
 		}
@@ -124,14 +129,10 @@ export const SongItem = ({
 	}, [isSongFocused]);
 
 	useEffect(() => {
-		if (!user) {
+		if (!user && !isHomePage) {
 			setIsDuplicate(false);
-
-			if (isDuplicate) {
-				setIsDuplicate(false);
-			}
 		}
-	}, [user, setIsDuplicate]);
+	}, [user]);
 
 	return (
 		<div className={styles.item}>

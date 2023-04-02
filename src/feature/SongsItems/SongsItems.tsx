@@ -5,9 +5,10 @@ import styles from "./SongsItems.module.scss";
 
 type SongItemsProps = {
 	tracks: SongInterface[];
+	isHomePage: boolean;
 };
 
-export const SongsItems = ({ tracks }: SongItemsProps) => {
+export const SongsItems = ({ tracks, isHomePage }: SongItemsProps) => {
 	return (
 		<Wrapper>
 			<div className={styles.items}>
@@ -23,6 +24,7 @@ export const SongsItems = ({ tracks }: SongItemsProps) => {
 							currentTracksList={tracks}
 							isFavourite={track.isFavourite}
 							key={index}
+							isHomePage={isHomePage}
 						/>
 					);
 				})}
