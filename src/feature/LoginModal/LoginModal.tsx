@@ -1,23 +1,34 @@
-import { ButtonLoginLogut } from "components";
-
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
-import { tracks } from "data/tracks";
-
-import styles from "./LoginModal.module.scss";
 import { useSongContext } from "hooks/useSongContext";
-import { ReactNode } from "react";
+import { tracks } from "data/tracks";
+import styles from "./LoginModal.module.scss";
 
-function ModalBackdrop() {
+type ModalBackdropProps = {
+	onClick?: () => void;
+};
+
+export function ModalBackdrop(props: ModalBackdropProps) {
 	const { hideModal } = useSongContext();
+	const backdropElement = document.getElementById("backdrop")!;
 
-	return <div className={styles.backdrop} onClick={hideModal} />;
+	return ReactDOM.createPortal(
+		<div
+			className={styles.backdrop}
+			onClick={() => {
+				hideModal();
+				props.onClick?.();
+			}}
+		/>,
+		backdropElement
+	);
 }
 
 export function ModalOverlay() {
 	const { hideModal, currentTrack } = useSongContext();
+	const modalElement = document.getElementById("modal")!;
 
-	return (
+	return ReactDOM.createPortal(
 		<div className={styles["modal-overlay"]}>
 			{currentTrack !== null && (
 				<img src={tracks[currentTrack].picture} className={styles.image} />
@@ -41,18 +52,16 @@ export function ModalOverlay() {
 			<button className={styles.close} onClick={hideModal}>
 				Close
 			</button>
-		</div>
+		</div>,
+		modalElement
 	);
 }
 
 export const LoginModal = () => {
-	const backdropElement = document.getElementById("backdrop");
-	const modalElement = document.getElementById("modal");
-
-	return modalElement && backdropElement ? (
+	return (
 		<>
-			{ReactDOM.createPortal(<ModalBackdrop />, backdropElement)}
-			{ReactDOM.createPortal(<ModalOverlay />, modalElement)}
+			<ModalBackdrop />
+			<ModalOverlay />
 		</>
-	) : null;
+	);
 };

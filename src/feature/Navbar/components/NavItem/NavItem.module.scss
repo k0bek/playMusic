@@ -1,21 +1,16 @@
 .nav-item {
 	display: flex;
-	align-items: center;
-	gap: 0.8em;
-	font-size: 1rem;
-	cursor: pointer;
-	transition: color 0.3s;
+	font-size: 1.5rem;
+	gap: 0.5em;
+	color: var(--white);
+	text-decoration: none;
 
-	@media (min-width: 800px) {
+	&-active {
+		display: flex;
+		gap: 0.5em;
 		font-size: 1.5rem;
-	}
-
-	span {
-		width: 1em;
-		font-size: 2rem;
-	}
-
-	&:hover {
+		color: var(--white);
+		text-decoration: none;
 		color: var(--button-hover);
 	}
 }

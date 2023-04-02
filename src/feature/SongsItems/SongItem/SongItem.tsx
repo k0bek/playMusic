@@ -1,16 +1,16 @@
-import styles from "./Item.module.scss";
+import { useEffect, useState } from "react";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { deleteDoc } from "firebase/firestore";
+import { db } from "firebase/config";
+import { useAuthContext } from "hooks/useAuthContext";
+import { useSongContext } from "hooks/useSongContext";
+import { RoundedButton } from "components/RoundedButton/RoundedButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { RoundedButton } from "components/RoundedButton/RoundedButton";
-import { useSongContext } from "hooks/useSongContext";
-import { useEffect, useState } from "react";
-import { db } from "firebase/config";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { useAuthContext } from "hooks/useAuthContext";
-import { SongInterface, tracks } from "data/tracks";
-import { doc, deleteDoc } from "firebase/firestore";
+import { SongInterface } from "data/tracks";
+import styles from "./SongItem.module.scss";
 
-export const Item = ({
+export const SongItem = ({
 	author,
 	title,
 	picture,
@@ -106,11 +106,8 @@ export const Item = ({
 			querySnapshot.forEach((doc) => {
 				deleteDoc(doc.ref);
 			});
-			setIsDuplicate(false);
 		}
 	};
-
-	console.log(isDuplicate);
 
 	useEffect(() => {
 		async function checkDuplicates() {
@@ -127,7 +124,13 @@ export const Item = ({
 	}, [isSongFocused]);
 
 	useEffect(() => {
-		setIsDuplicate(false);
+		if (!user) {
+			setIsDuplicate(false);
+
+			if (isDuplicate) {
+				setIsDuplicate(false);
+			}
+		}
 	}, [user, setIsDuplicate]);
 
 	return (

@@ -5,3 +5,4 @@ export * from "./Navbar";
 export * from "./PreviewBar";
 export * from "./Search";
 export * from "./SongsItems";
+export * from "./LoginLogoutPanel";

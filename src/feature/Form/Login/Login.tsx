@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Input, Label } from "components";
-import { Welcome } from "../components/Welcome";
-import styles from "./Login.module.scss";
-import { regex } from "constants/regex";
-
-import { useForm } from "react-hook-form";
-import { InputError } from "components/Input";
-import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { auth } from "firebase/config";
-import { useLogin } from "hooks/useLogin";
+import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { useAuthContext } from "hooks/useAuthContext";
+import { useForm } from "react-hook-form";
+import { useLogin } from "hooks/useLogin";
+import { MainButton, Input, Label } from "components";
+import { InputError } from "components/Input";
+import { Welcome } from "../components/Welcome";
+import { regex } from "constants/regex";
+import styles from "./Login.module.scss";
 
 export const Login = () => {
 	const { login, error, isPending } = useLogin();
@@ -92,9 +91,9 @@ export const Login = () => {
 				{error && <InputError>Incorrect password</InputError>}
 			</div>
 
-			<Button type="submit" disabled={isPending}>
+			<MainButton type="submit" disabled={isPending}>
 				{isPending ? "Logging in..." : "Log in"}
-			</Button>
+			</MainButton>
 
 			<p className={styles.login}>
 				Don't have an account?

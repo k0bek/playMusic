@@ -1,7 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { ButtonLoginLogut } from "components/ButtonLoginLogout";
-
+import { SecondaryButton } from "components/SecondaryButton";
 import styles from "./PreviewBar.module.scss";
 
 export const PreviewBar = () => {
@@ -14,7 +12,7 @@ export const PreviewBar = () => {
 						Sign up up get unlimited songs. No credit card needed.
 					</p>
 				</div>
-				<ButtonLoginLogut>Sign up free </ButtonLoginLogut>
+				<SecondaryButton>Sign up free </SecondaryButton>
 			</div>
 		</Link>
 	);

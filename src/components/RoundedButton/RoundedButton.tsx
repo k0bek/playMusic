@@ -1,4 +1,3 @@
-import { useSongContext } from "hooks/useSongContext";
 import { ReactNode } from "react";
 import styles from "./RoundedButton.module.scss";
 

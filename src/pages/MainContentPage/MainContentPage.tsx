@@ -1,12 +1,12 @@
-import styles from "./MainContentPage.module.scss";
-import { LoginLogutPanel } from "feature/LoginLogoutPanel";
-import { useAuthContext } from "hooks/useAuthContext";
-import { CircularProgress } from "@mui/material";
-import { Navbar } from "feature/Navbar";
-import { Layout } from "components/Layout";
-import { PreviewBar } from "feature/PreviewBar";
-import { SongPlayer } from "feature/SongPlayer/SongPlayer";
 import { Outlet } from "react-router";
+import { useAuthContext } from "hooks/useAuthContext";
+import { LoginLogutPanel } from "feature";
+import { Navbar } from "feature/Navbar";
+import { PreviewBar } from "feature/PreviewBar";
+import { SongPlayer } from "feature/SongPlayer";
+import { Layout } from "components/Layout";
+import { CircularProgress } from "@mui/material";
+import styles from "./MainContentPage.module.scss";
 
 export const MainContentPage = () => {
 	const { initUserLoggedLoading } = useAuthContext();

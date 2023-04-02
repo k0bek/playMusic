@@ -1,15 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Input, InputError } from "components/Input";
-import { Button } from "components/Button";
-import styles from "./Signup.module.scss";
-import { Label } from "components/Label";
-import { Welcome } from "../components/Welcome";
-import { useForm } from "react-hook-form";
-import { regex } from "constants/regex";
-import { useSignup } from "hooks/useSignup";
 import "firebase/auth";
 import { auth } from "firebase/config";
 import { fetchSignInMethodsForEmail } from "firebase/auth";
+import { useForm } from "react-hook-form";
+import { useSignup } from "hooks/useSignup";
+import { MainButton } from "components/MainButton";
+import { Label } from "components/Label";
+import { Welcome } from "../components/Welcome";
+import { regex } from "constants/regex";
+import styles from "./Signup.module.scss";
 
 export const Signup = () => {
 	const { isPending, signup } = useSignup();
@@ -101,11 +101,11 @@ export const Signup = () => {
 					)}
 				</div>
 
-				{!isPending && <Button type="submit">Create an account</Button>}
+				{!isPending && <MainButton type="submit">Create an account</MainButton>}
 				{isPending && (
-					<Button type="submit" disabled={true}>
+					<MainButton type="submit" disabled={true}>
 						Loading
-					</Button>
+					</MainButton>
 				)}
 				<p className={styles.login}>
 					Have an account?{" "}

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "hooks/useAuthContext";
 import styles from "./LoginLogoutPanel.module.scss";
 import { useLogout } from "hooks/useLogout";
-import { ButtonLoginLogut } from "components/ButtonLoginLogout/ButtonLoginLogut";
+import { SecondaryButton } from "components/SecondaryButton/SecondaryButton";
 import { useSongContext } from "hooks/useSongContext";
 
 export const LoginLogutPanel = () => {
@@ -27,7 +27,7 @@ export const LoginLogutPanel = () => {
 					</Link>
 				)}
 				<Link to={!user ? "login" : "/"} onClick={handleLoginAndLogout}>
-					<ButtonLoginLogut>{user ? "Logout" : "Login"}</ButtonLoginLogut>
+					<SecondaryButton>{user ? "Logout" : "Login"}</SecondaryButton>
 				</Link>
 			</div>
 		</div>

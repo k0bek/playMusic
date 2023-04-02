@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
-import styles from "./Button.module.scss";
+import styles from "./MainButton.module.scss";
 
-type ButtonProps = {
+type MainButtonProps = {
 	children: ReactNode;
 	type: "button" | "submit";
 	disabled?: boolean;
 };
 
-export const Button = ({ children, type, disabled }: ButtonProps) => {
+export const MainButton = ({ children, type, disabled }: MainButtonProps) => {
 	return (
 		<button className={styles.button} type={type} disabled={disabled}>
 			{children}

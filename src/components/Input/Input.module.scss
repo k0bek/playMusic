@@ -8,18 +8,18 @@
 	box-shadow: 1px 1px 2em rgba(42, 53, 71, 0.5);
 	border: 2px solid transparent;
 	color: var(--white);
+
+	&:focus {
+		outline: none;
+		border: 2px solid var(--button-hover);
+	}
+
+	&::placeholder {
+		color: var(--dark-text);
+	}
 }
 
-.input:focus {
-	outline: none;
-	border: 2px solid var(--button-hover);
-}
-
-.input::placeholder {
-	color: var(--dark-text);
-}
-
-input:-webkit-autofill,
+input input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,

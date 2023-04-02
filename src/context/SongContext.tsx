@@ -1,6 +1,5 @@
+import { createContext, useState, ReactNode } from "react";
 import { SongInterface, tracks } from "data/tracks";
-import { createContext, useEffect, useReducer, useState } from "react";
-import { ReactNode } from "react";
 
 type SongContext = {
 	songId: number | null;
@@ -24,13 +23,13 @@ type SongContext = {
 	setListOfTracks: React.Dispatch<React.SetStateAction<SongInterface[]>>;
 };
 
-type ChildrenType = {
+type SongContextProviderProps = {
 	children: ReactNode;
 };
 
 export const SongContext = createContext({} as SongContext);
 
-export const SongContextProvider = ({ children }: ChildrenType) => {
+export const SongContextProvider = ({ children }: SongContextProviderProps) => {
 	const [songId, setSongId] = useState<null | number>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [isSongFocused, setIsSongFocused] = useState(false);

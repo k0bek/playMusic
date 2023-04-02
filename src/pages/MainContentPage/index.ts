@@ -1,0 +1,1 @@
+export { MainContentPage } from "./MainContentPage";

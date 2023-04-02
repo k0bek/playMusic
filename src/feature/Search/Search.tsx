@@ -1,7 +1,6 @@
 import { Input } from "components/Input";
 import { useAuthContext } from "hooks/useAuthContext";
 import { useSongContext } from "hooks/useSongContext";
-import { useState } from "react";
 import styles from "./Search.module.scss";
 
 export const Search = () => {

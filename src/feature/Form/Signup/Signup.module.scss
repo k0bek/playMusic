@@ -3,22 +3,21 @@
 	flex-direction: column;
 	gap: 2em;
 	background-color: var(--background-color);
-}
+	width: 20em;
 
-.login-text {
-	color: var(--button-background);
-	margin-left: 0.2em;
-	cursor: pointer;
-	transition: 0.3s color;
-	text-decoration: none;
-}
+	.login-text {
+		color: var(--button-background);
+		margin-left: 0.2em;
+		cursor: pointer;
+		transition: 0.3s color;
+		text-decoration: none;
 
-.login-text:hover {
-	color: var(--button-hover);
-}
+		&:hover {
+			color: var(--button-hover);
+		}
+	}
 
-@media (min-width: 576px) {
-	.form {
+	@media (min-width: 600px) {
 		width: 30em;
 	}
 }

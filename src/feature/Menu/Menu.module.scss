@@ -18,13 +18,8 @@
 			transform: translateX(-50%);
 			width: 30%;
 			height: 3px;
-
-			background: rgb(143, 42, 232);
-			background: linear-gradient(
-				90deg,
-				rgba(143, 42, 232, 1) 20%,
-				rgba(189, 68, 235, 1) 75%
-			);
+			background-color: var(--button-background);
+			background: var(--background-gradient);
 			border-radius: 7px;
 			transition: width 0.3s;
 		}
@@ -33,7 +28,7 @@
 			width: 70%;
 		}
 
-		button {
+		.button {
 			background: none;
 			border: none;
 			color: var(--white);

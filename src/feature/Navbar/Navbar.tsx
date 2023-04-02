@@ -1,81 +1,63 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { ModalBackdrop } from "feature/LoginModal/LoginModal";
 import { NavItem } from "./components/NavItem/NavItem";
-import styles from "./Navbar.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faHouse,
-	faMusic,
 	faLongArrowRight,
 	faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link, NavLink } from "react-router-dom";
+import styles from "./Navbar.module.scss";
 
 export const Navbar = () => {
 	const [isNavbarShowed, setIsNavbarShowed] = useState(false);
-	const showNavbar = () => {
+	const toggleNav = () => {
 		setIsNavbarShowed((prev) => {
 			return !prev;
 		});
 	};
 
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth > 600) {
+				setIsNavbarShowed(false);
+			}
+		};
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
 	return (
-		<nav
-			className={`${styles["navbar"]} ${
-				isNavbarShowed ? styles["navbar-showed"] : ""
-			}`}
-		>
-			<Link to="/" className={styles["heading"]}>
-				<p>
-					play<span className={styles["bolded"]}>M</span>usic
-				</p>
-			</Link>
+		<>
+			<nav
+				className={`${styles["navbar"]} ${
+					isNavbarShowed ? styles["navbar-showed"] : ""
+				}`}
+			>
+				<Link to="/" className={styles["heading"]}>
+					<p>
+						play<span className={styles["bolded"]}>M</span>usic
+					</p>
+				</Link>
 
-			<button className={styles["arrow"]} onClick={showNavbar}>
-				<FontAwesomeIcon icon={faLongArrowRight} />
-			</button>
+				<button className={styles["arrow"]} onClick={toggleNav}>
+					<FontAwesomeIcon icon={faLongArrowRight} />
+				</button>
 
-			<ul className={`${styles["nav-items"]} `}>
-				<NavLink
-					to="/"
-					className={({ isActive, isPending }) =>
-						isPending
-							? "pending"
-							: isActive
-							? styles["nav-item-active"]
-							: styles["nav-item"]
-					}
-				>
-					<span>
-						<FontAwesomeIcon icon={faHouse} />
-					</span>
-					<p>Discover</p>
-				</NavLink>
-				<NavLink
-					to="favourite"
-					className={({ isActive, isPending }) =>
-						isPending
-							? "pending"
-							: isActive
-							? styles["nav-item-active"]
-							: styles["nav-item"]
-					}
-				>
-					<span>
-						<FontAwesomeIcon icon={faHeart} />
-					</span>
-					<p>Your favourite</p>
-				</NavLink>
-				<NavLink
-					to="recently-listened"
-					className={({ isActive, isPending }) =>
-						isPending
-							? "pending"
-							: isActive
-							? styles["nav-item-active"]
-							: styles["nav-item"]
-					}
-				></NavLink>
-			</ul>
-		</nav>
+				<ul className={`${styles["nav-items"]} `}>
+					<NavItem icon={faHouse} destination="/" onClick={toggleNav}>
+						Discover
+					</NavItem>
+
+					<NavItem icon={faHeart} destination="/favourite" onClick={toggleNav}>
+						Your favourite
+					</NavItem>
+				</ul>
+			</nav>
+			{isNavbarShowed && window.innerWidth <= 600 && (
+				<ModalBackdrop onClick={toggleNav} />
+			)}
+		</>
 	);
 };

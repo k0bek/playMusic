@@ -1,8 +1,8 @@
+import { useSongContext } from "hooks/useSongContext";
 import { Search } from "feature/Search";
 import { Menu } from "feature/Menu";
 import { SongsItems } from "feature/SongsItems";
 import { tracks } from "data/tracks";
-import { useSongContext } from "hooks/useSongContext";
 import { SongInterface } from "data/tracks";
 
 export const HomePage = () => {

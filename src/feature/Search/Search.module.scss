@@ -4,19 +4,17 @@
 	gap: 0.4em;
 	width: 15em;
 	margin-top: 5em;
-}
 
-.name {
-	font-size: 3rem;
-	font-weight: bold;
-}
+	.name {
+		font-size: 3rem;
+		font-weight: bold;
+	}
 
-.question {
-	color: var(--dark-text);
-}
+	.question {
+		color: var(--dark-text);
+	}
 
-@media (min-width: 800px) {
-	.search-box {
+	@media (min-width: 800px) {
 		width: 30em;
 	}
 }

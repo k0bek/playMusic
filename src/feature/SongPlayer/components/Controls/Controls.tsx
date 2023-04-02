@@ -1,6 +1,6 @@
-import { RoundedButton } from "components";
 import React, { useEffect, useRef, useCallback, MutableRefObject } from "react";
-
+import { useSongContext } from "hooks/useSongContext";
+import { RoundedButton } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faPlay,
@@ -8,9 +8,7 @@ import {
 	faForwardStep,
 	faPause,
 } from "@fortawesome/free-solid-svg-icons";
-
 import styles from "./Controls.module.scss";
-import { useSongContext } from "hooks/useSongContext";
 
 type ControlsProps = {
 	audioRef: MutableRefObject<HTMLAudioElement | null>;
@@ -29,15 +27,8 @@ export const Controls = ({
 	goToTheNextSong,
 	goToThePreviousSong,
 }: ControlsProps) => {
-	const {
-		isPlaying,
-		setIsPlaying,
-		isSongFocused,
-		songId,
-		setSongId,
-		volume,
-		listOfTracks,
-	} = useSongContext();
+	const { isPlaying, setIsPlaying, isSongFocused, songId, volume } =
+		useSongContext();
 
 	const playAnimationRef = useRef<number>();
 

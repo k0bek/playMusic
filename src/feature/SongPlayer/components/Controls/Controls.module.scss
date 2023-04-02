@@ -7,25 +7,25 @@
 		opacity: 1;
 		font-size: 1.3rem;
 	}
-}
 
-.backward-btn,
-.forward-btn {
-	font-size: 1.8rem;
-	border: none;
-	background: none;
-	color: var(--white);
-	cursor: pointer;
-}
+	.backward-btn,
+	.forward-btn {
+		font-size: 1.8rem;
+		border: none;
+		background: none;
+		color: var(--white);
+		cursor: pointer;
+	}
 
-.backward-btn-normal,
-.forward-btn-normal {
-	font-size: 1.8rem;
-	border: none;
-	background: none;
-	color: var(--white);
-	cursor: pointer;
-	@media (max-width: 600px) {
-		display: none;
+	.backward-btn-normal,
+	.forward-btn-normal {
+		font-size: 1.8rem;
+		border: none;
+		background: none;
+		color: var(--white);
+		cursor: pointer;
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 }

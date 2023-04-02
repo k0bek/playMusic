@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "firebase/config";
 import { useAuthContext } from "./useAuthContext";
 

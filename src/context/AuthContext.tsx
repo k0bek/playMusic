@@ -1,8 +1,8 @@
-import { onAuthStateChanged } from "firebase/auth";
-import { createContext, useEffect, useReducer } from "react";
 import { ReactNode } from "react";
-import { UserDataType } from "types/UserDataType";
+import { createContext, useEffect, useReducer } from "react";
 import { auth } from "firebase/config";
+import { onAuthStateChanged } from "firebase/auth";
+import { UserDataType } from "types/UserDataType";
 
 type AuthContextType = {
 	user?: UserDataType | null;
@@ -20,7 +20,7 @@ interface AuthContextState {
 	user: UserDataType | null;
 }
 
-type ChildrenType = {
+type AuthContextProviderProps = {
 	children: ReactNode;
 };
 
@@ -48,7 +48,7 @@ const reducer = (state: AuthContextState, action: AuthContextAction) => {
 	}
 };
 
-export const AuthContextProvider = ({ children }: ChildrenType) => {
+export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 	const [state, dispatch] = useReducer(reducer, {
 		user: null,
 		initUserLoggedLoading: true,
