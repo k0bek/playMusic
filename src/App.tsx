@@ -12,12 +12,13 @@ import { RootLayout } from "pages";
 import { FavouritePage } from "pages";
 import { MainContentPage } from "pages";
 import { useAuthContext } from "hooks/useAuthContext";
+import { ErrorPage } from "pages/ErrorPage";
 
 function App() {
 	const { user } = useAuthContext();
 	const router = createBrowserRouter(
 		createRoutesFromElements(
-			<Route path="/" element={<RootLayout />}>
+			<Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
 				<Route path="/" element={<MainContentPage />}>
 					<Route path="/" element={<HomePage />} />
 					<Route
