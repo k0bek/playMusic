@@ -65,6 +65,7 @@ export const SongItem = ({
 			if (existingFavourites.docs.length > 0) {
 				return;
 			}
+
 			await addDoc(reference, {
 				id,
 				title,
@@ -82,19 +83,21 @@ export const SongItem = ({
 	};
 
 	const checkIsSongFavouriteDuplicate = async (title: string) => {
-		const querySnapshot = await getDocs(
-			query(
-				collection(db, "favourites"),
-				where("title", "==", title),
-				where("uid", "==", user?.uid)
-			)
-		);
+		if (title) {
+			const querySnapshot = await getDocs(
+				query(
+					collection(db, "favourites"),
+					where("title", "==", title),
+					where("uid", "==", user?.uid)
+				)
+			);
 
-		if (!isDuplicate) {
-			setIsDuplicate(querySnapshot.docs.length > 0);
+			if (!isDuplicate) {
+				setIsDuplicate(querySnapshot.docs.length > 0);
+			}
+
+			return querySnapshot.docs.length > 0;
 		}
-
-		return querySnapshot.docs.length > 0;
 	};
 
 	const deleteFavouriteSong = async () => {
@@ -119,7 +122,7 @@ export const SongItem = ({
 	useEffect(() => {
 		async function checkDuplicates() {
 			const isDuplicate = await checkIsSongFavouriteDuplicate(title);
-			setIsDuplicate(isDuplicate);
+			isDuplicate && setIsDuplicate(isDuplicate);
 		}
 		checkDuplicates();
 	}, []);
