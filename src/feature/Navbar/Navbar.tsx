@@ -30,6 +30,15 @@ export const Navbar = () => {
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
+	useEffect(() => {
+		const body = document.querySelector("body")!;
+		if (isNavbarShowed) {
+			body.style.overflow = "hidden";
+		} else {
+			body.style.overflow = "auto";
+		}
+	}, [isNavbarShowed]);
+
 	return (
 		<>
 			<nav
