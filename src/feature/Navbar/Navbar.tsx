@@ -30,6 +30,12 @@ export const Navbar = () => {
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
+	useEffect(() => {
+		isNavbarShowed
+			? (document.body.style.overflow = "hidden")
+			: (document.body.style.overflow = "visible");
+	}, [isNavbarShowed]);
+
 	return (
 		<>
 			<nav
