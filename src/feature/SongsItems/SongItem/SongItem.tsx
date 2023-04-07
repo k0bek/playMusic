@@ -129,9 +129,7 @@ export const SongItem = ({
 	}, [isSongFocused]);
 
 	useEffect(() => {
-		if (!user && !isHomePage) {
-			setIsDuplicate(false);
-		}
+		setIsDuplicate(false);
 	}, [user]);
 
 	return (

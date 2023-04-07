@@ -33,7 +33,6 @@ export const SongPlayer = () => {
 	};
 
 	const goToTheNextSong = () => {
-		console.log(listOfTracks.length);
 		setSongId((prev) => {
 			if (prev !== listOfTracks.length - 1 && prev !== null) {
 				return prev + 1;

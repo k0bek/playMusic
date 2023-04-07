@@ -1,12 +1,10 @@
 import { Layout } from "components";
 import { useAuthContext } from "hooks/useAuthContext";
-import { MainContentPage } from "pages/MainContentPage";
 import { Link } from "react-router-dom";
 
 import styles from "./ErrorPage.module.scss";
 
 export const ErrorPage = () => {
-	const user = useAuthContext();
 	return (
 		<Layout>
 			<div className={styles["error-page"]}>
