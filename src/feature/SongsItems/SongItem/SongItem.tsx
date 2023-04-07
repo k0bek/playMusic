@@ -50,32 +50,34 @@ export const SongItem = ({
 			setCurrentTrack(id);
 			showModal();
 			return;
-		} else {
-			const reference = collection(db, "favourites");
-
-			const querySnapshot = await getDocs(
-				query(
-					collection(db, "favourites"),
-					where("title", "==", title),
-					where("uid", "==", user.uid)
-				)
-			);
-
-			if (querySnapshot.docs.length > 0) {
-				return;
-			} else {
-				await addDoc(reference, {
-					id,
-					title,
-					author,
-					recommended,
-					picture,
-					source,
-					uid: user?.uid,
-				});
-			}
 		}
 
+		const reference = collection(db, "favourites");
+
+		const favouriteQuery = query(
+			collection(db, "favourites"),
+			where("title", "==", title),
+			where("uid", "==", user.uid)
+		);
+
+		try {
+			const existingFavourites = await getDocs(favouriteQuery);
+			if (existingFavourites.docs.length > 0) {
+				return;
+			}
+			await addDoc(reference, {
+				id,
+				title,
+				author,
+				recommended,
+				picture,
+				source,
+				uid: user.uid,
+			});
+			setIsDuplicate(false);
+		} catch (error) {
+			console.log(error);
+		}
 		checkIsSongFavouriteDuplicate(title);
 	};
 

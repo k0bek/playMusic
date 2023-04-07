@@ -29,9 +29,8 @@ export const FavouritePage = () => {
 			});
 
 			setTracks(results);
+			setIsPending(false);
 		});
-
-		setIsPending(false);
 	};
 
 	useEffect(() => {
