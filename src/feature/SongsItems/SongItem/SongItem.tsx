@@ -8,6 +8,7 @@ import { RoundedButton } from "components/RoundedButton/RoundedButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { SongInterface, tracks } from "data/tracks";
+import { CircularProgress } from "@mui/material";
 import styles from "./SongItem.module.scss";
 
 export const SongItem = ({
@@ -30,6 +31,11 @@ export const SongItem = ({
 		setListOfTracks,
 	} = useSongContext();
 	const [isDuplicate, setIsDuplicate] = useState(false);
+	const [imageLoaded, setImageLoaded] = useState(false);
+
+	const handleImageLoad = () => {
+		setImageLoaded(true);
+	};
 
 	const getSongId = () => {
 		if (!user) {
@@ -120,6 +126,10 @@ export const SongItem = ({
 	};
 
 	useEffect(() => {
+		setImageLoaded(false);
+	}, [picture]);
+
+	useEffect(() => {
 		async function checkDuplicates() {
 			const isDuplicate = await checkIsSongFavouriteDuplicate(title);
 			isDuplicate && setIsDuplicate(isDuplicate);
@@ -139,7 +149,17 @@ export const SongItem = ({
 
 	return (
 		<div className={styles.item}>
-			<img src={picture} alt={title} />
+			{!imageLoaded && (
+				<div className={styles.loader}>
+					<CircularProgress color="secondary" size={60} />
+				</div>
+			)}
+			<img
+				src={picture}
+				alt={title}
+				onLoad={handleImageLoad}
+				style={{ display: imageLoaded ? "block" : "none" }}
+			/>
 			<button
 				className={isDuplicate ? styles["heart-favourite"] : styles.heart}
 				onClick={() => {

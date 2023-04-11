@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,MAAM,CAAC;EACN,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;EACvB,GAAG,EAAE,GAAG;EACR,QAAQ,EAAE,MAAM;CAChB;;AAED,AAAA,KAAK,CAAC;EACL,KAAK,EAAE,IAAI;CACX",
-    "sources": [
-        "../src/feature/RecommendedItems/RecommendedItems.module.scss"
-    ],
-    "names": [],
-    "file": "RecommendedItems.module.css"
-}

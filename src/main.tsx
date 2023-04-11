@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
 		<AuthContextProvider>
 			<SongContextProvider>
-				<App></App>
+				<App />
 			</SongContextProvider>
 		</AuthContextProvider>
 	</React.StrictMode>
