@@ -18,6 +18,8 @@ type SongContext = {
 	handleListOfTracks: (listOfTracks: SongInterface[]) => void;
 	showModal: () => void;
 	hideModal: () => void;
+	showRecommended: () => void;
+	showAll: () => void;
 	songId: number | null;
 	isPlaying: boolean;
 	isSongFocused: boolean;
@@ -88,6 +90,14 @@ export const SongContextProvider = ({ children }: SongContextProviderProps) => {
 		setListOfTracks(list);
 	}, []);
 
+	const showRecommended = useCallback(() => {
+		handleIsRecommended(true);
+	}, []);
+
+	const showAll = useCallback(() => {
+		handleIsRecommended(false);
+	}, []);
+
 	const value: SongContext = useMemo(() => {
 		return {
 			handleSongId,
@@ -109,6 +119,8 @@ export const SongContextProvider = ({ children }: SongContextProviderProps) => {
 			hideModal,
 			currentTrack,
 			listOfTracks,
+			showRecommended,
+			showAll,
 		};
 	}, [
 		handleSongId,
@@ -130,6 +142,8 @@ export const SongContextProvider = ({ children }: SongContextProviderProps) => {
 		hideModal,
 		currentTrack,
 		listOfTracks,
+		showRecommended,
+		showAll,
 	]);
 
 	return <SongContext.Provider value={value}>{children}</SongContext.Provider>;

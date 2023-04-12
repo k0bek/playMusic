@@ -5,20 +5,17 @@ import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = () => {
 	const [isPending, setIsPending] = useState(false);
-	const [error, setError] = useState<null | boolean | string>(null);
+	const [error, setError] = useState(false);
 	const { dispatch } = useAuthContext();
 
-	const setIsPendingAndError = (
-		pending: boolean,
-		error: boolean | null | string
-	) => {
+	const setIsPendingAndError = (pending: boolean, error: boolean) => {
 		setIsPending(pending);
 		setError(error);
 	};
 
 	const login = async (email: string, password: string) => {
 		try {
-			setIsPendingAndError(true, null);
+			setIsPendingAndError(true, false);
 			const response = await signInWithEmailAndPassword(auth, email, password);
 
 			if (!response?.user) {
@@ -30,7 +27,7 @@ export const useLogin = () => {
 			setIsPending(false);
 		} catch (error) {
 			if (error instanceof Error) {
-				setIsPendingAndError(false, error.message);
+				setIsPendingAndError(false, true);
 			}
 		}
 	};

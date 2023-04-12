@@ -1,5 +1,6 @@
 import { MutableRefObject, useEffect } from "react";
 import { useSongContext } from "hooks/useSongContext";
+import { formatTime } from "./utils/formatTime";
 import styles from "./ProgressBar.module.scss";
 
 type ProgressBarProps = {
@@ -15,6 +16,8 @@ export const ProgressBar = ({
 	timeProgress,
 	duration,
 }: ProgressBarProps) => {
+	const { isSongFocused } = useSongContext();
+
 	const handleProgressChange = () => {
 		if (audioRef.current && progressBarRef.current) {
 			audioRef.current.currentTime = Number(progressBarRef.current.value);
@@ -27,19 +30,6 @@ export const ProgressBar = ({
 			);
 		}
 	};
-
-	const formatTime = (time: number) => {
-		if (time && !isNaN(time)) {
-			const minutes = Math.floor(time / 60);
-			const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-			const seconds = Math.floor(time % 60);
-			const formatSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-			return `${formatMinutes}:${formatSeconds}`;
-		}
-		return "00:00";
-	};
-
-	const { isSongFocused } = useSongContext();
 
 	return (
 		<div

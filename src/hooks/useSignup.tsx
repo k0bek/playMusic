@@ -3,23 +3,18 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "firebase/config";
 import { useAuthContext } from "./useAuthContext";
 
-type AsyncStatusType = boolean | null | string;
-
 export const useSignup = () => {
-	const [isPending, setIsPending] = useState<AsyncStatusType>(false);
-	const [error, setError] = useState<AsyncStatusType>(null);
+	const [isPending, setIsPending] = useState(false);
+	const [error, setError] = useState(false);
 	const { dispatch } = useAuthContext();
 
-	const setPendingAndError = (
-		pending: AsyncStatusType,
-		error: AsyncStatusType
-	) => {
+	const setPendingAndError = (pending: boolean, error: boolean) => {
 		setIsPending(pending);
 		setError(error);
 	};
 	const signup = async (email: string, password: string, name: string) => {
 		try {
-			setPendingAndError(true, null);
+			setPendingAndError(true, false);
 
 			const response = await createUserWithEmailAndPassword(
 				auth,
@@ -39,12 +34,11 @@ export const useSignup = () => {
 				displayName: name,
 			});
 
-			console.log(user);
 			dispatch({ type: "LOGIN", payload: user });
 			setIsPending(false);
 		} catch (error) {
 			if (error instanceof Error) {
-				setPendingAndError(false, error.message);
+				setPendingAndError(false, true);
 			}
 		}
 	};

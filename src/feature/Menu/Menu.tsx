@@ -2,15 +2,7 @@ import { useSongContext } from "hooks/useSongContext";
 import styles from "./Menu.module.scss";
 
 export const Menu = () => {
-	const { handleIsRecommended } = useSongContext();
-
-	const showRecommended = () => {
-		handleIsRecommended(true);
-	};
-
-	const showAll = () => {
-		handleIsRecommended(false);
-	};
+	const { showAll, showRecommended } = useSongContext();
 
 	return (
 		<ul className={styles.menu}>

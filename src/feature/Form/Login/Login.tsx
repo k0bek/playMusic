@@ -1,10 +1,4 @@
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { auth } from "firebase/config";
-import { fetchSignInMethodsForEmail } from "firebase/auth";
-import { useAuthContext } from "hooks/useAuthContext";
-import { useForm } from "react-hook-form";
-import { useLogin } from "hooks/useLogin";
+import { Link } from "react-router-dom";
 import { Button } from "components/Button/Button";
 import { Input } from "components/Input/Input";
 import { Label } from "components/Label/Label";
@@ -12,48 +6,11 @@ import { InputError } from "components/Input/InputError/InputError";
 import { Welcome } from "../components/Welcome/Welcome";
 import { regexEmail } from "constants/regexEmail";
 import styles from "./Login.module.scss";
+import { useFormLogin } from "./hooks/useFormLogin";
 
 export const Login = () => {
-	const { login, error, isPending } = useLogin();
-	const navigate = useNavigate();
-	const { user } = useAuthContext();
-
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		getValues,
-		setError,
-		setValue,
-	} = useForm({
-		defaultValues: {
-			email: "",
-			password: "",
-		},
-		mode: "onTouched",
-		criteriaMode: "all",
-	});
-
-	const onSubmit = async () => {
-		const { email, password } = getValues();
-
-		const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-
-		if (signInMethods.length === 0) {
-			setError("email", {
-				message: "Email not found. Please check or create a new account.",
-			});
-			setValue("password", "");
-		} else {
-			await login(email, password);
-		}
-	};
-
-	useEffect(() => {
-		if (user) {
-			navigate("/");
-		}
-	}, [user, navigate]);
+	const { handleSubmit, onSubmit, register, errors, isPending, error } =
+		useFormLogin();
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>

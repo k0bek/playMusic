@@ -2,14 +2,12 @@ import { useState } from "react";
 import { auth } from "firebase/config";
 import { useAuthContext } from "./useAuthContext";
 
-type ErrorType = null | boolean | string;
-
 export const useLogout = () => {
 	const [isPending, setIsPending] = useState(false);
-	const [error, setError] = useState<ErrorType>(null);
+	const [error, setError] = useState(false);
 	const { dispatch } = useAuthContext();
 
-	const setIsPendingAndError = (pending: boolean, error: boolean | null) => {
+	const setIsPendingAndError = (pending: boolean, error: boolean) => {
 		setIsPending(pending);
 		setError(error);
 	};
@@ -24,7 +22,7 @@ export const useLogout = () => {
 			setIsPendingAndError(false, true);
 		} catch (error) {
 			if (error instanceof Error) {
-				setError(error.message);
+				setError(true);
 			}
 			setIsPending(false);
 		}

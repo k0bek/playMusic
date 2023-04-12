@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import { useSongContext } from "hooks/useSongContext";
 import { tracks } from "data/tracks";
 import styles from "./LoginModal.module.scss";
+const modalElement = document.getElementById("modal")!;
+const backdropElement = document.getElementById("backdrop")!;
 
 type ModalBackdropProps = {
 	onClick?: () => void;
 };
 
-export function ModalBackdrop(props: ModalBackdropProps) {
+export const ModalBackdrop = (props: ModalBackdropProps) => {
 	const { hideModal } = useSongContext();
-	const backdropElement = document.getElementById("backdrop")!;
 
 	return ReactDOM.createPortal(
 		<div
@@ -22,11 +23,10 @@ export function ModalBackdrop(props: ModalBackdropProps) {
 		/>,
 		backdropElement
 	);
-}
+};
 
-export function ModalOverlay() {
+export const ModalOverlay = () => {
 	const { hideModal, currentTrack } = useSongContext();
-	const modalElement = document.getElementById("modal")!;
 
 	return ReactDOM.createPortal(
 		<div className={styles["modal-overlay"]}>
@@ -55,7 +55,7 @@ export function ModalOverlay() {
 		</div>,
 		modalElement
 	);
-}
+};
 
 export const LoginModal = () => {
 	return (
