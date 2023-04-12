@@ -1,4 +1,10 @@
-import { createContext, useState, ReactNode } from "react";
+import {
+	createContext,
+	useState,
+	ReactNode,
+	useCallback,
+	useMemo,
+} from "react";
 import { SongInterface, tracks } from "data/tracks";
 
 type SongContext = {
@@ -40,49 +46,71 @@ export const SongContextProvider = ({ children }: SongContextProviderProps) => {
 	const [currentTrack, setCurrentTrack] = useState<null | number>(null);
 	const [listOfTracks, setListOfTracks] = useState(tracks);
 
-	const showModal = () => {
+	const showModal = useCallback(() => {
 		document.body.style.overflow = "hidden";
 		setIsModalShowed(true);
-	};
+	}, []);
 
-	const hideModal = () => {
+	const hideModal = useCallback(() => {
 		document.body.style.overflow = "visible";
 		setIsModalShowed(false);
-	};
+	}, []);
 
-	const handleSongId = (number: number | null) => {
+	const handleSongId = useCallback((number: number | null) => {
 		setSongId(number);
-	};
+	}, []);
 
-	const handleIsPlaying = (isPlaying: boolean) => {
+	const handleIsPlaying = useCallback((isPlaying: boolean) => {
 		setIsPlaying(isPlaying);
-	};
+	}, []);
 
-	const handleIsSongFocused = (isFocused: boolean) => {
+	const handleIsSongFocused = useCallback((isFocused: boolean) => {
 		setIsSongFocused(isFocused);
-	};
+	}, []);
 
-	const handleVolume = (volume: number) => {
+	const handleVolume = useCallback((volume: number) => {
 		setVolume(volume);
-	};
+	}, []);
 
-	const handleSearchedValue = (value: string) => {
+	const handleSearchedValue = useCallback((value: string) => {
 		setSearchedValue(value);
-	};
+	}, []);
 
-	const handleIsRecommended = (isRecommended: boolean) => {
+	const handleIsRecommended = useCallback((isRecommended: boolean) => {
 		setRecommended(isRecommended);
-	};
+	}, []);
 
-	const handleCurrentTrack = (currentTrack: number) => {
+	const handleCurrentTrack = useCallback((currentTrack: number) => {
 		setCurrentTrack(currentTrack);
-	};
+	}, []);
 
-	const handleListOfTracks = (list: SongInterface[]) => {
+	const handleListOfTracks = useCallback((list: SongInterface[]) => {
 		setListOfTracks(list);
-	};
+	}, []);
 
-	const value: SongContext = {
+	const value: SongContext = useMemo(() => {
+		return {
+			handleSongId,
+			handleIsPlaying,
+			handleIsSongFocused,
+			handleVolume,
+			handleSearchedValue,
+			handleIsRecommended,
+			handleCurrentTrack,
+			handleListOfTracks,
+			songId,
+			isPlaying,
+			isSongFocused,
+			volume,
+			searchedValue,
+			recommended,
+			isModalShowed,
+			showModal,
+			hideModal,
+			currentTrack,
+			listOfTracks,
+		};
+	}, [
 		handleSongId,
 		handleIsPlaying,
 		handleIsSongFocused,
@@ -102,7 +130,7 @@ export const SongContextProvider = ({ children }: SongContextProviderProps) => {
 		hideModal,
 		currentTrack,
 		listOfTracks,
-	};
+	]);
 
 	return <SongContext.Provider value={value}>{children}</SongContext.Provider>;
 };
