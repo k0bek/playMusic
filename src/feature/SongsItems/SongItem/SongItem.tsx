@@ -4,7 +4,7 @@ import { deleteDoc } from "firebase/firestore";
 import { db } from "firebase/config";
 import { useAuthContext } from "hooks/useAuthContext";
 import { useSongContext } from "hooks/useSongContext";
-import { RoundedButton } from "components/RoundedButton/RoundedButton";
+import { Button } from "components/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { SongInterface, tracks } from "data/tracks";
@@ -173,15 +173,17 @@ export const SongItem = ({
 				<p className={styles["item-author"]}>{author}</p>
 				<p className={styles["item-title"]}>{title}</p>
 			</div>
-			<RoundedButton
-				className={styles.play}
+			<Button
+				className={`rounded-button-play`}
+				type="button"
+				disabled={false}
 				onClick={() => {
 					getSongId();
 					setIsPlaying(true);
 				}}
 			>
 				<FontAwesomeIcon icon={faPlay} />
-			</RoundedButton>
+			</Button>
 			{recommended && (
 				<div className={styles.recommendation}>
 					<span>Recommendation</span>

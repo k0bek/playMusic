@@ -5,7 +5,7 @@ import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { useAuthContext } from "hooks/useAuthContext";
 import { useForm } from "react-hook-form";
 import { useLogin } from "hooks/useLogin";
-import { MainButton } from "components/MainButton/MainButton";
+import { Button } from "components/Button/Button";
 import { Input } from "components/Input/Input";
 import { Label } from "components/Label/Label";
 import { InputError } from "components/Input/InputError/InputError";
@@ -93,9 +93,9 @@ export const Login = () => {
 				{error && <InputError>Incorrect password</InputError>}
 			</div>
 
-			<MainButton type="submit" disabled={isPending}>
+			<Button type="submit" disabled={isPending} className="main-button">
 				{isPending ? "Logging in..." : "Log in"}
-			</MainButton>
+			</Button>
 
 			<p className={styles.login}>
 				Don't have an account?

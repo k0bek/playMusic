@@ -6,7 +6,7 @@ import { auth } from "firebase/config";
 import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { useSignup } from "hooks/useSignup";
-import { MainButton } from "components/MainButton/MainButton";
+import { Button } from "components/Button/Button";
 import { Label } from "components/Label/Label";
 import { Welcome } from "../components/Welcome/Welcome";
 import { regex } from "constants/regex";
@@ -102,11 +102,15 @@ export const Signup = () => {
 					)}
 				</div>
 
-				{!isPending && <MainButton type="submit">Create an account</MainButton>}
+				{!isPending && (
+					<Button type="submit" disabled={false} className="main-button">
+						Create an account
+					</Button>
+				)}
 				{isPending && (
-					<MainButton type="submit" disabled={true}>
+					<Button type="submit" disabled={false} className="main-button">
 						Loading
-					</MainButton>
+					</Button>
 				)}
 				<p className={styles.login}>
 					Have an account?{" "}

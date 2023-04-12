@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback, MutableRefObject } from "react";
 import { useSongContext } from "hooks/useSongContext";
-import { RoundedButton } from "components/RoundedButton/RoundedButton";
+import { Button } from "components/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faPlay,
@@ -76,8 +76,11 @@ export const Controls = ({
 			>
 				<FontAwesomeIcon icon={faBackwardStep} />
 			</button>
-			<RoundedButton
-				className={styles["play-stop-button"]}
+
+			<Button
+				type="submit"
+				className="rounded-button"
+				disabled={false}
 				onClick={togglePlayPause}
 			>
 				{!isPlaying ? (
@@ -85,7 +88,7 @@ export const Controls = ({
 				) : (
 					<FontAwesomeIcon icon={faPause} />
 				)}
-			</RoundedButton>
+			</Button>
 
 			<button
 				className={
