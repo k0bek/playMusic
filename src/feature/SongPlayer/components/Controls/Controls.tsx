@@ -27,13 +27,13 @@ export const Controls = ({
 	goToTheNextSong,
 	goToThePreviousSong,
 }: ControlsProps) => {
-	const { isPlaying, setIsPlaying, isSongFocused, songId, volume } =
+	const { isPlaying, handleIsPlaying, isSongFocused, songId, volume } =
 		useSongContext();
 
 	const playAnimationRef = useRef<number>();
 
 	const togglePlayPause = () => {
-		setIsPlaying(!isPlaying);
+		handleIsPlaying(!isPlaying);
 	};
 	const repeat = useCallback(() => {
 		if (progressBarRef.current && audioRef.current) {

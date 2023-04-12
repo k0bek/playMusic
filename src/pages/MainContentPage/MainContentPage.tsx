@@ -9,12 +9,12 @@ import { CircularProgress } from "@mui/material";
 import styles from "./MainContentPage.module.scss";
 
 export const MainContentPage = () => {
-	const { initUserLoggedLoading } = useAuthContext();
+	const { isUserLoading } = useAuthContext();
 	const { user } = useAuthContext();
 
 	return (
 		<>
-			{!initUserLoggedLoading && (
+			{!isUserLoading && (
 				<div className={styles.homepage}>
 					<LoginLogutPanel />
 					<Navbar />
@@ -26,7 +26,7 @@ export const MainContentPage = () => {
 					<SongPlayer />
 				</div>
 			)}
-			{initUserLoggedLoading && (
+			{isUserLoading && (
 				<Layout>
 					<CircularProgress color="secondary" size={60} />
 				</Layout>

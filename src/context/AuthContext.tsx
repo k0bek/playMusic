@@ -7,13 +7,13 @@ import { UserDataType } from "types/UserDataType";
 type AuthContextType = {
 	user?: UserDataType | null;
 	dispatch: React.Dispatch<AuthContextAction>;
-	initUserLoggedLoading?: boolean;
+	isUserLoading?: boolean;
 } | null;
 
 interface AuthContextAction {
 	type: "LOGIN" | "LOGOUT" | "LOGGED";
 	payload?: UserDataType | unknown;
-	initUserLoggedLoading?: boolean;
+	isUserLoading?: boolean;
 }
 
 interface AuthContextState {
@@ -27,7 +27,7 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext<AuthContextType>(null);
 
 const reducer = (state: AuthContextState, action: AuthContextAction) => {
-	const { type, payload, initUserLoggedLoading } = action;
+	const { type, payload, isUserLoading } = action;
 
 	switch (type) {
 		case "LOGIN":
@@ -41,7 +41,7 @@ const reducer = (state: AuthContextState, action: AuthContextAction) => {
 			return {
 				...state,
 				user: payload as UserDataType,
-				initUserLoggedLoading: initUserLoggedLoading,
+				isUserLoading: isUserLoading,
 			};
 		default:
 			return state;
@@ -51,17 +51,17 @@ const reducer = (state: AuthContextState, action: AuthContextAction) => {
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 	const [state, dispatch] = useReducer(reducer, {
 		user: null,
-		initUserLoggedLoading: true,
+		isUserLoading: true,
 	});
 
 	useEffect(() => {
-		dispatch({ type: "LOGGED", initUserLoggedLoading: true });
+		dispatch({ type: "LOGGED", isUserLoading: true });
 
 		onAuthStateChanged(auth, (user) => {
 			dispatch({
 				type: "LOGGED",
 				payload: user,
-				initUserLoggedLoading: false,
+				isUserLoading: false,
 			});
 		});
 	}, []);

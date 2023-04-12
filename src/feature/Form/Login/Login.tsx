@@ -10,7 +10,7 @@ import { Input } from "components/Input/Input";
 import { Label } from "components/Label/Label";
 import { InputError } from "components/Input/InputError/InputError";
 import { Welcome } from "../components/Welcome/Welcome";
-import { regex } from "constants/regex";
+import { regexEmail } from "constants/regexEmail";
 import styles from "./Login.module.scss";
 
 export const Login = () => {
@@ -67,7 +67,7 @@ export const Login = () => {
 					register={register("email", {
 						required: "You need to enter your email.",
 						pattern: {
-							value: regex,
+							value: regexEmail,
 							message: "This email is invalid.",
 						},
 					})}

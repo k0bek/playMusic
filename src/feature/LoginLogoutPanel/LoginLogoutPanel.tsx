@@ -8,15 +8,15 @@ import { Button } from "components/Button/Button";
 export const LoginLogutPanel = () => {
 	const { user } = useAuthContext();
 	const { logout } = useLogout();
-	const { setIsPlaying, setSongId } = useSongContext();
+	const { handleIsPlaying, handleSongId } = useSongContext();
 
 	const handleLoginAndLogout = () => {
 		if (user) {
 			logout();
 		}
 
-		setIsPlaying(false);
-		setSongId(null);
+		handleIsPlaying(false);
+		handleSongId(null);
 	};
 	return (
 		<div className={styles.panel}>

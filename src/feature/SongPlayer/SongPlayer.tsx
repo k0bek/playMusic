@@ -15,31 +15,34 @@ export const SongPlayer = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 	const progressBarRef = useRef<HTMLInputElement | null>(null);
 
-	const { songId, isSongFocused, setIsSongFocused, listOfTracks, setSongId } =
-		useSongContext();
+	const {
+		songId,
+		isSongFocused,
+		handleIsSongFocused,
+		listOfTracks,
+		handleSongId,
+	} = useSongContext();
 
 	const handleFocusShowed = () => {
-		setIsSongFocused(!isSongFocused);
+		handleIsSongFocused(!isSongFocused);
 	};
 
 	const goToThePreviousSong = () => {
-		setSongId((prev) => {
-			if (prev) {
-				return prev - 1;
-			} else {
-				return listOfTracks.length - 1;
+		if (songId !== null) {
+			if (songId) {
+				handleSongId(songId - 1);
+			} else if (songId == 0) {
+				handleSongId(listOfTracks.length - 1);
 			}
-		});
+		}
 	};
 
 	const goToTheNextSong = () => {
-		setSongId((prev) => {
-			if (prev !== listOfTracks.length - 1 && prev !== null) {
-				return prev + 1;
-			} else {
-				return 0;
-			}
-		});
+		if (songId !== listOfTracks.length - 1 && songId !== null) {
+			handleSongId(songId + 1);
+		} else if (songId === listOfTracks.length - 1) {
+			handleSongId(0);
+		}
 	};
 
 	return (

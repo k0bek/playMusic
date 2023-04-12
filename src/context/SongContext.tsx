@@ -2,32 +2,32 @@ import { createContext, useState, ReactNode } from "react";
 import { SongInterface, tracks } from "data/tracks";
 
 type SongContext = {
-	songId: number | null;
-	setSongId: React.Dispatch<React.SetStateAction<number | null>>;
-	isPlaying: boolean;
-	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-	isSongFocused: boolean;
-	setIsSongFocused: React.Dispatch<React.SetStateAction<boolean>>;
-	volume: number;
-	setVolume: React.Dispatch<React.SetStateAction<number>>;
-	searchedValue: string;
-	setSearchedValue: React.Dispatch<React.SetStateAction<string>>;
-	recommended: boolean;
-	setRecommended: React.Dispatch<React.SetStateAction<boolean>>;
-	isModalShowed: boolean;
+	handleSongId: (number: number | null) => void;
+	handleIsPlaying: (isPlaying: boolean) => void;
+	handleIsSongFocused: (isFocused: boolean) => void;
+	handleVolume: (volume: number) => void;
+	handleSearchedValue: (value: string) => void;
+	handleIsRecommended: (isRecommended: boolean) => void;
+	handleCurrentTrack: (currentTrack: number) => void;
+	handleListOfTracks: (listOfTracks: SongInterface[]) => void;
 	showModal: () => void;
 	hideModal: () => void;
+	songId: number | null;
+	isPlaying: boolean;
+	isSongFocused: boolean;
+	volume: number;
+	searchedValue: string;
+	recommended: boolean;
+	isModalShowed: boolean;
 	currentTrack: number | null;
-	setCurrentTrack: React.Dispatch<React.SetStateAction<null | number>>;
 	listOfTracks: SongInterface[];
-	setListOfTracks: React.Dispatch<React.SetStateAction<SongInterface[]>>;
 };
 
 type SongContextProviderProps = {
 	children: ReactNode;
 };
 
-export const SongContext = createContext({} as SongContext);
+export const SongContext = createContext<SongContext | undefined>(undefined);
 
 export const SongContextProvider = ({ children }: SongContextProviderProps) => {
 	const [songId, setSongId] = useState<null | number>(null);
@@ -50,26 +50,58 @@ export const SongContextProvider = ({ children }: SongContextProviderProps) => {
 		setIsModalShowed(false);
 	};
 
+	const handleSongId = (number: number | null) => {
+		setSongId(number);
+	};
+
+	const handleIsPlaying = (isPlaying: boolean) => {
+		setIsPlaying(isPlaying);
+	};
+
+	const handleIsSongFocused = (isFocused: boolean) => {
+		setIsSongFocused(isFocused);
+	};
+
+	const handleVolume = (volume: number) => {
+		setVolume(volume);
+	};
+
+	const handleSearchedValue = (value: string) => {
+		setSearchedValue(value);
+	};
+
+	const handleIsRecommended = (isRecommended: boolean) => {
+		setRecommended(isRecommended);
+	};
+
+	const handleCurrentTrack = (currentTrack: number) => {
+		setCurrentTrack(currentTrack);
+	};
+
+	const handleListOfTracks = (list: SongInterface[]) => {
+		setListOfTracks(list);
+	};
+
 	const value: SongContext = {
-		setSongId,
+		handleSongId,
+		handleIsPlaying,
+		handleIsSongFocused,
+		handleVolume,
+		handleSearchedValue,
+		handleIsRecommended,
+		handleCurrentTrack,
+		handleListOfTracks,
 		songId,
 		isPlaying,
-		setIsPlaying,
 		isSongFocused,
-		setIsSongFocused,
 		volume,
-		setVolume,
 		searchedValue,
-		setSearchedValue,
 		recommended,
-		setRecommended,
 		isModalShowed,
 		showModal,
 		hideModal,
 		currentTrack,
-		setCurrentTrack,
 		listOfTracks,
-		setListOfTracks,
 	};
 
 	return <SongContext.Provider value={value}>{children}</SongContext.Provider>;

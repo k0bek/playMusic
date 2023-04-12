@@ -10,7 +10,7 @@ type InputErrorProps = {
 
 export const InputError = ({ children }: InputErrorProps) => {
 	return (
-		<p className={styles["password-error"]}>
+		<p className={styles["error"]}>
 			<FontAwesomeIcon icon={faCircleExclamation} />
 			{children}
 		</p>

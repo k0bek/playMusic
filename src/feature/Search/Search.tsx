@@ -2,10 +2,11 @@ import { Input } from "components/Input/Input";
 import { useAuthContext } from "hooks/useAuthContext";
 import { useSongContext } from "hooks/useSongContext";
 import styles from "./Search.module.scss";
+import { ChangeEvent } from "react";
 
 export const Search = () => {
 	const { user } = useAuthContext();
-	const { searchedValue, setSearchedValue } = useSongContext();
+	const { searchedValue, handleSearchedValue } = useSongContext();
 
 	return (
 		<>
@@ -22,8 +23,8 @@ export const Search = () => {
 					type="text"
 					placeholder="Search music"
 					value={searchedValue}
-					onChange={(event) => {
-						setSearchedValue(event.target.value);
+					onChange={(event: ChangeEvent<HTMLInputElement>) => {
+						handleSearchedValue(event.target.value);
 					}}
 				/>
 			</div>

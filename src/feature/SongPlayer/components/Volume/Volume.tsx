@@ -15,7 +15,7 @@ type VolumeProps = {
 };
 
 export const Volume = ({ audioRef }: VolumeProps) => {
-	const { volume, setVolume, isSongFocused } = useSongContext();
+	const { volume, handleVolume, isSongFocused } = useSongContext();
 
 	useEffect(() => {
 		if (audioRef.current !== null) {
@@ -31,7 +31,7 @@ export const Volume = ({ audioRef }: VolumeProps) => {
 				max={100}
 				value={volume}
 				onChange={(event: ChangeEvent<HTMLInputElement>) => {
-					setVolume(Number(event.target.value));
+					handleVolume(Number(event.target.value));
 				}}
 				className={
 					isSongFocused

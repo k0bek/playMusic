@@ -9,7 +9,7 @@ import { useSignup } from "hooks/useSignup";
 import { Button } from "components/Button/Button";
 import { Label } from "components/Label/Label";
 import { Welcome } from "../components/Welcome/Welcome";
-import { regex } from "constants/regex";
+import { regexEmail } from "constants/regexEmail";
 import styles from "./Signup.module.scss";
 
 export const Signup = () => {
@@ -60,7 +60,7 @@ export const Signup = () => {
 						register={register("email", {
 							required: "You need to enter your email.",
 							pattern: {
-								value: regex,
+								value: regexEmail,
 								message: "This email is invalid.",
 							},
 						})}

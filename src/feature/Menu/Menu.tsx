@@ -2,14 +2,14 @@ import { useSongContext } from "hooks/useSongContext";
 import styles from "./Menu.module.scss";
 
 export const Menu = () => {
-	const { setRecommended } = useSongContext();
+	const { handleIsRecommended } = useSongContext();
 
 	const showRecommended = () => {
-		setRecommended(true);
+		handleIsRecommended(true);
 	};
 
 	const showAll = () => {
-		setRecommended(false);
+		handleIsRecommended(false);
 	};
 
 	return (

@@ -23,12 +23,12 @@ export const SongItem = ({
 }: SongInterface) => {
 	const { user } = useAuthContext();
 	const {
-		setSongId,
-		setIsPlaying,
+		handleSongId,
+		handleCurrentTrack,
+		handleListOfTracks,
+		handleIsPlaying,
 		isSongFocused,
 		showModal,
-		setCurrentTrack,
-		setListOfTracks,
 	} = useSongContext();
 	const [isDuplicate, setIsDuplicate] = useState(false);
 	const [imageLoaded, setImageLoaded] = useState(false);
@@ -39,21 +39,23 @@ export const SongItem = ({
 
 	const getSongId = () => {
 		if (!user) {
-			setCurrentTrack(id);
+			handleCurrentTrack(id);
 			showModal();
 			return;
 		} else {
-			setSongId(id);
+			handleSongId(id);
 		}
 
+		console.log(currentTracksList);
+
 		if (currentTracksList) {
-			setListOfTracks(currentTracksList);
+			handleListOfTracks(currentTracksList);
 		}
 	};
 
 	const addToFavourites = async () => {
 		if (!user) {
-			setCurrentTrack(id);
+			handleCurrentTrack(id);
 			showModal();
 			return;
 		}
@@ -179,7 +181,7 @@ export const SongItem = ({
 				disabled={false}
 				onClick={() => {
 					getSongId();
-					setIsPlaying(true);
+					handleIsPlaying(true);
 				}}
 			>
 				<FontAwesomeIcon icon={faPlay} />
