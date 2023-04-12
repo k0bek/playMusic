@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
 import { useSongContext } from "hooks/useSongContext";
 import { Volume } from "./components/Volume/Volume";
-import { Controls } from "./components/Controls";
+import { Controls } from "./components/Controls/Controls";
 import { ProgressBar } from "./components/ProgressBar/ProgressBar";
-import { DisplayTrack } from "./components/DisplayTrack";
+import { DisplayTrack } from "./components/DisplayTrack/DisplayTrack";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SongPlayer.module.scss";

@@ -1,7 +1,7 @@
 import { useSongContext } from "hooks/useSongContext";
-import { Search } from "feature/Search";
-import { Menu } from "feature/Menu";
-import { SongsItems } from "feature/SongsItems";
+import { Search } from "feature/Search/Search";
+import { Menu } from "feature/Menu/Menu";
+import { SongsItems } from "feature/SongsItems/SongsItems";
 import { tracks } from "data/tracks";
 import { SongInterface } from "data/tracks";
 import { useState } from "react";

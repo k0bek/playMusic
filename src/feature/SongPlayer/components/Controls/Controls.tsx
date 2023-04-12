@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback, MutableRefObject } from "react";
 import { useSongContext } from "hooks/useSongContext";
-import { RoundedButton } from "components";
+import { RoundedButton } from "components/RoundedButton/RoundedButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faPlay,

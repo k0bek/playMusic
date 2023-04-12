@@ -1,5 +1,4 @@
-import { Layout } from "components";
-import { useAuthContext } from "hooks/useAuthContext";
+import { Layout } from "components/Layout/Layout";
 import { Link } from "react-router-dom";
 
 import styles from "./ErrorPage.module.scss";

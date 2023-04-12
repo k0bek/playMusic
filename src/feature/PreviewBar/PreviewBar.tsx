@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SecondaryButton } from "components/SecondaryButton";
+import { SecondaryButton } from "components/SecondaryButton/SecondaryButton";
 import styles from "./PreviewBar.module.scss";
 
 export const PreviewBar = () => {

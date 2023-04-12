@@ -5,9 +5,11 @@ import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { useAuthContext } from "hooks/useAuthContext";
 import { useForm } from "react-hook-form";
 import { useLogin } from "hooks/useLogin";
-import { MainButton, Input, Label } from "components";
-import { InputError } from "components/Input";
-import { Welcome } from "../components/Welcome";
+import { MainButton } from "components/MainButton/MainButton";
+import { Input } from "components/Input/Input";
+import { Label } from "components/Label/Label";
+import { InputError } from "components/Input/InputError/InputError";
+import { Welcome } from "../components/Welcome/Welcome";
 import { regex } from "constants/regex";
 import styles from "./Login.module.scss";
 

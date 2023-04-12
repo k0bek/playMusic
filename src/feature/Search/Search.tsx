@@ -1,4 +1,4 @@
-import { Input } from "components/Input";
+import { Input } from "components/Input/Input";
 import { useAuthContext } from "hooks/useAuthContext";
 import { useSongContext } from "hooks/useSongContext";
 import styles from "./Search.module.scss";

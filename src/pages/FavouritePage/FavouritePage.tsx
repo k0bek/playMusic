@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "firebase/config";
 import { useAuthContext } from "hooks/useAuthContext";
-import { SongsItems } from "feature";
+import { SongsItems } from "feature/SongsItems/SongsItems";
 import { CircularProgress } from "@mui/material";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

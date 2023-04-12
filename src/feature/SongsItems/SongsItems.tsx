@@ -1,5 +1,5 @@
-import { SongItem } from ".";
-import { Wrapper } from "../../components/Wrapper";
+import { SongItem } from "./SongItem/SongItem";
+import { Wrapper } from "../../components/Wrapper/Wrapper";
 import { SongInterface } from "data/tracks";
 import styles from "./SongsItems.module.scss";
 

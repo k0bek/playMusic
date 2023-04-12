@@ -1,11 +1,11 @@
 import { Route, Navigate } from "react-router-dom";
-import { LoginPage } from "pages";
-import { SignupPage } from "pages";
-import { HomePage } from "pages";
-import { RootLayout } from "pages";
-import { FavouritePage } from "pages";
-import { MainContentPage } from "pages";
-import { ErrorPage } from "pages/ErrorPage";
+import { LoginPage } from "pages/LoginPage/LoginPage";
+import { SignupPage } from "pages/SignupPage/SignupPage";
+import { HomePage } from "pages/HomePage/HomePage";
+import { RootLayout } from "pages/RootLayout/RootLayout";
+import { FavouritePage } from "pages/FavouritePage/FavouritePage";
+import { MainContentPage } from "pages/MainContentPage/MainContentPage";
+import { ErrorPage } from "pages/ErrorPage/ErrorPage";
 import { useAuthContext } from "hooks/useAuthContext";
 
 export const createRoutes = () => {
