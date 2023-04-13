@@ -1,0 +1,20 @@
+.volume-focused,
+.volume {
+	display: flex;
+	align-items: center;
+	flex-direction: row-reverse;
+	gap: 0.5em;
+	.icon {
+		width: 2em;
+	}
+}
+
+.volume-focused {
+	padding: 1.5em 2em 0 0;
+}
+
+.volume {
+	@media (max-width: 600px) {
+		display: none;
+	}
+}
