@@ -7,6 +7,7 @@ interface InputProps {
 	placeholder?: string;
 	register?: UseFormRegisterReturn<"email" | "password" | "name">;
 	value?: string;
+	id: "email" | "name" | "password";
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

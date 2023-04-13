@@ -17,10 +17,11 @@ export const Signup = () => {
 			<Welcome text="Create your account" />
 
 			<div>
-				<Label type="email">Email</Label>
+				<Label htmlFor="email">Email</Label>
 				<Input
 					type="email"
 					placeholder="Your email"
+					id="email"
 					register={register("email", {
 						required: "You need to enter your email.",
 						pattern: {
@@ -35,9 +36,10 @@ export const Signup = () => {
 			</div>
 
 			<div>
-				<Label type="password">Password</Label>
+				<Label htmlFor="password">Password</Label>
 				<Input
 					type="password"
+					id="password"
 					placeholder="Your password"
 					register={register("password", {
 						required: "You need to enter your password.",
@@ -53,8 +55,9 @@ export const Signup = () => {
 			</div>
 
 			<div>
-				<Label type="name">Name</Label>
+				<Label htmlFor="name">Name</Label>
 				<Input
+					id="name"
 					type="text"
 					placeholder="Your name"
 					register={register("name", {

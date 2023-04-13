@@ -2,13 +2,13 @@ import { ReactNode } from "react";
 import styles from "./Label.module.scss";
 
 type LabelProps = {
-	type: string;
 	children: ReactNode;
+	htmlFor: string;
 };
 
-export const Label = ({ type, children }: LabelProps) => {
+export const Label = ({ children, htmlFor }: LabelProps) => {
 	return (
-		<label htmlFor="email" className={styles.label}>
+		<label htmlFor={htmlFor} className={styles.label}>
 			{children}:
 		</label>
 	);

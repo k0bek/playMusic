@@ -17,8 +17,9 @@ export const Login = () => {
 			<Welcome text={"To continue, log in to playMusic."} />
 
 			<div>
-				<Label type="email">Email</Label>
+				<Label htmlFor="email">Email</Label>
 				<Input
+					id="email"
 					type="email"
 					placeholder="Your email"
 					register={register("email", {
@@ -35,8 +36,9 @@ export const Login = () => {
 			</div>
 
 			<div>
-				<Label type="password">Password</Label>
+				<Label htmlFor="password">Password</Label>
 				<Input
+					id="password"
 					type="password"
 					placeholder="Your password"
 					register={register("password", {
