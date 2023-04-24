@@ -9,20 +9,20 @@ import { ErrorPage } from "pages/ErrorPage/ErrorPage";
 import { useAuthContext } from "hooks/useAuthContext";
 
 export const createRoutes = () => {
-	const { user } = useAuthContext();
-	return (
-		<Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
-			<Route path="/" element={<MainContentPage />}>
-				<Route path="/" element={<HomePage />} />
-				<Route
-					path="favourite"
-					element={
-						!user ? <Navigate replace to="/signup" /> : <FavouritePage />
-					}
-				/>
-			</Route>
-			<Route path="/login" element={<LoginPage />} />
-			<Route path="/signup" element={<SignupPage />} />
-		</Route>
-	);
+  const { user } = useAuthContext();
+  return (
+    <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
+      <Route path="/" element={<MainContentPage />}>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="favourite"
+          element={
+            !user ? <Navigate replace to="/signup" /> : <FavouritePage />
+          }
+        />
+      </Route>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+    </Route>
+  );
 };

@@ -1,42 +1,42 @@
 import { useEffect, useState } from "react";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
-import { db } from "firebase/config";
 import { useAuthContext } from "hooks/useAuthContext";
 import { SongsItems } from "feature/SongsItems/SongsItems";
 import { CircularProgress } from "@mui/material";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SongInterface } from "data/tracks";
+import getQuerySnapshot from "hooks/getQuerySnapshot";
 import styles from "./FavouritePage.module.scss";
 
 export const FavouritePage = () => {
-	const [tracks, setTracks] = useState<SongInterface[]>([]);
+	const [favouriteTracks, setFavouriteTracks] = useState<SongInterface[]>([]);
 	const [isPending, setIsPending] = useState(false);
+	const [renderedAgain, setRederedAgain] = useState(true);
+
 	const { user } = useAuthContext();
 
-	const fetchPost = async () => {
-		setIsPending(true);
+	useEffect(() => {
+		const fetchData = async () => {
+			if (user) {
+				const querySnapshot = await getQuerySnapshot(user.uid);
 
-		const q = query(
-			collection(db, "favourites"),
-			where("uid", "==", user?.uid)
-		);
+				const data = querySnapshot.docs.map((doc) => ({
+					...(doc.data() as SongInterface),
+					isFavourite: true,
+				}));
 
-		const unsubscribe = onSnapshot(q, (querySnapshot) => {
-			let results: SongInterface[] = [];
-			querySnapshot.forEach((doc) => {
-				results.push(doc.data() as SongInterface);
-			});
+				setFavouriteTracks(data);
+			}
+		};
 
-			setTracks(results);
-			setIsPending(false);
+		fetchData();
+	}, [renderedAgain, favouriteTracks]);
+
+	const renderAgain = () => {
+		setRederedAgain((prev) => {
+			return !prev;
 		});
 	};
-
-	useEffect(() => {
-		fetchPost();
-	}, []);
-
 	return (
 		<>
 			<header className={styles.header}>
@@ -44,15 +44,15 @@ export const FavouritePage = () => {
 				<div className={styles["header-box"]}>
 					<p>playlist</p>
 					<h1 className={styles.liked}>Liked Songs</h1>
-					{tracks.length > 0 && (
+					{favouriteTracks.length > 0 && (
 						<div className={styles["user-playlist"]}>
 							<p>{user?.displayName}</p>
-							<p>{tracks.length} songs</p>
+							<p>{favouriteTracks.length} songs</p>
 						</div>
 					)}
 				</div>
 			</header>
-			<SongsItems isHomePage={false} tracks={tracks} />
+			<SongsItems tracks={favouriteTracks} renderAgain={renderAgain} />
 			{isPending && <CircularProgress color="secondary" size={60} />}
 		</>
 	);

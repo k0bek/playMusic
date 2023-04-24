@@ -1,13 +1,14 @@
 import { ReactNode } from "react";
+import { ButtonHTMLAttributes } from "react";
 import styles from "./Button.module.scss";
+import classNames from "classnames";
 
-type ButtonProps = {
+type ButtonAttrs = ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonPickedAttrs = "type" | "disabled" | "className" | "onClick";
+
+interface ButtonProps extends Pick<ButtonAttrs, ButtonPickedAttrs> {
 	children: ReactNode;
-	type: "button" | "submit";
-	disabled: boolean;
-	className: string;
-	onClick?: () => void;
-};
+}
 
 export const Button = ({
 	children,
@@ -18,7 +19,12 @@ export const Button = ({
 }: ButtonProps) => {
 	return (
 		<button
-			className={styles[className]}
+			className={classNames({
+				[styles["main-button"]]: className === "main-button",
+				[styles["rounded-button"]]: className === "rounded-button",
+				[styles["rounded-button-play"]]: className === "rounded-button-play",
+				[styles["secondary-button"]]: className === "secondary-button",
+			})}
 			type={type}
 			disabled={disabled}
 			onClick={onClick}

@@ -7,61 +7,61 @@ const modalElement = document.getElementById("modal")!;
 const backdropElement = document.getElementById("backdrop")!;
 
 type ModalBackdropProps = {
-	onClick?: () => void;
+  onClick?: () => void;
 };
 
 export const ModalBackdrop = (props: ModalBackdropProps) => {
-	const { hideModal } = useSongContext();
+  const { hideModal } = useSongContext();
 
-	return ReactDOM.createPortal(
-		<div
-			className={styles.backdrop}
-			onClick={() => {
-				hideModal();
-				props.onClick?.();
-			}}
-		/>,
-		backdropElement
-	);
+  return ReactDOM.createPortal(
+    <div
+      className={styles.backdrop}
+      onClick={() => {
+        hideModal();
+        props.onClick?.();
+      }}
+    />,
+    backdropElement
+  );
 };
 
 export const ModalOverlay = () => {
-	const { hideModal, currentTrack } = useSongContext();
+  const { hideModal, currentTrack } = useSongContext();
 
-	return ReactDOM.createPortal(
-		<div className={styles["modal-overlay"]}>
-			{currentTrack !== null && (
-				<img src={tracks[currentTrack].picture} className={styles.image} />
-			)}
-			<div className={styles["modal-overlay-box"]}>
-				<p className={styles.start}>
-					Start listening with free playMusic account
-				</p>
-				<div className={styles.controls}>
-					<Link to="/signup" className={styles.signup} onClick={hideModal}>
-						Sign up
-					</Link>
-					<p className={styles.question}>
-						Already have an account?{" "}
-						<Link to="/login" className={styles.login} onClick={hideModal}>
-							Log in
-						</Link>
-					</p>
-				</div>
-			</div>
-			<button className={styles.close} onClick={hideModal}>
-				Close
-			</button>
-		</div>,
-		modalElement
-	);
+  return ReactDOM.createPortal(
+    <div className={styles["modal-overlay"]}>
+      {currentTrack !== null && (
+        <img src={tracks[currentTrack].picture} className={styles.image} />
+      )}
+      <div className={styles["modal-overlay-box"]}>
+        <p className={styles.start}>
+          Start listening with free playMusic account
+        </p>
+        <div className={styles.controls}>
+          <Link to="/signup" className={styles.signup} onClick={hideModal}>
+            Sign up
+          </Link>
+          <p className={styles.question}>
+            Already have an account?{" "}
+            <Link to="/login" className={styles.login} onClick={hideModal}>
+              Log in
+            </Link>
+          </p>
+        </div>
+      </div>
+      <button className={styles.close} onClick={hideModal}>
+        Close
+      </button>
+    </div>,
+    modalElement
+  );
 };
 
 export const LoginModal = () => {
-	return (
-		<>
-			<ModalBackdrop />
-			<ModalOverlay />
-		</>
-	);
+  return (
+    <>
+      <ModalBackdrop />
+      <ModalOverlay />
+    </>
+  );
 };

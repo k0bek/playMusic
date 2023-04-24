@@ -25,7 +25,6 @@
 .rounded-button-play {
 	width: 3.5em;
 	height: 3.5em;
-	background-color: var(--button-background);
 	background: var(--background-gradient);
 	color: var(--white);
 	border-radius: 50%;
@@ -39,7 +38,6 @@
 }
 
 .rounded-button-play {
-	position: absolute;
 	position: absolute;
 	bottom: 5.6em;
 	right: 2em;

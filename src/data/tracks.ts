@@ -20,91 +20,91 @@ import onceOrTwicePicture from "./../assets/images/once_or_twice.jpg";
 type SongSource = string | undefined;
 
 export interface SongInterface {
-	id: number;
-	title: string;
-	author: string;
-	recommended: boolean;
-	picture: string;
-	source: SongSource;
-	uid?: string;
-	currentTracksList?: SongInterface[];
-	isFavourite?: false;
-	isHomePage?: boolean;
+  id: number;
+  title: string;
+  author: string;
+  recommended: boolean;
+  picture: string;
+  source: SongSource;
+  uid?: string;
+  currentTracksList?: SongInterface[];
+  isFavourite?: boolean;
+  isHomePage?: boolean;
 }
 
 export const tracks: SongInterface[] = [
-	{
-		id: 0,
-		title: "Momma's Love",
-		author: "Morray",
-		recommended: true,
-		picture: mommasPicture,
-		source: mommasSong,
-	},
-	{
-		id: 1,
-		title: "Am I Wrong (Official Drill)",
-		author: "Nico & Vinz",
-		recommended: true,
-		picture: amIWrongPicture,
-		source: amIWrongSong,
-	},
-	{
-		id: 2,
-		title: "Anyway",
-		author: "Huntar",
-		recommended: true,
-		picture: anywayPicture,
-		source: anywaySong,
-	},
+  {
+    id: 0,
+    title: "Momma's Love",
+    author: "Morray",
+    recommended: true,
+    picture: mommasPicture,
+    source: mommasSong,
+  },
+  {
+    id: 1,
+    title: "Am I Wrong (Official Drill)",
+    author: "Nico & Vinz",
+    recommended: true,
+    picture: amIWrongPicture,
+    source: amIWrongSong,
+  },
+  {
+    id: 2,
+    title: "Anyway",
+    author: "Huntar",
+    recommended: true,
+    picture: anywayPicture,
+    source: anywaySong,
+  },
 
-	{
-		id: 3,
-		title: "Reggae & Calypso",
-		author: "Russ Millions x Buni x YV",
-		recommended: true,
-		picture: calypsoPicture,
-		source: calypsoSong,
-	},
-	{
-		id: 4,
-		title: "Koło Fortuny",
-		author: "Wiktor Dyduła",
-		recommended: false,
-		picture: koloPicture,
-		source: koloSong,
-	},
-	{
-		id: 5,
-		title: "Loading",
-		author: "Central Cee",
-		recommended: false,
-		picture: loadingPicture,
-		source: loadingSong,
-	},
-	{
-		id: 6,
-		title: "Chleb",
-		author: "Młyn",
-		recommended: false,
-		picture: mlynPicture,
-		source: mlynSong,
-	},
-	{
-		id: 7,
-		title: "Used To Love",
-		author: "Martin Garrix & Dean Lewis",
-		recommended: false,
-		picture: usedToLovePicture,
-		source: usedToLoveSong,
-	},
+  {
+    id: 3,
+    title: "Reggae & Calypso",
+    author: "Russ Millions x Buni x YV",
+    recommended: true,
+    picture: calypsoPicture,
+    source: calypsoSong,
+  },
+  {
+    id: 4,
+    title: "Koło Fortuny",
+    author: "Wiktor Dyduła",
+    recommended: false,
+    picture: koloPicture,
+    source: koloSong,
+  },
+  {
+    id: 5,
+    title: "Loading",
+    author: "Central Cee",
+    recommended: false,
+    picture: loadingPicture,
+    source: loadingSong,
+  },
+  {
+    id: 6,
+    title: "Chleb",
+    author: "Młyn",
+    recommended: false,
+    picture: mlynPicture,
+    source: mlynSong,
+  },
+  {
+    id: 7,
+    title: "Used To Love",
+    author: "Martin Garrix & Dean Lewis",
+    recommended: false,
+    picture: usedToLovePicture,
+    source: usedToLoveSong,
+  },
 
-	{
-		id: 8,
-		title: "Once Or Twice",
-		author: "Diffi & Waima",
-		recommended: false,
-		picture: onceOrTwicePicture,
-		source: onceOrTwiceSong,
-	},
+  {
+    id: 8,
+    title: "Once Or Twice",
+    author: "Diffi & Waima",
+    recommended: false,
+    picture: onceOrTwicePicture,
+    source: onceOrTwiceSong,
+  },
 ];

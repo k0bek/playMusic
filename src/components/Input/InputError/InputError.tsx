@@ -4,9 +4,9 @@ import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./InputError.module.scss";
 
-type InputErrorProps = {
+interface InputErrorProps {
 	children: ReactNode;
-};
+}
 
 export const InputError = ({ children }: InputErrorProps) => {
 	return (

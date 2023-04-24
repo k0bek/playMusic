@@ -9,126 +9,126 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SongPlayer.module.scss";
 
 export const SongPlayer = () => {
-	const [timeProgress, setTimeProgress] = useState(0);
-	const [duration, setDuration] = useState<number>(0);
+  const [timeProgress, setTimeProgress] = useState(0);
+  const [duration, setDuration] = useState<number>(0);
 
-	const audioRef = useRef<HTMLAudioElement | null>(null);
-	const progressBarRef = useRef<HTMLInputElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const progressBarRef = useRef<HTMLInputElement | null>(null);
 
-	const {
-		songId,
-		isSongFocused,
-		handleIsSongFocused,
-		listOfTracks,
-		handleSongId,
-	} = useSongContext();
+  const {
+    songId,
+    isSongFocused,
+    handleIsSongFocused,
+    listOfTracks,
+    handleSongId,
+  } = useSongContext();
 
-	const handleFocusShowed = () => {
-		handleIsSongFocused(!isSongFocused);
-	};
+  const handleFocusShowed = () => {
+    handleIsSongFocused(!isSongFocused);
+  };
 
-	const goToThePreviousSong = () => {
-		if (songId !== null) {
-			if (songId) {
-				handleSongId(songId - 1);
-			} else if (songId == 0) {
-				handleSongId(listOfTracks.length - 1);
-			}
-		}
-	};
+  const goToThePreviousSong = () => {
+    if (songId !== null) {
+      if (songId) {
+        handleSongId(songId - 1);
+      } else if (songId == 0) {
+        handleSongId(listOfTracks.length - 1);
+      }
+    }
+  };
 
-	const goToTheNextSong = () => {
-		if (songId !== listOfTracks.length - 1 && songId !== null) {
-			handleSongId(songId + 1);
-		} else if (songId === listOfTracks.length - 1) {
-			handleSongId(0);
-		}
-	};
+  const goToTheNextSong = () => {
+    if (songId !== listOfTracks.length - 1 && songId !== null) {
+      handleSongId(songId + 1);
+    } else if (songId === listOfTracks.length - 1) {
+      handleSongId(0);
+    }
+  };
 
-	return (
-		<section>
-			{songId !== null && (
-				<div
-					className={
-						isSongFocused
-							? styles["audio-player-focused"]
-							: styles["audio-player"]
-					}
-				>
-					<div
-						className={
-							isSongFocused ? styles["song-info-focused"] : styles["song-info"]
-						}
-					>
-						<img
-							className={
-								isSongFocused ? styles["picture-focused"] : styles.picture
-							}
-							src={listOfTracks[songId].picture}
-							onClick={handleFocusShowed}
-							alt={listOfTracks[songId].title}
-						/>
-						<div className={styles["info-text"]}>
-							<p
-								className={
-									isSongFocused ? styles["title-focused"] : styles.title
-								}
-							>
-								{listOfTracks[songId].title}
-							</p>
-							<p
-								className={
-									isSongFocused ? styles["author-focused"] : styles["author"]
-								}
-							>
-								{listOfTracks[songId].author}
-							</p>
-						</div>
-					</div>
-					<div
-						className={
-							isSongFocused
-								? styles["song-player-focused"]
-								: styles["song-player"]
-						}
-					>
-						<Controls
-							audioRef={audioRef}
-							setTimeProgress={setTimeProgress}
-							progressBarRef={progressBarRef}
-							duration={duration}
-							goToThePreviousSong={goToThePreviousSong}
-							goToTheNextSong={goToTheNextSong}
-						/>
+  return (
+    <section>
+      {songId !== null && (
+        <div
+          className={
+            isSongFocused
+              ? styles["audio-player-focused"]
+              : styles["audio-player"]
+          }
+        >
+          <div
+            className={
+              isSongFocused ? styles["song-info-focused"] : styles["song-info"]
+            }
+          >
+            <img
+              className={
+                isSongFocused ? styles["picture-focused"] : styles.picture
+              }
+              src={listOfTracks[songId].picture}
+              onClick={handleFocusShowed}
+              alt={listOfTracks[songId].title}
+            />
+            <div className={styles["info-text"]}>
+              <p
+                className={
+                  isSongFocused ? styles["title-focused"] : styles.title
+                }
+              >
+                {listOfTracks[songId].title}
+              </p>
+              <p
+                className={
+                  isSongFocused ? styles["author-focused"] : styles["author"]
+                }
+              >
+                {listOfTracks[songId].author}
+              </p>
+            </div>
+          </div>
+          <div
+            className={
+              isSongFocused
+                ? styles["song-player-focused"]
+                : styles["song-player"]
+            }
+          >
+            <Controls
+              audioRef={audioRef}
+              setTimeProgress={setTimeProgress}
+              progressBarRef={progressBarRef}
+              duration={duration}
+              goToThePreviousSong={goToThePreviousSong}
+              goToTheNextSong={goToTheNextSong}
+            />
 
-						<ProgressBar
-							progressBarRef={progressBarRef}
-							audioRef={audioRef}
-							duration={duration}
-							timeProgress={timeProgress}
-						/>
+            <ProgressBar
+              progressBarRef={progressBarRef}
+              audioRef={audioRef}
+              duration={duration}
+              timeProgress={timeProgress}
+            />
 
-						<DisplayTrack
-							currentTrack={listOfTracks[songId]}
-							audioRef={audioRef}
-							progressBarRef={progressBarRef}
-							setDuration={setDuration}
-							setTimeProgress={setTimeProgress}
-							goToTheNextSong={goToTheNextSong}
-						/>
-					</div>
-					<Volume audioRef={audioRef} />
+            <DisplayTrack
+              currentTrack={listOfTracks[songId]}
+              audioRef={audioRef}
+              progressBarRef={progressBarRef}
+              setDuration={setDuration}
+              setTimeProgress={setTimeProgress}
+              goToTheNextSong={goToTheNextSong}
+            />
+          </div>
+          <Volume audioRef={audioRef} />
 
-					{isSongFocused && (
-						<button
-							className={styles["close-button-focused"]}
-							onClick={handleFocusShowed}
-						>
-							<FontAwesomeIcon icon={faXmark} />
-						</button>
-					)}
-				</div>
-			)}
-		</section>
-	);
+          {isSongFocused && (
+            <button
+              className={styles["close-button-focused"]}
+              onClick={handleFocusShowed}
+            >
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+          )}
+        </div>
+      )}
+    </section>
+  );
 };
