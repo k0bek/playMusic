@@ -1,0 +1,53 @@
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 0.5em;
+	top: 0;
+	left: 0;
+	background-color: var(--button-background);
+	background: var(--background-gradient);
+	height: 15em;
+	width: 100%;
+
+	&-box {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 0.2em;
+		font-weight: 700;
+	}
+
+	.heart {
+		font-size: 8rem;
+	}
+
+	.liked {
+		font-size: 3rem;
+		font-weight: 900;
+	}
+
+	.user-playlist {
+		display: flex;
+		gap: 0.2em;
+	}
+
+	@media (min-width: 700px) {
+		gap: 2.5em;
+		flex-direction: row;
+
+		.heart {
+			font-size: 15rem;
+		}
+
+		.liked {
+			font-size: 5rem;
+		}
+
+		.header-box {
+			align-items: flex-start;
+		}
+	}
+}
